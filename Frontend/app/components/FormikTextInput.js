@@ -5,13 +5,17 @@ import { useField } from 'formik';
 import TextInput from './TextInput';
 import Text from './Text';
 
+//style
+import theme from './theme';
+
 const styles = StyleSheet.create({
   seperator: {
     justifyContent: 'center',
     height: 30,
   },
   field: {
-    borderColor: '#999999',
+    borderColor: theme.colors.logo,
+    backgroundColor: '#ffffff'
   },
 });
 

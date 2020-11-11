@@ -15,7 +15,8 @@ const LoginForm = ({ onSubmit }) => {
     <>
       <Logo style={styles.logo} />
       <View style={styles.formContainer}>
-        <Text>hello</Text>
+        <FormikTextInput name='username' placeholder='Username' />
+        <FormikTextInput name='password' placeholder='Password' secureTextEntry />
       </View>
     </>
   );
@@ -26,7 +27,6 @@ const formHeight = Dimensions.get('window').height * 0.4;
 const styles = StyleSheet.create({
   formContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
     borderWidth: 3,
     borderColor: theme.colors.logo,
     borderRadius: 5,
