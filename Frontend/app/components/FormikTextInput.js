@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   },
   field: {
     borderColor: theme.colors.logo,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
+    margin: 10,
   },
 });
 

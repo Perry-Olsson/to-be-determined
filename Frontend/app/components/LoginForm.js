@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 //components
@@ -17,6 +17,9 @@ const LoginForm = ({ onSubmit }) => {
       <View style={styles.formContainer}>
         <FormikTextInput name='username' placeholder='Username' />
         <FormikTextInput name='password' placeholder='Password' secureTextEntry />
+        <TouchableWithoutFeedback onPress={onSubmit}>
+          <Text style={styles.submit}>Sign in</Text>
+        </TouchableWithoutFeedback>
       </View>
     </>
   );
@@ -37,6 +40,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: Constants.statusBarHeight,
     marginTop: 50,
+  },
+  submit: {
+    margin: 10,
+    borderRadius: 4,
+    padding: 10,
+    color: '#ffffff',
+    fontSize: 20,
+    textAlign: 'center',
+    backgroundColor: '#006cf0'
   }
 });
 
