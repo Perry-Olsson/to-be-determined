@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ImageBackground, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
 
@@ -14,9 +14,13 @@ export default function App() {
 
   return (
     // <MapScreen />
-    <ImageBackground style={styles.background} source={require('./app/assets/stars1(reversed).jpg')}>
-      {/* <LaunchScreen /> */}
-      <LoginScreen />
+    <ImageBackground style={styles.image} source={require('./app/assets/stars1(reversed).jpg')}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.scrollView}>
+        <View style={styles.scrollView}>
+          {/* <LaunchScreen /> */}
+          <LoginScreen />
+        </View>
+      </TouchableWithoutFeedback>
     </ImageBackground>
   );
 }
@@ -25,11 +29,15 @@ export default function App() {
 console.log('checkpoint');
 
 const styles = StyleSheet.create({
-  background:
-  {
+  image: {
+    flex: 1,
+  },
+  scrollView: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  }
 });
 

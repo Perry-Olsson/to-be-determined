@@ -2,15 +2,16 @@ import { Platform } from 'react-native';
 
 const theme = {
   colors: {
-    textPrimary: '#d9dadb',
-    textSecondary: '#13181c',
+    textPrimary: '#13181c',
+    textSecondary: '#ffffff',
     primary: '#ffffff',
-    secondary: '#a0a0a3',
-    logo: '#c291a8',
+    secondary: '#404040',
+    logo: '#dba7b9',
   },
   fontSizes: {
     body: 16,
-    subheading: 18,
+    subheading: 22,
+    button: 20
   },
   fonts:{
     main: Platform.select({

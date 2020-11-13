@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Dimensions } from 'react-native';
-import Constants from 'expo-constants';
+import { View, StyleSheet, TouchableHighlight } from 'react-native';
 
 //components
 import Text from './Text';
@@ -13,42 +12,35 @@ import theme from '../components/theme';
 const LoginForm = ({ onSubmit }) => {
   return (
     <>
-      <Logo style={styles.logo} />
       <View style={styles.formContainer}>
-        <FormikTextInput name='username' placeholder='Username' />
-        <FormikTextInput name='password' placeholder='Password' secureTextEntry />
-        <TouchableWithoutFeedback onPress={onSubmit}>
+        <Logo style={styles.logo} />
+        <FormikTextInput type='secondary' name='username' placeholder='Username' />
+        <FormikTextInput type='secondary' name='password' placeholder='Password' secureTextEntry />
+        <TouchableHighlight onPress={onSubmit}>
           <Text style={styles.submit}>Sign in</Text>
-        </TouchableWithoutFeedback>
+        </TouchableHighlight>
       </View>
     </>
   );
 };
 
-const formHeight = Dimensions.get('window').height * 0.4;
-
 const styles = StyleSheet.create({
   formContainer: {
+    width: '100%',
+    padding: 15,
     justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: theme.colors.logo,
-    borderRadius: 5,
-    height: formHeight,
-    width: 300,
   },
   logo: {
-    position: 'absolute',
-    top: Constants.statusBarHeight,
-    marginTop: 50,
+    alignSelf: 'center',
+    bottom: 40
   },
   submit: {
-    margin: 10,
     borderRadius: 4,
     padding: 10,
-    color: '#ffffff',
-    fontSize: 20,
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.button,
     textAlign: 'center',
-    backgroundColor: '#006cf0'
+    backgroundColor: theme.colors.logo
   }
 });
 

@@ -8,23 +8,11 @@ import Text from './Text';
 //style
 import theme from './theme';
 
-const styles = StyleSheet.create({
-  seperator: {
-    justifyContent: 'center',
-    height: 30,
-  },
-  field: {
-    borderColor: theme.colors.logo,
-    backgroundColor: '#ffffff',
-    margin: 10,
-  },
-});
-
-const FormikTextInput = ({ name, ...props }) => {
+const FormikTextInput = ({ name, type, ...props }) => {
   const [field, meta, helpers] = useField(name);
   const showError = meta.touched && meta.error;
 
-  const fieldStyles = [styles.field, showError && styles.errorField];
+  const fieldStyles = [styles.field, type === 'secondary' && styles.secondary, showError && styles.errorField];
 
   return (
     <>
@@ -32,6 +20,7 @@ const FormikTextInput = ({ name, ...props }) => {
         onChangeText={value => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
+        placeholderTextColor='#aaaaaa'
         error={showError}
         style={fieldStyles}
         {...props}
@@ -42,5 +31,21 @@ const FormikTextInput = ({ name, ...props }) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  seperator: {
+    justifyContent: 'center',
+    height: 30,
+  },
+  field: {
+    borderWidth: 1,
+    borderColor: theme.colors.logo,
+    backgroundColor: theme.colors.primary,
+  },
+  secondary: {
+    color: theme.colors.textSecondary,
+    backgroundColor: 'rgba(30, 30, 30, 0.8)',
+  },
+});
 
 export default FormikTextInput;
