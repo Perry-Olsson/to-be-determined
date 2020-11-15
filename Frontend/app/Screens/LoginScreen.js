@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 
 //components
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../Login/LoginForm';
 
 const initialValues = {
   username: '',
