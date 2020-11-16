@@ -1,5 +1,6 @@
 import React from 'react';
-import { Animated, KeyboardAvoidingView, StyleSheet, TouchableHighlight, Dimensions } from 'react-native';
+import { Animated, KeyboardAvoidingView, StyleSheet, TouchableHighlight } from 'react-native';
+// import { useFormikContext } from 'formik';
 
 //components
 import Text from '../components/Text';
@@ -10,6 +11,7 @@ import Logo from '../components/Logo';
 import theme from '../components/theme';
 
 const LoginForm = ({ onSubmit }) => {
+  // const { errors } = useFormikContext();
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.container}>

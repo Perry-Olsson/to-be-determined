@@ -10,7 +10,7 @@ import theme from './theme';
 
 const FormikTextInput = ({ name, type, ...props }) => {
   const [field, meta, helpers] = useField(name);
-  const showError = meta.touched && meta.error;
+  const showError = false;
 
   const fieldStyles = [styles.field, type === 'secondary' && styles.secondary, showError && styles.errorField];
 
