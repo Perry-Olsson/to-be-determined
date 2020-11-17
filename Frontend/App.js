@@ -1,32 +1,20 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, ImageBackground, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import { NativeRouter } from 'react-router-native';
 
+import Main from './app/Main';
+import GalaxyBackground from './app/components/GalaxyBackground';
 
-import LaunchScreen from './app/Screens/LaunchScreen.js';
-import MapScreen from './app/Screens/MapScreen.js';
-import LoginScreen from './app/Screens/LoginScreen';
-
-
-export default function App() {
-
-
+const App = () => {
   return (
-    // <MapScreen />
-    <ImageBackground style={styles.image} source={require('./app/assets/stars1(reversed).jpg')}>
-      {/* <LaunchScreen /> */}
-      <LoginScreen />
-    </ImageBackground>
+    <NativeRouter>
+      <GalaxyBackground>
+        <Main />
+      </GalaxyBackground>
+    </NativeRouter>
   );
-}
+};
+
+export default App;
 
 
-console.log('checkpoint');
-
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-  },
-});
 

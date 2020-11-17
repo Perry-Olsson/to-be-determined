@@ -1,12 +1,11 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Svg, { Image, Circle, Path, Rect } from 'react-native-svg';
 
 
 function SvgMap(props) {
 
   return (
-
     <Svg height="100%" width="100%">
       <Rect
         cx="50%"
@@ -16,7 +15,6 @@ function SvgMap(props) {
         fill="#5E6167"
         opacity="0.4"
       />
-
       <Circle
         cx="50%"
         cy="50%"
@@ -62,29 +60,22 @@ function SvgMap(props) {
 
 
     </Svg>
-
-
   );
 }
 
 
-
-
-
-
 const styles = StyleSheet.create({
-  background:
-        { flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center' },
-  logo:
-        { width:250,
-          height: 100,
-          borderRadius: 3,
-          padding:20
-
-        }
-
+  background:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  logo: {
+    width:250,
+    height: 100,
+    borderRadius: 3,
+    padding:20
+  }
 });
 
 export default SvgMap;
