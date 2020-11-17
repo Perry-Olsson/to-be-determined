@@ -6,7 +6,7 @@ const theme = {
     textSecondary: '#ffffff',
     primary: '#ffffff',
     secondary: '#404040',
-    logo: '#dba7b9',
+    logo: '#f2bdd9',
   },
   fontSizes: {
     body: 16,

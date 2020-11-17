@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import * as yup from 'yup';
+
 //components
 import LoginForm from '../Login/LoginForm';
 
@@ -8,11 +8,6 @@ const initialValues = {
   username: '',
   password: '',
 };
-
-const validationSchema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().required()
-});
 
 const LoginScreen = () => {
   const onSubmit = ({ username, password }) => {
@@ -23,7 +18,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} /> }
     </Formik>
   );
