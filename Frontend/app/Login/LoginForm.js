@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, KeyboardAvoidingView, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, KeyboardAvoidingView, StyleSheet, TouchableHighlight } from 'react-native';
 import { useFormikContext } from 'formik';
 
 //components
@@ -12,25 +12,23 @@ import theme from '../components/theme';
 
 const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
+  const submitStyles = [[styles.submit, !inputIsValid(values) && { backgroundColor: '#917082' }]];
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.container}>
-      <Animated.View style={ styles.formContainer }>
+      <View style={ styles.formContainer }>
         <Logo style={styles.logo} />
         <FormikTextInput type='secondary' name='username' placeholder='Username' />
         <FormikTextInput type='secondary' name='password' placeholder='Password' secureTextEntry />
-        <TouchableHighlight onPress={inputIsValid(values) ? onSubmit : null}>
-          <Text style={[styles.submit, !inputIsValid(values) && { backgroundColor: '#917082' }]}>Sign in</Text>
+        <TouchableHighlight style={submitStyles} onPress={inputIsValid(values) ? onSubmit : null}>
+          <Text fontSize='form'>Sign in</Text>
         </TouchableHighlight>
-      </Animated.View>
+      </View>
     </KeyboardAvoidingView>
   );
 };
 
-const inputIsValid = (values) => {
-  if (values.username && values.password)
-    return true;
-};
+const inputIsValid = (values) => values.username && values.password ? true : false;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,11 +46,11 @@ const styles = StyleSheet.create({
     bottom: 40
   },
   submit: {
+    alignItems: 'center',
     borderRadius: 4,
     padding: 10,
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.button,
-    textAlign: 'center',
+    fontSize: theme.fontSizes.form,
     backgroundColor: theme.colors.logo
   }
 });

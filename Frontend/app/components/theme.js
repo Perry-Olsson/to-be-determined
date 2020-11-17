@@ -6,12 +6,12 @@ const theme = {
     textSecondary: '#ffffff',
     primary: '#ffffff',
     secondary: '#404040',
-    logo: '#f2bdd9',
+    logo: '#deb1c6',
   },
   fontSizes: {
     body: 16,
     subheading: 22,
-    button: 20
+    form: 20
   },
   fonts:{
     main: Platform.select({

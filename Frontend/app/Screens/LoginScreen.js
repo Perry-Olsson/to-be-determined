@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableWithoutFeedback, View, Keyboard } from 'react-native';
 import { Formik } from 'formik';
 
 //components
@@ -18,9 +19,13 @@ const LoginScreen = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} /> }
-    </Formik>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View styles={{ flex: 1 }}>
+        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          {({ handleSubmit }) => <LoginForm onSubmit={handleSubmit} /> }
+        </Formik>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

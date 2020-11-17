@@ -15,12 +15,8 @@ export default function App() {
   return (
     // <MapScreen />
     <ImageBackground style={styles.image} source={require('./app/assets/stars1(reversed).jpg')}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} style={styles.scrollView}>
-        <View style={styles.scrollView}>
-          {/* <LaunchScreen /> */}
-          <LoginScreen />
-        </View>
-      </TouchableWithoutFeedback>
+      {/* <LaunchScreen /> */}
+      <LoginScreen />
     </ImageBackground>
   );
 }
@@ -32,10 +28,5 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
-  scrollView: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  }
 });
 
