@@ -16,7 +16,7 @@ const Main = () => {
         setLaunching(false);
       }, 2000);
     }
-  });
+  }, []);
 
   return launching
     ? <LaunchScreen setUser={setUser} setLaunching={setLaunching} />
