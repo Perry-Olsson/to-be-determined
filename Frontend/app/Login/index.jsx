@@ -8,7 +8,7 @@ import Body from './Body';
 
 import theme from '../components/theme';
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, fadeIn, setFadeIn }) => {
 
   const onSubmit = ({ username, password }) => {
     if (username === 'testUser' && password === 'password')
@@ -18,7 +18,7 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <FadeInView duration={1000}>
+    <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
       <Body onSubmit={onSubmit} />
       <Footer color='secondary'>
         <Text color='light'>New to Friday?</Text>

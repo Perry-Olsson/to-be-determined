@@ -2,17 +2,20 @@ import React, { useRef, useEffect } from 'react';
 import { Animated } from 'react-native';
 
 const FadeInView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(props.fadeIn ? 0 : 1)).current;
 
   useEffect(() => {
-    Animated.timing(
-      fadeAnim,
-      {
-        toValue: 1,
-        duration: props.duration || 2000,
-        useNativeDriver: false,
-      }
-    ).start();
+    if (props.fadeIn) {
+      Animated.timing(
+        fadeAnim,
+        {
+          toValue: 1,
+          duration: props.duration || 2000,
+          useNativeDriver: false,
+        }
+      ).start();
+      if (props.setFadeIn) props.setFadeIn(false);
+    }
   }, [fadeAnim]);
 
   return (

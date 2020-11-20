@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-native';
 
 import Login from '../Login';
-import Body from '../SignUp';
+import SignUp from '../SignUp';
 
 const LoginScreen = ({ setUser }) => {
+  const [fadeIn, setFadeIn] = useState(true);
+
   return (
     <Switch>
       <Route path='/signup'>
-        <Body />
+        <SignUp />
       </Route>
       <Route path='/'>
-        <Login setUser={setUser} />
+        <Login setUser={setUser} fadeIn={fadeIn} setFadeIn={setFadeIn} />
       </Route>
       <Redirect to='/' />
     </Switch>
