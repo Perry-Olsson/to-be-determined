@@ -1,15 +1,20 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-native';
 
-
-//components
-import Login from '../login/Login';
-import CreateAccount from '../login/CreateAccount';
-
-
+import Login from '../Login';
+import Body from '../SignUp';
 
 const LoginScreen = ({ setUser }) => {
   return (
-    <Login setUser={setUser} />
+    <Switch>
+      <Route path='/signup'>
+        <Body />
+      </Route>
+      <Route path='/'>
+        <Login setUser={setUser} />
+      </Route>
+      <Redirect to='/' />
+    </Switch>
   );
 };
 

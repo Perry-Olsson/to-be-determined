@@ -4,8 +4,11 @@ const theme = {
   colors: {
     textPrimary: '#13181c',
     textSecondary: '#ffffff',
+    textLightGray: '#bdbdbd',
+    textDarkGray: '#707070',
     primary: '#ffffff',
     secondary: '#404040',
+    opaqueGray: 'rgba(105, 105, 105, 0.7)',
     logo: '#deb1c6',
   },
   fontSizes: {
