@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 
 import LaunchScreen from './Screens/LaunchScreen';
@@ -21,11 +21,9 @@ const Main = () => {
   return launching
     ? <LaunchScreen setUser={setUser} setLaunching={setLaunching} />
     : (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container}>
-          {user ? <MapScreen setUser={setUser} /> : <LoginScreen setUser={setUser} /> }
-        </View>
-      </TouchableWithoutFeedback>
+      <View style={styles.container}>
+        {user ? <MapScreen setUser={setUser} /> : <LoginScreen setUser={setUser} /> }
+      </View>
     );
 };
 

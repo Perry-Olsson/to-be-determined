@@ -19,7 +19,7 @@ const FadeInView = (props) => {
   }, [fadeAnim]);
 
   return (
-    <Animated.View style={{ ...props.style, opacity: fadeAnim }}>
+    <Animated.View style={{ ...props.style, flex: 1, opacity: fadeAnim }}>
       {props.children}
     </Animated.View>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useFormikContext } from 'formik';
 
 import FormikTextInput from '../components/FormikTextInput';
 import Logo from '../components/Logo';
-import Text from '../components/Text';
+import { Button as SubmitButton } from '../components/Button';
 
 import theme from '../components/theme';
 
@@ -17,9 +17,7 @@ const LoginForm = ({ onSubmit }) => {
       <Logo style={styles.logo} />
       <FormikTextInput type='secondary' name='username' placeholder='Username' />
       <FormikTextInput type='secondary' name='password' placeholder='Password' secureTextEntry />
-      <TouchableHighlight style={submitStyles} onPress={inputIsValid(values) ? onSubmit : null}>
-        <Text fontSize='form'>Sign in</Text>
-      </TouchableHighlight>
+      <SubmitButton title='Sign in' onPress={inputIsValid(values) ? onSubmit : null} style={submitStyles} />
     </View>
   );
 };
