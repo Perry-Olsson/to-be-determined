@@ -1,12 +1,27 @@
 import React from 'react';
-import { TouchableHighlight } from 'react-native';
+import { TouchableHighlight, StyleSheet } from 'react-native';
 
 import Text from './Text';
 
+import theme from './theme';
+
 export const Button = ({ title, onPress, style, textStyle }) => {
+  const buttonStyles = [styles.submit, style];
+
   return (
-    <TouchableHighlight style={style} onPress={onPress}>
+    <TouchableHighlight style={buttonStyles} onPress={onPress}>
       <Text fontSize='form' style={textStyle}>{title}</Text>
     </TouchableHighlight>
   );
 };
+
+const styles = StyleSheet.create({
+  submit: {
+    alignItems: 'center',
+    borderRadius: 4,
+    padding: 10,
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.form,
+    backgroundColor: theme.colors.logo
+  }
+});

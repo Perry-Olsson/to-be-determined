@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
 
 import DismissKeyboard from '../components/DismissKeyboard';
@@ -16,7 +16,7 @@ const SignUp = () => {
 
   return (
     <DismissKeyboard>
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Body onSubmit={onSubmit} />
         <Footer color='secondary'>
           <Text color='light'>Have an Account?</Text>
@@ -28,5 +28,11 @@ const SignUp = () => {
     </DismissKeyboard>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});
 
 export default SignUp;

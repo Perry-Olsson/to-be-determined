@@ -6,8 +6,6 @@ import FormikTextInput from '../components/FormikTextInput';
 import Logo from '../components/Logo';
 import { Button as SubmitButton } from '../components/Button';
 
-import theme from '../components/theme';
-
 const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
   const submitStyles = [[styles.submit, !inputIsValid(values) && { backgroundColor: '#917082' }]];
@@ -33,14 +31,6 @@ const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
     bottom: 40
-  },
-  submit: {
-    alignItems: 'center',
-    borderRadius: 4,
-    padding: 10,
-    color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.form,
-    backgroundColor: theme.colors.logo
   }
 });
 

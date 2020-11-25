@@ -5,7 +5,11 @@ import { NativeRouter, Route, Switch } from 'react-router-native';
 import NavBar from './NavBar';
 import FormikTextInput from '../components/FormikTextInput';
 import Header from './Header';
+import { Button } from '../components/Button';
 
+const NextButton = ({ onPress }) => (
+  <Button title='Next' onPress={onPress} />
+);
 
 
 const SignUpForm = () => {
@@ -28,6 +32,7 @@ const SignUpForm = () => {
             <View>
               <FormikTextInput type='secondary' name='firstName' placeholder='First Name' />
               <FormikTextInput type='secondary' name='lastName' placeholder='Last Name' />
+              <NextButton onPress={() => console.log('hello')} />
             </View>
           </Route>
         </Switch>
