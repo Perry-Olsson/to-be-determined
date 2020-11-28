@@ -5,7 +5,7 @@ import Text from './Text';
 
 import theme from './theme';
 
-export const Button = ({ title, onPress, style, textStyle }) => {
+const Button = ({ title, onPress, style, textStyle }) => {
   const buttonStyles = [styles.submit, style];
 
   return (
@@ -25,3 +25,5 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.logo
   }
 });
+
+export default Button;

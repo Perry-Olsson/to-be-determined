@@ -4,11 +4,11 @@ import { useFormikContext } from 'formik';
 
 import FormikTextInput from '../components/FormikTextInput';
 import Logo from '../components/Logo';
-import { Button as SubmitButton } from '../components/Button';
+import SubmitButton from '../components/Button';
 
 const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
-  const submitStyles = [[styles.submit, !inputIsValid(values) && { backgroundColor: '#917082' }]];
+  const submitStyles = !inputIsValid(values) && { backgroundColor: '#917082' };
 
   return (
     <View style={ styles.formContainer }>

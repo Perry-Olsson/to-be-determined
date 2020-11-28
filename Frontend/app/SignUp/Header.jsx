@@ -10,13 +10,13 @@ const Header = () => {
   const getHeader = ({ pathname }) => {
     switch(pathname) {
     case '/':
-      return 'name';
+      return 'Enter your name';
     case '/email':
-      return 'email';
+      return 'Enter your email';
     case '/username':
-      return 'username';
+      return 'Create a username';
     case '/password':
-      return 'password';
+      return 'Create a password';
     }
   };
 
@@ -26,7 +26,7 @@ const Header = () => {
       fontWeight='bold'
       color='logo'
       style={{ alignSelf: 'center', marginTop: Constants.statusBarHeight, marginBottom: 10 }}>
-    Enter your {getHeader(location)}
+      {getHeader(location)}
     </Text>
   );
 };
