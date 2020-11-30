@@ -25,6 +25,7 @@ const Main = () => {
         {user ? <MapScreen setUser={setUser} /> : <LoginScreen setUser={setUser} /> }
       </View>
     );
+  // return <MapScreen />;
 };
 
 const styles = StyleSheet.create({

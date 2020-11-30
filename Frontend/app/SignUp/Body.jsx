@@ -7,8 +7,6 @@ const Body = () => {
   const onSubmit = (values) => {
     console.log(values);
   };
-
-
   const initialValues = {
     firstName: '',
     lastName:'',

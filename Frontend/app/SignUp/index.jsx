@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { Button } from 'react-native';
 import { Link } from 'react-router-native';
 
 import DismissKeyboard from '../components/DismissKeyboard';
@@ -9,26 +9,21 @@ import Footer from '../components/Footer';
 
 import theme from '../components/theme';
 
-const SignUp = () => {
-  return (
-    <DismissKeyboard>
-      <View style={styles.container}>
-        <Body />
-        <Footer color='secondary'>
-          <Text color='light'>Have an Account?</Text>
-          <Link to='/' component={Button} title='Log In' color={theme.colors.logo}>
-            <Text>{'  '}Log In</Text>
-          </Link>
-        </Footer>
-      </View>
-    </DismissKeyboard>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
+const SignUp = () => (
+  <DismissKeyboard>
+    <Body />
+    <Footer color='secondary'>
+      <Text color='light'>Have an Account?</Text>
+      <Link
+        title='Log In'
+        to='/'
+        component={Button}
+        color={theme.colors.logo}
+      >
+        <Text>{'  '}Log In</Text>
+      </Link>
+    </Footer>
+  </DismissKeyboard>
+);
 
 export default SignUp;

@@ -9,15 +9,24 @@ const initialValues = {
   password: '',
 };
 
-const Body = ({ onSubmit }) => (
-  <Formik initialValues={initialValues} onSubmit={onSubmit}>
-    {({ handleSubmit }) => (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <LoginForm onSubmit={handleSubmit} />
-      </KeyboardAvoidingView>
-    )}
-  </Formik>
-);
+const Body = ({ setUser }) => {
+  const onSubmit = ({ username, password }) => {
+    if (username === 'testUser' && password === 'password')
+      setUser({ username: 'testUser' });
+    else
+      alert('invalid username or password');
+  };
+
+  return (
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      {({ handleSubmit }) => (
+        <KeyboardAvoidingView behavior='padding' style={styles.container}>
+          <LoginForm onSubmit={handleSubmit} />
+        </KeyboardAvoidingView>
+      )}
+    </Formik>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

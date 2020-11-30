@@ -11,17 +11,10 @@ import theme from '../components/theme';
 
 const Login = ({ setUser, fadeIn, setFadeIn }) => {
 
-  const onSubmit = ({ username, password }) => {
-    if (username === 'testUser' && password === 'password')
-      setUser({ username: 'testUser' });
-    else
-      alert('invalid username or password');
-  };
-
   return (
     <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
       <DismissKeyboard>
-        <Body onSubmit={onSubmit} />
+        <Body setUser={setUser} />
         <Footer color='secondary'>
           <Text color='light'>New to Friday?</Text>
           <Link to='/signup' component={Button} title='Sign Up' color={theme.colors.logo}>
