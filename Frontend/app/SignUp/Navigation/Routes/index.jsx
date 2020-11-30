@@ -17,13 +17,17 @@ export const Name = () => {
   );
 };
 
-export const Email = () => {
-  const next = useNext('/username');
+export const Email = ({ scrollViewRef }) => {
+  const nextRoute = useNext('/username');
+  const handleNextRoute = () => {
+    nextRoute();
+    scrollViewRef.current.toUsername();
+  };
 
   return (
     <>
       <FormikTextInput type='secondary' name='email' placeholder='Email' />
-      <NextButton onPress={() => next('/username')} />
+      <NextButton onPress={handleNextRoute} />
     </>
   );
 };

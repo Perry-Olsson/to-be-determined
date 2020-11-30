@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NativeRouter } from 'react-router-native';
 
@@ -7,12 +7,14 @@ import Header from './Header';
 import Routing from './Navigation/Routing';
 
 const SignUpForm = ({ onSubmit }) => {
+  const scrollViewRef = useRef();
+
   return (
     <View style={styles.container}>
       <NativeRouter>
         <Header />
-        <NavBar />
-        <Routing onSubmit={onSubmit} />
+        <NavBar ref={scrollViewRef} />
+        <Routing onSubmit={onSubmit} scrollViewRef={scrollViewRef} />
       </NativeRouter>
     </View>
   );

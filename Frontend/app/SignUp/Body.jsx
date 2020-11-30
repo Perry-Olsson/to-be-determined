@@ -3,7 +3,12 @@ import { Formik } from 'formik';
 
 import SignUpForm from './SignUpForm';
 
-const Body = ({ onSubmit }) => {
+const Body = () => {
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+
   const initialValues = {
     firstName: '',
     lastName:'',

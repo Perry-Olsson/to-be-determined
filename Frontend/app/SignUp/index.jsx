@@ -10,14 +10,10 @@ import Footer from '../components/Footer';
 import theme from '../components/theme';
 
 const SignUp = () => {
-  const onSubmit = (values) => {
-    console.log(values);
-  };
-
   return (
     <DismissKeyboard>
       <View style={styles.container}>
-        <Body onSubmit={onSubmit} />
+        <Body />
         <Footer color='secondary'>
           <Text color='light'>Have an Account?</Text>
           <Link to='/' component={Button} title='Log In' color={theme.colors.logo}>

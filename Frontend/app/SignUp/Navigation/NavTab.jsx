@@ -6,13 +6,12 @@ import Text from '../../components/Text';
 
 import theme from '../../components/theme';
 
-const NavTab = ({ title, route,  style, textStyle }) => {
+const NavTab = ({ title, route, scrollNavBar, style, textStyle }) => {
   const location = useLocation();
-
   const containerStyle = [styles.container, route === location.pathname && styles.active, style];
 
   return (
-    <Link to={route} component={TouchableWithoutFeedback}>
+    <Link to={route} component={TouchableWithoutFeedback} onPress={scrollNavBar}>
       <View style={containerStyle}>
         <Text color='secondary' fontSize='subheading' style={textStyle}>{title}</Text>
       </View>

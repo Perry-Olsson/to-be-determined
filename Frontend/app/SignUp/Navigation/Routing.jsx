@@ -6,7 +6,7 @@ import { Name, Email, Username, Password } from './Routes';
 import Button from '../../components/Button';
 
 
-const Routing = ({ onSubmit }) => {
+const Routing = ({ onSubmit, scrollViewRef }) => {
   const { values } = useFormikContext();
   const submitStyles = !inputIsValid(values) && { backgroundColor: '#917082' };
 
@@ -20,7 +20,7 @@ const Routing = ({ onSubmit }) => {
         <Username />
       </Route>
       <Route path='/email'>
-        <Email />
+        <Email scrollViewRef={scrollViewRef} />
       </Route>
       <Route path='/' exact>
         <Name />
