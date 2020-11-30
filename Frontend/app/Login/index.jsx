@@ -9,21 +9,19 @@ import DismissKeyboard from '../components/DismissKeyboard';
 
 import theme from '../components/theme';
 
-const Login = ({ setUser, fadeIn, setFadeIn }) => {
+const Login = ({ setUser, fadeIn, setFadeIn }) => (
+  <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
+    <DismissKeyboard>
+      <Body setUser={setUser} />
+      <Footer color='secondary'>
+        <Text color='light'>New to Friday?</Text>
+        <Link to='/signup' component={Button} title='Sign Up' color={theme.colors.logo}>
+          <Text color='logo'>{'  '}Sign Up</Text>
+        </Link>
+      </Footer>
+    </DismissKeyboard>
+  </FadeInView>
+);
 
-  return (
-    <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
-      <DismissKeyboard>
-        <Body setUser={setUser} />
-        <Footer color='secondary'>
-          <Text color='light'>New to Friday?</Text>
-          <Link to='/signup' component={Button} title='Sign Up' color={theme.colors.logo}>
-            <Text color='logo'>{'  '}Sign Up</Text>
-          </Link>
-        </Footer>
-      </DismissKeyboard>
-    </FadeInView>
-  );
-};
 
 export default Login;
