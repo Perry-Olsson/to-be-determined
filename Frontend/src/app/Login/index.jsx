@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, Button } from 'react-router-native';
 
-import FadeInView from '../components/FadeInView';
-import Text from '../components/Text';
-import Footer from '../components/Footer';
+import FadeInView from '../../components/FadeInView';
+import Text from '../../components/Text';
+import Footer from '../../components/Footer';
 import Body from './Body';
-import DismissKeyboard from '../components/DismissKeyboard';
+import DismissKeyboard from '../../components/DismissKeyboard';
 
-import theme from '../components/theme';
+import theme from '../../components/theme';
 
 const Login = ({ setUser, fadeIn, setFadeIn }) => (
   <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>

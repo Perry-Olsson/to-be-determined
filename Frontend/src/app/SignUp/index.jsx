@@ -2,12 +2,12 @@ import React from 'react';
 import { Button } from 'react-native';
 import { Link } from 'react-router-native';
 
-import DismissKeyboard from '../components/DismissKeyboard';
+import DismissKeyboard from '../../components/DismissKeyboard';
 import Body from './Body';
-import Text from '../components/Text';
-import Footer from '../components/Footer';
+import Text from '../../components/Text';
+import Footer from '../../components/Footer';
 
-import theme from '../components/theme';
+import theme from '../../components/theme';
 
 const SignUp = () => (
   <DismissKeyboard>

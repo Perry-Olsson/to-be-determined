@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 
-import LaunchScreen from './Screens/LaunchScreen';
-import MapScreen from './Screens/MapScreen';
-import LoginScreen from './Screens/LoginScreen';
+import LaunchScreen from './app/Screens/LaunchScreen';
+import MapScreen from './app/Screens/MapScreen';
+import LoginScreen from './app/Screens/LoginScreen';
 
 const Main = () => {
   const [user, setUser] = useState(null);

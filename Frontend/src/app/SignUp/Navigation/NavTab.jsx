@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Dimensions, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { useLocation, Link } from 'react-router-native';
 
-import Text from '../../components/Text';
+import Text from '../../../components/Text';
 
-import theme from '../../components/theme';
+import theme from '../../../components/theme';
 
 const NavTab = ({ title, route, scrollNavBar, style, textStyle }) => {
   const location = useLocation();

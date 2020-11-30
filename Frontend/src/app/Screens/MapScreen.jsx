@@ -20,7 +20,7 @@ const TempLogoutButton = ({ setUser }) => {
 
 function MapScreen(props) {
   return (
-    <ImageBackground style={styles.Background} source={require('../assets/Miami1.png')}>
+    <ImageBackground style={styles.Background} source={require('../../assets/Miami1.png')}>
       <View style={{ flex: 1 , height: '100%', width: '100%' }}>
 
         <TempLogoutButton setUser={props.setUser} />

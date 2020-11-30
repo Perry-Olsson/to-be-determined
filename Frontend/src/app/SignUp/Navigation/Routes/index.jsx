@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormikTextInput  from '../../../components/FormikTextInput';
+import FormikTextInput  from '../../../../components/FormikTextInput';
 import NextButton from '../NextButton';
 
-import { useNext } from '../../../hooks';
+import { useNext } from '../../../../hooks';
 
 export const Name = () => {
   const next = useNext('/email');

@@ -4,9 +4,9 @@
     "slug": "Friday",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/Fri.png",
+    "icon": "./src/assets/Fri.png",
     "splash": {
-      "image": "./app/assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./app/assets/Fri.png"
+      "favicon": "./src/assets/Fri.png"
     },
     "description": ""
   }

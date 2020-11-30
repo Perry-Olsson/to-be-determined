@@ -7,7 +7,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint ./app/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
+    "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "axios": "^0.21.0",

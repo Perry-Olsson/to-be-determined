@@ -46,7 +46,7 @@ function SvgMap(props) {
         height="20"
         width="20"
         ResizeMode="contain"
-        source={require('../assets/people/Mason.png')}
+        source={require('../../assets/people/Mason.png')}
 
       />
 
@@ -54,7 +54,7 @@ function SvgMap(props) {
         x="50%"
         width={100}
         height={100}
-        href={require('../assets/people/Mason.png')}
+        href={require('../../assets/people/Mason.png')}
         border= {'1px solid #021a40'}
       />
 

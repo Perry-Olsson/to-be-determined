@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-native';
 import Constants from 'expo-constants';
 
-import Text from '../components/Text';
+import Text from '../../components/Text';
 
 const Header = () => {
   const location = useLocation();

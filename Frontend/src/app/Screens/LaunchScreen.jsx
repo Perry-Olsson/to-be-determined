@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 //components
-import Logo from '../components/Logo';
+import Logo from '../../components/Logo';
 
 
 function LaunchScreen() {

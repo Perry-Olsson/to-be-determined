@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-native';
 import { useFormikContext } from 'formik';
 
 import { Name, Email, Username, Password } from './Routes';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 
 
 const Routing = ({ onSubmit, scrollViewRef }) => {
