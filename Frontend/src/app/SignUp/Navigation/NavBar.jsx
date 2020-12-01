@@ -1,21 +1,15 @@
-import React, { useRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useImperativeHandle } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 
 import NavTab from './NavTab';
 
 const NavBar = React.forwardRef((props, ref) => {
+  const [navBarWidth, setNavBarWidth] = useState(null);
   const scrollRef = useRef();
-  const scroller = {
+  const scroll = {
     toStart: function() {
       scrollRef.current.scrollTo({
         x: 0,
-        animated: true
-      });
-    },
-    toUsername: function() {
-      scrollRef.current.scrollTo({
-        y: 0,
-        x: 354,
         animated: true
       });
     },
@@ -27,17 +21,17 @@ const NavBar = React.forwardRef((props, ref) => {
   };
 
   useImperativeHandle(ref, () => {
-    return { toUsername: scroller.toUsername };
+    return { toEnd: scroll.toEnd };
   });
 
   return (
     <View style={styles.container}>
       <ScrollView ref={scrollRef} horizontal>
         <View onStartShouldSetResponder={() => true} style={styles.innerContainer}>
-          <NavTab title='Name' route='/' scrollNavBar={scroller.toStart} />
-          <NavTab title='Email' route='/email' scrollNavBar={scroller.toStart} />
-          <NavTab title='Username' route='/username' scrollNavBar={scroller.toUsername} />
-          <NavTab title='Password' route='/password' scrollNavBar={scroller.toEnd} />
+          <NavTab title='Name' route='/' scrollNavBar={scroll.toStart} />
+          <NavTab title='Email' route='/email' scrollNavBar={scroll.toStart} />
+          <NavTab title='Username' route='/username' scrollNavBar={scroll.toEnd} />
+          <NavTab title='Password' route='/password' scrollNavBar={scroll.toEnd} />
         </View>
       </ScrollView>
     </View>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Button } from 'react-router-native';
+import { Button } from 'react-native';
+import { Link } from 'react-router-native';
 
 import FadeInView from '../../components/FadeInView';
 import Text from '../../components/Text';

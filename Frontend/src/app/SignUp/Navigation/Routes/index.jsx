@@ -21,7 +21,7 @@ export const Email = ({ scrollViewRef }) => {
   const nextRoute = useNext('/username');
   const handleNextRoute = () => {
     nextRoute();
-    scrollViewRef.current.toUsername();
+    scrollViewRef.current.toEnd();
   };
 
   return (
