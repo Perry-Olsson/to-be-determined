@@ -6,7 +6,7 @@ import NavTab from './NavTab';
 const NavBar = React.forwardRef((props, ref) => {
   const [navBarWidth, setNavBarWidth] = useState(null);
   const scrollRef = useRef();
-  const scrolll = {
+  const scroll = {
     toStart: function() {
       scrollRef.current.scrollTo({
         x: 0,
