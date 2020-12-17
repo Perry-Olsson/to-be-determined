@@ -1,0 +1,12 @@
+{
+  "name": "friday-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "cd ../ && npm run start:server",
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}

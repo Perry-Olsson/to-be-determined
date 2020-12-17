@@ -4,6 +4,8 @@
   "description": "\"Social media for real connection\"",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "start:server": "node index.js",
     "test": "test"
   },
   "repository": {
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Perry-Olsson/friday/issues"
   },
-  "homepage": "https://github.com/Perry-Olsson/friday#readme"
+  "homepage": "https://github.com/Perry-Olsson/friday#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
 }
