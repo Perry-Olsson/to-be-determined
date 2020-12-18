@@ -5,8 +5,15 @@
   "main": "main.js",
   "scripts": {
     "start": "cd ../ && npm run start:server",
+    "dev": "cd ../ && nodemon index.js",
     "test": "test"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "graphql": "^15.4.0",
+    "nodemon": "^2.0.6",
+    "winston": "^3.3.3"
+  }
 }
