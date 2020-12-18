@@ -1,3 +1,5 @@
-import { printHelloWorld } from "./test";
+import { users } from "../testResources";
 
-printHelloWorld();
+for (let user of users) {
+  console.log(user);
+}

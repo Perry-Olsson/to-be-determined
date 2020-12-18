@@ -1,0 +1,41 @@
+export const users = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+    fullName: "John Doe",
+    email: "doe.john@gmail.com",
+    username: "johny",
+    passwordHash: "jdklasfj;ldskf",
+  },
+  {
+    firstName: "Rick",
+    lastName: "Sanchez",
+    fullName: "Rick Sanchez",
+    email: "sanchez.rick@gmail.com",
+    username: "grandpa_rick",
+    passwordHash: "fldkasjfsal",
+  },
+  {
+    firstName: "Morty",
+    lastName: "Smith",
+    fullName: "Morty Smith",
+    email: "smith.morty@gmail.com",
+    username: "mortified",
+    passwordHash: "jknvodajiofjoiwenkl",
+  },
+  {
+    firstName: "James",
+    lastName: "Segura",
+    fullName: "James Segura",
+    email: "segura.james@gmail.com",
+    username: "ballhog",
+    passwordHash: "jdklasfj;ldskf",
+  },
+  {
+    firstName: "TestFirstName",
+    lastName: "TestLastName",
+    fullName: "TestFirstName testLastName",
+    email: "testlastname.testfirstname@gmail.com",
+    passwordHash: "jfkdjfakls;jfak",
+  },
+];
