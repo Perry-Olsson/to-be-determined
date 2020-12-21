@@ -1,0 +1,58 @@
+Front End:
+  React native:
+    Structure:
+      Launch screen => LoginScreen (login/sign up route) => homepage
+      Launch screen:
+        -Friday logo with animation
+      Login:
+        -friday logo
+        -username field
+        -password field
+        -log in button
+        -Footer with link to sign up page
+      Sign up:
+        Route Sructure:
+          Name => email => username => password
+          all required
+          NavBar:
+            -horizontal scroll
+            -show two tabs with active lit up
+          Name: 
+            -first name field
+            -last name field
+            -store full name field under hood
+            -next button
+          email:
+            -email field
+            -next button
+          username: 
+            -username field
+            -next button
+          passoword:
+            -passord field
+            -sign up button (grayed out until valid input)
+          footer: 
+            -link back to login page
+Back end:
+  -Typescript (maybe python later)
+  -GraphQL
+  -typegraphQL?
+  -postgresql data base
+
+  GraphQL:
+    Queries:
+      -user(id)
+      -users
+      -authorizedUser
+    Mutations:
+      -authorize(username, password)
+      -createUser(info: NewUser)
+    resolvers:
+      user: (id) => null | User
+      users: () => [User]
+      authorizedUser: () => null | User
+      authorize: (username, password) => null | user
+      createUser: (info) => User
+
+
+
