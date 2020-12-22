@@ -1,6 +1,4 @@
-import { User } from "./src/types";
-
-export const users: User[] = [
+export const users: any = [
   {
     id: "0",
     firstName: "John",
