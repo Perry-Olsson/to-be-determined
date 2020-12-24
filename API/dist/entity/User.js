@@ -37,12 +37,12 @@ var User = (function (_super) {
     ], User.prototype, "id", void 0);
     __decorate([
         type_graphql_1.Field(),
-        typeorm_1.Column(),
+        typeorm_1.Column({ type: "varchar", length: 50 }),
         __metadata("design:type", String)
     ], User.prototype, "firstName", void 0);
     __decorate([
         type_graphql_1.Field(),
-        typeorm_1.Column(),
+        typeorm_1.Column({ type: "varchar", length: 50 }),
         __metadata("design:type", String)
     ], User.prototype, "lastName", void 0);
     __decorate([
@@ -51,16 +51,16 @@ var User = (function (_super) {
     ], User.prototype, "fullName", void 0);
     __decorate([
         type_graphql_1.Field(),
-        typeorm_1.Column("text", { unique: true }),
+        typeorm_1.Column({ type: "text", unique: true }),
         __metadata("design:type", String)
     ], User.prototype, "email", void 0);
     __decorate([
         type_graphql_1.Field(),
-        typeorm_1.Column("text", { unique: true }),
+        typeorm_1.Column({ type: "varchar", length: 50, unique: true }),
         __metadata("design:type", String)
     ], User.prototype, "username", void 0);
     __decorate([
-        typeorm_1.Column(),
+        typeorm_1.Column({ type: "varchar", length: 60 }),
         __metadata("design:type", String)
     ], User.prototype, "password", void 0);
     User = __decorate([

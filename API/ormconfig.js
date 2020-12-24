@@ -8,5 +8,5 @@ module.exports = {
   database: "friday",
   synchronize: true,
   logging: true,
-  entities: ["./dist/src/entity/*.*"],
+  entities: ["./src/entities/*.*"],
 };
