@@ -7,6 +7,7 @@ import { createConnection } from "typeorm";
 import { RegisterResolver } from "./modules/user/Register";
 import { LoginResolver } from "./modules/user/Login";
 import { MeResolver } from "./modules/user/Me";
+import cors from "cors";
 
 const main = async () => {
   await createConnection();
@@ -21,6 +22,8 @@ const main = async () => {
   });
 
   const app = express();
+
+  app.use(cors());
 
   apolloServer.applyMiddleware({ app });
 
