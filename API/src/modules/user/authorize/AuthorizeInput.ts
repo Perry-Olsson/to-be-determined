@@ -3,7 +3,7 @@ import { Field, InputType } from "type-graphql";
 @InputType()
 export default class AuthorizeInput {
   @Field()
-  username: string;
+  email: string;
 
   @Field()
   password: string;

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../../entities/User";
 import { RegisterInput } from "./register/RegisterInput";
 
-@Resolver(User)
+@Resolver()
 export class RegisterResolver {
   @Query()
   hello(): string {

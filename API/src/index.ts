@@ -14,7 +14,10 @@ const main = async () => {
     resolvers: [RegisterResolver, AuthorizeResolver],
   });
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    context: ({ req }) => ({ req }),
+  });
 
   const app = express();
 

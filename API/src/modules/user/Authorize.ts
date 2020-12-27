@@ -12,17 +12,17 @@ import AuthorizePayload from "./authorize/AuthorizePayload";
 export class AuthorizeResolver {
   @Mutation(() => AuthorizePayload)
   async authorize(
-    @Arg("data") { username, password }: AuthorizeInput
+    @Arg("data") { email, password }: AuthorizeInput
   ): Promise<AuthorizePayload> {
     const userRepository = getRepository(User);
 
-    const user = await userRepository.findOne({ username });
+    const user = await userRepository.findOne({ email });
     if (!user) throw new UserInputError("Invalid username or password");
 
     const match = bcrypt.compare(password, user.password);
     if (!match) throw new UserInputError("Invalid username or password");
 
-    const token = jwt.sign({ username: user.username }, "secret");
+    const token = jwt.sign({ username: user.email }, "secret");
 
     return {
       user,
