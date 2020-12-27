@@ -1,6 +1,7 @@
-export const users: any = [
+import { RegisterInput } from './src/modules/user/register/RegisterInput';
+
+export const users: RegisterInput[] = [
   {
-    id: "0",
     firstName: "John",
     lastName: "Doe",
     email: "doe.john@gmail.com",
@@ -8,7 +9,6 @@ export const users: any = [
     password: "password",
   },
   {
-    id: "1",
     firstName: "Rick",
     lastName: "Sanchez",
     email: "sanchez.rick@gmail.com",
@@ -16,7 +16,6 @@ export const users: any = [
     password: "password",
   },
   {
-    id: "2",
     firstName: "Morty",
     lastName: "Smith",
     email: "smith.morty@gmail.com",
@@ -24,7 +23,6 @@ export const users: any = [
     password: "password",
   },
   {
-    id: "3",
     firstName: "James",
     lastName: "Segura",
     email: "segura.james@gmail.com",
@@ -32,7 +30,6 @@ export const users: any = [
     password: "password",
   },
   {
-    id: "4",
     firstName: "TestFirstName",
     lastName: "TestLastName",
     email: "testlastname.testfirstname@gmail.com",

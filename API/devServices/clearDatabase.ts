@@ -1,17 +1,21 @@
 import "reflect-metadata";
-import { createConnection, getRepository } from "typeorm";
+import { Connection, createConnection, getRepository } from "typeorm";
 
-const main = async () => {
+const main = async (): Promise<void> => {
   const connection = await createConnection();
-  const entities: any = [];
+  await clearDb(connection);
+  connection.close();
+};
+
+export const clearDb = async (connection: Connection): Promise<void> => {
+  const entities: { name: string; tableName: string }[] = [];
   connection.entityMetadatas.forEach(x =>
     entities.push({ name: x.name, tableName: x.tableName })
   );
-  for (let entity of entities) {
+  for (const entity of entities) {
     const repository = getRepository(entity.name);
     await repository.query(`DELETE FROM ${entity.tableName}`);
   }
-  connection.close();
 };
 
 main();

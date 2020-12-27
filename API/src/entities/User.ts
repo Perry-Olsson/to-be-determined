@@ -17,7 +17,7 @@ export class User extends BaseEntity {
   lastName: string;
 
   @Field(() => String)
-  fullName(@Root() parent: User) {
+  fullName(@Root() parent: User): string {
     return `${parent.firstName} ${parent.lastName}`;
   }
 
