@@ -5,13 +5,14 @@ import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 
 import { RegisterResolver } from "./modules/user/Register";
-import { AuthorizeResolver } from "./modules/user/Authorize";
+import { LoginResolver } from "./modules/user/Login";
+import { MeResolver } from "./modules/user/Me";
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, AuthorizeResolver],
+    resolvers: [RegisterResolver, LoginResolver, MeResolver],
   });
 
   const apolloServer = new ApolloServer({
