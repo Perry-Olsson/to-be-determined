@@ -5,15 +5,15 @@ import { RegisterInput } from "./register/RegisterInput";
 
 @Resolver(User)
 export class RegisterResolver {
-  @Query(() => String, {})
+  @Query()
   hello(): string {
-    return "Hello World!";
+    return "hello";
   }
 
   @Mutation(() => User)
   async register(
     @Arg("data")
-      { firstName, lastName, email, username, password }: RegisterInput
+    { firstName, lastName, email, username, password }: RegisterInput // eslint-disable
   ): Promise<User> {
     const hashedPassword = await bcrypt.hash(password, 12);
 
