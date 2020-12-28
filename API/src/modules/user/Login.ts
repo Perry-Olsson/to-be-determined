@@ -1,7 +1,6 @@
 import { UserInputError } from "apollo-server-express";
 import { User } from "../../entities";
 import { Resolver, Mutation, Arg } from "type-graphql";
-import { getRepository } from "typeorm";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -14,9 +13,7 @@ export class LoginResolver {
   async login(
     @Arg("data") { email, password }: LoginInput
   ): Promise<LoginPayload> {
-    const userRepository = getRepository(User);
-
-    const user = await userRepository.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) throw new UserInputError("Invalid username or password");
 
     const match = bcrypt.compare(password, user.password);
