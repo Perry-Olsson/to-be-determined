@@ -1,27 +1,20 @@
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { Field, ID, ObjectType, Root } from "type-graphql";
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BaseEntity,
-  UpdateDateColumn,
-  CreateDateColumn,
-} from "typeorm";
 
 @ObjectType()
-@Entity("users")
-export class User extends BaseEntity {
+@Entity({ tableName: "users" })
+export class User {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryKey()
+  id!: number;
 
   @Field()
-  @Column({ type: "varchar", length: 50 })
-  firstName: string;
+  @Property({ columnType: "varchar", length: 100 })
+  firstName!: string;
 
   @Field()
-  @Column({ type: "varchar", length: 50 })
-  lastName: string;
+  @Property({ columnType: "varchar", length: 100 })
+  lastName!: string;
 
   @Field(() => String)
   fullName(@Root() parent: User): string {
@@ -29,21 +22,21 @@ export class User extends BaseEntity {
   }
 
   @Field()
-  @Column({ type: "text", unique: true })
-  email: string;
+  @Property({ columnType: "varchar", length: 255 })
+  email!: string;
 
   @Field()
-  @Column({ type: "varchar", length: 50, unique: true })
-  username: string;
+  @Property({ columnType: "varchar", length: 50 })
+  username!: string;
 
-  @Column({ type: "varchar", length: 60 })
-  password: string;
-
-  @Field(() => String)
-  @CreateDateColumn({ type: "date" })
-  createdAt: Date;
+  @Property({ columnType: "varchar", length: 100 })
+  password!: string;
 
   @Field(() => String)
-  @UpdateDateColumn({ type: "timestamp" })
-  updatedAt: Date;
+  @Property({ columnType: "date" })
+  createdAt = new Date();
+
+  @Field(() => String)
+  @Property({ columnType: "timestamp", onUpdate: () => new Date() })
+  updatedAt = new Date();
 }

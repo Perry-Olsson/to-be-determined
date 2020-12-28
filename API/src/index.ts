@@ -1,19 +1,28 @@
-import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
-import { buildSchema } from "type-graphql";
-import { createConnection } from "typeorm";
+import { buildSchema, Query, Resolver } from "type-graphql";
 
-import { RegisterResolver } from "./modules/user/Register";
-import { LoginResolver } from "./modules/user/Login";
-import { MeResolver } from "./modules/user/Me";
+// import { RegisterResolver } from "./modules/user/Register";
+// import { LoginResolver } from "./modules/user/Login";
+// import { MeResolver } from "./modules/user/Me";
 import cors from "cors";
+import { MikroORM } from "@mikro-orm/core";
+
+@Resolver()
+class HelloResolver {
+  @Query()
+  hello(): string {
+    return "hello world!";
+  }
+}
 
 const main = async () => {
-  await createConnection();
+  const orm = await MikroORM.init();
+  orm.getMigrator().up();
+  console.log(orm.em); // access EntityManager via `em` property
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver, MeResolver],
+    resolvers: [HelloResolver],
   });
 
   const apolloServer = new ApolloServer({
