@@ -7,7 +7,7 @@ import {
 import { User } from "../../../../src/entities";
 
 @ValidatorConstraint({ async: true })
-export class EmailUnique implements ValidatorConstraintInterface {
+export class Email implements ValidatorConstraintInterface {
   validate(email: string): Promise<boolean> {
     return User.findOne({ email }).then(user => {
       if (user) return false;
@@ -24,7 +24,7 @@ export function IsEmailUnique(validationOptions?: ValidationOptions) {
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: EmailUnique,
+      validator: Email,
     });
   };
 }
