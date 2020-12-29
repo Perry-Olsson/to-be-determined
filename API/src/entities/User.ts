@@ -9,11 +9,11 @@ export class User {
   id!: number;
 
   @Field()
-  @Property({ columnType: "varchar", length: 100 })
+  @Property({ columnType: "varchar(60)", length: 100 })
   firstName!: string;
 
   @Field()
-  @Property({ columnType: "varchar", length: 100 })
+  @Property({ columnType: "varchar(60)" })
   lastName!: string;
 
   @Field(() => String)
@@ -22,14 +22,14 @@ export class User {
   }
 
   @Field()
-  @Property({ columnType: "varchar", length: 255 })
+  @Property({ columnType: "varchar(100)", unique: true })
   email!: string;
 
   @Field()
-  @Property({ columnType: "varchar", length: 50 })
+  @Property({ columnType: "varchar(60)", unique: true })
   username!: string;
 
-  @Property({ columnType: "varchar", length: 100 })
+  @Property({ columnType: "varchar(255)" })
   password!: string;
 
   @Field(() => String)
