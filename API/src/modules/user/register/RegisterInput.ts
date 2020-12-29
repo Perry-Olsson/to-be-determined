@@ -1,6 +1,6 @@
 import { Field, InputType } from "type-graphql";
 import { MinLength, IsEmail, Length } from "class-validator";
-import { IsEmailUnique } from "./IsEmailUnique";
+// import { IsEmailUnique } from "./IsEmailUnique";
 
 @InputType()
 export class RegisterInput {
@@ -14,7 +14,7 @@ export class RegisterInput {
 
   @Field()
   @IsEmail()
-  @IsEmailUnique({ message: "email already in use" })
+  // @IsEmailUnique({ message: "email already in use" })
   email: string;
 
   @Field()
