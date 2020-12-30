@@ -7,6 +7,8 @@ import { buildSchema, Query, Resolver } from "type-graphql";
 import cors from "cors";
 import { MikroORM } from "@mikro-orm/core";
 import { RegisterResolver } from "./modules/user/Register";
+import { MeResolver } from "./modules/user/Me";
+import { LoginResolver } from "./modules/user/Login";
 
 @Resolver()
 class HelloResolver {
@@ -19,8 +21,9 @@ class HelloResolver {
 const main = async () => {
   const orm = await MikroORM.init();
   orm.getSchemaGenerator().updateSchema();
+
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, HelloResolver],
+    resolvers: [RegisterResolver, MeResolver, LoginResolver, HelloResolver],
   });
 
   const apolloServer = new ApolloServer({
