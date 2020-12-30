@@ -25,7 +25,9 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req }) => ({ req, em: orm.em.fork() }),
+    context: ({ req }) => {
+      return { req, em: orm.em.fork() };
+    },
   });
 
   const app = express();

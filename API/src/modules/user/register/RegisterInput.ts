@@ -1,6 +1,6 @@
-import { Field, InputType } from "type-graphql";
+import { Field, InputType, UseMiddleware } from "type-graphql";
 import { MinLength, IsEmail, Length } from "class-validator";
-// import { IsEmailUnique } from "./IsEmailUnique";
+import { isEmailUnique } from "../../../middleware/isEmailUnique";
 
 @InputType()
 export class RegisterInput {
@@ -14,7 +14,7 @@ export class RegisterInput {
 
   @Field()
   @IsEmail()
-  // @IsEmailUnique({ message: "email already in use" })
+  @UseMiddleware(isEmailUnique)
   email: string;
 
   @Field()
