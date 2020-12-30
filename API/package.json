@@ -12,7 +12,9 @@
     "migration:create": "npx mikro-orm migration:create",
     "schema:create": "npx mikro-orm schema:create -r",
     "schema:drop": "npx mikro-orm schema:drop -r",
-    "clearDb": "yarn schema:drop && yarn schema:create"
+    "db:clear": "yarn schema:drop && yarn schema:create",
+    "db:addUsers": "ts-node ./src/devServices/addUsers.ts",
+    "db:clearUsers": "ts-node ./src/devServices/clearUsers.ts"
   },
   "dependencies": {
     "-": "^0.0.1",

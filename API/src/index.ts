@@ -20,7 +20,7 @@ class HelloResolver {
 
 const main = async () => {
   const orm = await MikroORM.init();
-  orm.getSchemaGenerator().updateSchema();
+  await orm.getSchemaGenerator().updateSchema();
 
   const schema = await buildSchema({
     resolvers: [RegisterResolver, MeResolver, LoginResolver, HelloResolver],
