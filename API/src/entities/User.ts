@@ -1,13 +1,10 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
-import { Field, ID, ObjectType, Root } from "type-graphql";
+import { Entity, Property } from "@mikro-orm/core";
+import { Field, ObjectType, Root } from "type-graphql";
+import { BaseEntity } from "./BaseEntity";
 
 @ObjectType()
 @Entity({ tableName: "users" })
-export class User {
-  @Field(() => ID)
-  @PrimaryKey()
-  id!: number;
-
+export class User extends BaseEntity {
   @Field()
   @Property({ columnType: "varchar(60)", length: 100 })
   firstName!: string;
@@ -29,14 +26,6 @@ export class User {
   @Property({ columnType: "varchar(60)", unique: true })
   username!: string;
 
-  @Property({ columnType: "varchar(255)" })
+  @Property({ columnType: "varchar(60)" })
   password!: string;
-
-  @Field(() => String)
-  @Property({ columnType: "date" })
-  createdAt = new Date();
-
-  @Field(() => String)
-  @Property({ columnType: "timestamp", onUpdate: () => new Date() })
-  updatedAt = new Date();
 }

@@ -7,10 +7,10 @@ export abstract class BaseEntity {
   id!: number;
 
   @Field(() => String)
-  @Property()
+  @Property({ columnType: "date" })
   createdAt = new Date();
 
   @Field(() => String)
-  @Property({ onUpdate: () => new Date() })
+  @Property({ columnType: "timestamp", onUpdate: () => new Date() })
   updatedAt = new Date();
 }
