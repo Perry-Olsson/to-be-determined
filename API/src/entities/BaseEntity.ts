@@ -1,6 +1,7 @@
 import { PrimaryKey, Property } from "@mikro-orm/core";
-import { Field, ID } from "type-graphql";
+import { Field, ID, ObjectType } from "type-graphql";
 
+@ObjectType()
 export abstract class BaseEntity {
   @Field(() => ID)
   @PrimaryKey()

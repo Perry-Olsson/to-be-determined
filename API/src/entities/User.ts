@@ -1,10 +1,13 @@
-import { Entity, Property } from "@mikro-orm/core";
+import { Entity, EntityRepositoryType, Property } from "@mikro-orm/core";
 import { Field, ObjectType, Root } from "type-graphql";
+import { UserRepository } from "../repositories/UserRepository";
 import { BaseEntity } from "./BaseEntity";
 
 @ObjectType()
-@Entity({ tableName: "users" })
+@Entity({ customRepository: () => UserRepository, tableName: "users" })
 export class User extends BaseEntity {
+  [EntityRepositoryType]?: UserRepository;
+
   @Field()
   @Property({ columnType: "varchar(60)", length: 100 })
   firstName!: string;
