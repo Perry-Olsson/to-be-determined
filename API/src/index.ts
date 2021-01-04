@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
-import { buildSchema, Query, Resolver } from "type-graphql";
+import { buildSchema } from "type-graphql";
 
 // import { LoginResolver } from "./modules/user/Login";
 // import { MeResolver } from "./modules/user/Me";
@@ -10,20 +10,12 @@ import { RegisterResolver } from "./modules/user/Register";
 import { MeResolver } from "./modules/user/Me";
 import { LoginResolver } from "./modules/user/Login";
 
-@Resolver()
-class HelloResolver {
-  @Query()
-  hello(): string {
-    return "hello world!";
-  }
-}
-
 const main = async () => {
   const orm = await MikroORM.init();
   await orm.getSchemaGenerator().updateSchema();
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, MeResolver, LoginResolver, HelloResolver],
+    resolvers: [RegisterResolver, MeResolver, LoginResolver],
   });
 
   const apolloServer = new ApolloServer({

@@ -8,7 +8,8 @@ export const isAuthorized: MiddlewareFn<MyContext> = async (
   next
 ) => {
   try {
-    jwt.verify(getToken(req), "secret");
+    const result = jwt.verify(getToken(req), "secret");
+    console.log(result);
     return next();
   } catch (e) {
     throw new Error("Must be logged in");
