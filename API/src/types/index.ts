@@ -12,3 +12,4 @@ export interface DecodedToken {
 }
 
 export type validator<T> = false | T;
+export * from "./graphql";

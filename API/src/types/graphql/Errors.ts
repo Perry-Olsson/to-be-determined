@@ -14,10 +14,6 @@ export class FieldError extends BaseError {
 
 @ObjectType()
 export class AuthError extends BaseError {
-  constructor() {
-    super();
-    console.log("--------AuthError--------");
-  }
   @Field({ nullable: true })
   action?: string;
 }

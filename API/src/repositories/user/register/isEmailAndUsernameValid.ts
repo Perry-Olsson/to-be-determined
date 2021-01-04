@@ -1,14 +1,12 @@
-import { User } from "../../entities";
-import { MyContext } from "../../types";
-import { FieldError } from "../../types/graphql/Errors";
+import { QueryBuilder } from "@mikro-orm/postgresql";
+import { User } from "../../../entities";
+import { FieldError } from "../../../types";
 
 const isEmailAndUsernameValid = async (
   email: string,
   username: string,
-  { em }: MyContext
+  qb: QueryBuilder<User>
 ): Promise<Array<FieldError | false>> => {
-  const qb = em.getRepository(User).createQueryBuilder();
-
   qb.select("*")
     .where({ email: email.toLowerCase() })
     .orWhere({ username: username.toLowerCase() });

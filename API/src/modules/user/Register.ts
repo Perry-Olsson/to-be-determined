@@ -14,7 +14,7 @@ import { RegisterInput } from "./register/RegisterInput";
 import { isAuthorized } from "../../middleware/isAuthorized";
 import { MyContext } from "../../types";
 import { UserResponse } from "./register/UserResponse";
-import { AuthError } from "../../types/graphql/Errors";
+import { AuthError } from "../../types";
 
 @ObjectType()
 class HelloResponse {
