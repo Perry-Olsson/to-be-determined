@@ -1,4 +1,4 @@
-import { FieldError } from "../../types/graphql/FieldError";
+import { FieldError } from "../../types/graphql/Errors";
 
 const isPasswordValid = (password: string): FieldError | false => {
   if (password.length < 6)

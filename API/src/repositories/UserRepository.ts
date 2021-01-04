@@ -3,7 +3,7 @@ import { User } from "../entities";
 import { RegisterInput } from "../modules/user/register/RegisterInput";
 import { UserResponse } from "../modules/user/register/UserResponse";
 import { validator } from "../types";
-import { FieldError } from "../types/graphql/FieldError";
+import { FieldError } from "../types/graphql/Errors";
 
 export class UserRepository extends EntityRepository<User> {
   public async init(data: RegisterInput): Promise<UserResponse> {

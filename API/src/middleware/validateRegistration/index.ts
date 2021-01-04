@@ -1,4 +1,4 @@
-import { FieldError } from "../../types/graphql/FieldError";
+import { FieldError } from "../../types/graphql/Errors";
 import { RegisterInput } from "../../modules/user/register/RegisterInput";
 import { MyContext, validator } from "../../types";
 import isEmailAndUsernameValid from "./isEmailAndUsernameValid";
