@@ -5,33 +5,13 @@ import {
   Arg,
   Ctx,
   UseMiddleware,
-  ObjectType,
-  Field,
 } from "type-graphql";
 import bcrypt from "bcryptjs";
 import { User } from "../../entities/User";
 import { RegisterInput } from "./register/RegisterInput";
 import { isAuthorized } from "../../middleware/isAuthorized";
 import { MyContext } from "../../types";
-import validateRegistration from "../../middleware/validateRegistration";
-
-@ObjectType()
-export class FieldError {
-  @Field()
-  field: string;
-
-  @Field()
-  message: string;
-}
-
-@ObjectType()
-export class UserResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
-
-  @Field({ nullable: true })
-  user?: User;
-}
+import { UserResponse } from "./register/UserResponse";
 
 @Resolver()
 export class RegisterResolver {
@@ -42,15 +22,15 @@ export class RegisterResolver {
   }
 
   @Mutation(() => UserResponse)
-  @UseMiddleware(validateRegistration)
   async register(
     @Arg("data")
     { firstName, lastName, email, username, password }: RegisterInput,
-    @Ctx() { em }: MyContext // eslint-disable
+    @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
+    const repo = em.getRepository(User);
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const user = em.create(User, {
+    const response = await repo.init({
       firstName,
       lastName,
       email,
@@ -58,10 +38,8 @@ export class RegisterResolver {
       password: hashedPassword,
     });
 
-    await em.persistAndFlush(user);
+    if (response.user) await repo.persistAndFlush(response.user);
 
-    return {
-      user,
-    };
+    return response;
   }
 }

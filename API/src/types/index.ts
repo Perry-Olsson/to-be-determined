@@ -10,3 +10,5 @@ export interface DecodedToken {
   id: number;
   iat: number;
 }
+
+export type validator<T> = false | T;

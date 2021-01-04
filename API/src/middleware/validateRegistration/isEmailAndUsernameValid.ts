@@ -1,6 +1,6 @@
 import { User } from "../../entities";
-import { FieldError } from "../../modules/user/Register";
 import { MyContext } from "../../types";
+import { FieldError } from "../../types/graphql/FieldError";
 
 const isEmailAndUsernameValid = async (
   email: string,
