@@ -13,7 +13,7 @@ import {
 } from "../../modules/user/types";
 
 export class UserRepository extends EntityRepository<User> {
-  public async init(data: RegisterInput): Promise<UserResponse> {
+  public async initializeUser(data: RegisterInput): Promise<UserResponse> {
     const formattedInput = this.formatInput(data);
     const qb = this.createQueryBuilder();
     const errors = await validateRegistration(formattedInput, qb);

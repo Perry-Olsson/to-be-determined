@@ -38,21 +38,20 @@ export class RegisterResolver {
   @Mutation(() => UserResponse)
   async register(
     @Arg("data")
-    { firstName, lastName, email, username, password }: RegisterInput,
+    data: RegisterInput,
     @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
-    const repo = em.getRepository(User);
+    const { initializeUser, persistAndFlush } = em.getRepository(User);
+
+    const { password } = data;
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const response = await repo.init({
-      firstName,
-      lastName,
-      email,
-      username,
+    const response = await initializeUser({
+      ...data,
       password: hashedPassword,
     });
 
-    if (response.user) await repo.persistAndFlush(response.user);
+    if (response.user) await persistAndFlush(response.user);
 
     return response;
   }
