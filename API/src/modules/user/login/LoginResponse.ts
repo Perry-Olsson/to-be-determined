@@ -3,7 +3,7 @@ import { User } from "../../../entities/User";
 import { BaseError } from "../../../types";
 
 @ObjectType()
-export default class LoginResponse {
+export class LoginResponse {
   @Field(() => [BaseError], { nullable: true })
   errors?: BaseError;
 

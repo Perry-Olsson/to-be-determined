@@ -23,7 +23,7 @@ const runValidators = async (
   { email, username, password }: RegisterInput,
   qb: QueryBuilder<User>
 ) => {
-  const validators = await isEmailAndUsernameValid(email, username, qb);
+  const validators = await isEmailAndUsernameValid({ email, username, qb });
   validators.push(isPasswordValid(password));
   return validators;
 };

@@ -1,5 +1,5 @@
 import { Field, InputType } from "type-graphql";
-import { MinLength, IsEmail, Length } from "class-validator";
+import { MinLength, Length } from "class-validator";
 
 @InputType()
 export class RegisterInput {
@@ -12,7 +12,6 @@ export class RegisterInput {
   lastName: string;
 
   @Field()
-  @IsEmail()
   email: string;
 
   @Field()

@@ -1,15 +1,16 @@
 import { EntityRepository } from "@mikro-orm/postgresql";
 import { User } from "../../entities";
-import LoginInput from "../../modules/user/login/LoginInput";
-import LoginResponse from "../../modules/user/login/LoginResponse";
-import { RegisterInput } from "../../modules/user/register/RegisterInput";
-import { UserResponse } from "../../modules/user/register/UserResponse";
 import validateRegistration from "./register/validateRegistration";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import config from "../../utils/config";
-// import { validator } from "../../types";
-// import { FieldError } from "../../types/graphql/Errors";
+import { loginError } from "./types";
+import {
+  LoginInput,
+  LoginResponse,
+  RegisterInput,
+  UserResponse,
+} from "../../modules/user/types";
 
 export class UserRepository extends EntityRepository<User> {
   public async init(data: RegisterInput): Promise<UserResponse> {
@@ -24,11 +25,12 @@ export class UserRepository extends EntityRepository<User> {
 
   public async validateLogin(data: LoginInput): Promise<LoginResponse> {
     const { email, password } = this.formatInput(data);
+
     const user = await this.findOne({ email });
-    if (!user) return this.loginError;
+    if (!user) return loginError;
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return this.loginError;
+    if (!match) return loginError;
 
     const token = jwt.sign({ id: user.id }, config.jwtSecret);
 
@@ -37,12 +39,6 @@ export class UserRepository extends EntityRepository<User> {
       token,
     };
   }
-
-  loginError: LoginResponse = {
-    errors: {
-      message: "Invalid email or password",
-    },
-  };
 
   private formatInput(data: any): any {
     const formattedData: any = {};
@@ -56,8 +52,11 @@ export class UserRepository extends EntityRepository<User> {
           break;
         default:
           formattedData[field] = data[field].trim();
+          break;
       }
     }
     return formattedData;
   }
 }
+
+// type RawInput = RegisterInput | LoginInput
