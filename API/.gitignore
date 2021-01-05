@@ -1,3 +1,4 @@
+.env
 .yarn/
 .pnp.js
 .yarnrc.yml
