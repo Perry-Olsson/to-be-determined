@@ -14,8 +14,9 @@ import {
 
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(data: RegisterInput): Promise<UserResponse> {
-    const formattedInput = this.formatInput(data);
+    const formattedInput = this.formatRegistration(data);
     const qb = this.createQueryBuilder();
+
     const errors = await validateRegistration(formattedInput, qb);
 
     if (!errors.length) return { user: this.create(formattedInput) };
@@ -24,7 +25,7 @@ export class UserRepository extends EntityRepository<User> {
   }
 
   public async validateLogin(data: LoginInput): Promise<LoginResponse> {
-    const { email, password } = this.formatInput(data);
+    const { email, password } = this.formatLogin(data);
 
     const user = await this.findOne({ email });
     if (!user) return loginError;
@@ -40,23 +41,39 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
-  private formatInput(data: any): any {
-    const formattedData: any = {};
-    for (const field in data) {
-      switch (field) {
-        case "username" || "email":
-          formattedData[field] = data[field].toLowerCase().trim();
-          break;
-        case "password":
-          formattedData[field] = data[field];
-          break;
-        default:
-          formattedData[field] = data[field].trim();
-          break;
-      }
-    }
-    return formattedData;
+  private formatRegistration(data: RegisterInput): RegisterInput {
+    return {
+      email: data.email.toLowerCase().trim(),
+      firstName: data.firstName.trim(),
+      lastName: data.lastName.trim(),
+      username: data.username.toLowerCase().trim(),
+      password: data.password,
+    };
+  }
+
+  private formatLogin({ email, password }: LoginInput): LoginInput {
+    return {
+      email: email.toLowerCase().trim(),
+      password,
+    };
   }
 }
+//   private formatInput(data: UserInput): UserInput {
+//     const formattedData: any = {}
+//     for (const field in data) {
+//       switch (field) {
+//         case "username" || "email":
+//           formattedData[field] = data[field].toLowerCase().trim();
+//           break;
+//         case "password":
+//           formattedData[field] = data[field];
+//           break;
+//         default:
+//           formattedData[field] = data[field].trim();
+//       }
+//     }
+//     return formattedData;
+//   }
+// }
 
-// type RawInput = RegisterInput | LoginInput
+// type UserInput = LoginInput | RegisterInput
