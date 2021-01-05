@@ -5,7 +5,7 @@ import { BaseError } from "../../../types";
 @ObjectType()
 export class LoginResponse {
   @Field(() => [BaseError], { nullable: true })
-  errors?: BaseError;
+  errors?: BaseError[];
 
   @Field({ nullable: true })
   user?: User;
