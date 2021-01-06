@@ -1,6 +1,7 @@
 import { __prod__ } from "./constants";
 import path from "path";
 import config from "./utils/config";
+import { Connection, IDatabaseDriver, Options } from "@mikro-orm/core";
 
 export default {
   migrations: {
@@ -8,8 +9,8 @@ export default {
     pattern: /^[\w-]+\d+\.[tj]s$/,
     disableForeignKeys: true,
   },
-  entities: ["./dist/entities/**/*.js"],
-  entitiesTs: ["./src/entities/**/*.ts"],
+  entities: [path.resolve(__dirname, "./entities/**/*.js")],
+  entitiesTs: [path.resolve(__dirname, "./entities/**/*.ts")],
   dbName: config.database,
   type: "postgresql",
   host: "localhost",
@@ -17,4 +18,4 @@ export default {
   user: config.databaseUser,
   password: config.databasePassword,
   debug: !__prod__,
-} as const;
+} as Options<IDatabaseDriver<Connection>>;

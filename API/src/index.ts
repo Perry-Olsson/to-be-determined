@@ -3,10 +3,11 @@ import express from "express";
 import { buildSchema } from "type-graphql";
 import cors from "cors";
 import { MikroORM } from "@mikro-orm/core";
+import ormConfig from "./mikro-orm.config";
 import path from "path";
 
 const main = async () => {
-  const orm = await MikroORM.init();
+  const orm = await MikroORM.init(ormConfig);
   await orm.getSchemaGenerator().updateSchema();
 
   const schema = await buildSchema({

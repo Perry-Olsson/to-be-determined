@@ -1,8 +1,0 @@
-{
-  "name": "friday",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:Perry-Olsson/friday.git",
-  "author": "Perry Olsson <olsson.perry@gmail.com>",
-  "license": "MIT"
-}
