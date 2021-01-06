@@ -1,4 +1,4 @@
-import { User } from "../../../src/entities";
+import { User } from "../../entities";
 import { MyContext, DecodedToken } from "src/types";
 import { Ctx, Query, Resolver } from "type-graphql";
 import jwt from "jsonwebtoken";
