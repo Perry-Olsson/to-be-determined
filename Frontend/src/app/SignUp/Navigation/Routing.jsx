@@ -1,38 +1,36 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-native';
-import { useFormikContext } from 'formik';
+import React from "react";
+import { Switch, Route } from "react-router-native";
+import { useFormikContext } from "formik";
 
-import { Name, Email, Username, Password } from './Routes';
-import Button from '../../../components/Button';
-
+import { Name, Email, Username, Password } from "./Routes";
+import Button from "../../../components/Button";
 
 const Routing = ({ onSubmit, scrollViewRef }) => {
   const { values } = useFormikContext();
-  const submitStyles = !inputIsValid(values) && { backgroundColor: '#917082' };
+  const submitStyles = !inputIsValid(values) && { backgroundColor: "#917082" };
 
   return (
     <Switch>
-      <Route path='/password'>
+      <Route path="/password">
         <Password />
-        <Button title='Sign Up!' onPress={onSubmit} style={submitStyles} />
+        <Button title="Sign Up!" onPress={onSubmit} style={submitStyles} />
       </Route>
-      <Route path='/username'>
+      <Route path="/username">
         <Username />
       </Route>
-      <Route path='/email'>
+      <Route path="/email">
         <Email scrollViewRef={scrollViewRef} />
       </Route>
-      <Route path='/' exact>
+      <Route path="/" exact>
         <Name />
       </Route>
     </Switch>
   );
 };
 
-const inputIsValid = (values) => {
+const inputIsValid = values => {
   for (let value in values) {
-    if (!values[value])
-      return false;
+    if (!values[value]) return false;
   }
   return true;
 };

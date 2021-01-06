@@ -1,8 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "env BROWSER=firefox expo start",
-    "start:chrome": "expo start",
+    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -10,7 +9,7 @@
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
     "formik": "^2.2.4",
@@ -28,7 +27,9 @@
     "@expo/webpack-config": "^0.12.44",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.13.0",
-    "eslint-plugin-react": "^7.21.5"
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-native": "^3.10.0"
   },
   "private": true,
   "proxy": "http://localhost:5000"

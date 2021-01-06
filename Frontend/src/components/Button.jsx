@@ -1,9 +1,9 @@
-import React from 'react';
-import { TouchableHighlight, StyleSheet } from 'react-native';
+import React from "react";
+import { TouchableHighlight, StyleSheet } from "react-native";
 
-import Text from './Text';
+import Text from "./Text";
 
-import theme from './theme';
+import theme from "./theme";
 
 const Button = ({ title, onPress, style, textStyle }) => {
   const buttonStyles = [styles.submit, style];
@@ -17,7 +17,7 @@ const Button = ({ title, onPress, style, textStyle }) => {
 
 const styles = StyleSheet.create({
   submit: {
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 4,
     padding: 10,
     color: theme.colors.textPrimary,

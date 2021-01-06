@@ -1,10 +1,8 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import Svg, { Image, Circle, Path, Rect } from 'react-native-svg';
+import React from "react";
+// import { StyleSheet } from "react-native";
+import Svg, { Image, Circle, Rect } from "react-native-svg";
 
-
-function SvgMap(props) {
-
+function SvgMap() {
   return (
     <Svg height="100%" width="100%">
       <Rect
@@ -40,42 +38,37 @@ function SvgMap(props) {
         fill-opacity="0.0"
       />
 
-
       <Image
         // style={{height: undefined, width: undefined }}
         height="20"
         width="20"
         ResizeMode="contain"
-        source={require('../../assets/people/Mason.png')}
-
+        source={require("../../assets/people/Mason.png")}
       />
 
       <Image
         x="50%"
         width={100}
         height={100}
-        href={require('../../assets/people/Mason.png')}
-        border= {'1px solid #021a40'}
+        href={require("../../assets/people/Mason.png")}
+        border={"1px solid #021a40"}
       />
-
-
     </Svg>
   );
 }
 
-
-const styles = StyleSheet.create({
-  background:{
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  logo: {
-    width:250,
-    height: 100,
-    borderRadius: 3,
-    padding:20
-  }
-});
+// const styles = StyleSheet.create({
+//   background: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   logo: {
+//     width: 250,
+//     height: 100,
+//     borderRadius: 3,
+//     padding: 20,
+//   },
+// });
 
 export default SvgMap;

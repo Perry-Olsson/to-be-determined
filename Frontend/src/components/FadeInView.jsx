@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Animated } from 'react-native';
+import React, { useRef, useEffect } from "react";
+import { Animated } from "react-native";
 
 const FadeInView = (props) => {
   const fadeAnim = useRef(new Animated.Value(props.fadeIn ? 0 : 1)).current;

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Text as NativeText, StyleSheet } from 'react-native';
+import React from "react";
+import { Text as NativeText, StyleSheet } from "react-native";
 
-import theme from './theme';
+import theme from "./theme";
 
 const styles = StyleSheet.create({
   text: {
@@ -42,15 +42,15 @@ const styles = StyleSheet.create({
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
   const textStyle = [
     styles.text,
-    color === 'secondary' && styles.colorTextSecondary,
-    color === 'primary' && styles.colorTextPrimary,
-    color === 'light' && styles.colorLight,
-    color === 'dark' && styles.colorDark,
-    color === 'logo' && styles.colorLogo,
-    fontSize === 'subheading' && styles.fontSizeSubheading,
-    fontSize === 'form' && styles.fontSizeForm,
-    fontSize === 'header' && styles.fontSizeHeader,
-    fontWeight === 'bold' && styles.fontWeightBold,
+    color === "secondary" && styles.colorTextSecondary,
+    color === "primary" && styles.colorTextPrimary,
+    color === "light" && styles.colorLight,
+    color === "dark" && styles.colorDark,
+    color === "logo" && styles.colorLogo,
+    fontSize === "subheading" && styles.fontSizeSubheading,
+    fontSize === "form" && styles.fontSizeForm,
+    fontSize === "header" && styles.fontSizeHeader,
+    fontWeight === "bold" && styles.fontWeightBold,
     style,
   ];
 

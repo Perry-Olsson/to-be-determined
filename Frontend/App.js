@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Main from './src/Main';
-import GalaxyBackground from './src/components/GalaxyBackground';
+import Main from "./src/Main";
+import GalaxyBackground from "./src/components/GalaxyBackground";
 
 const App = () => {
   return (

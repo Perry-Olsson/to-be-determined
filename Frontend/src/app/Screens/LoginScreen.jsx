@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { NativeRouter, Switch, Route, Redirect } from 'react-router-native';
+import React, { useState } from "react";
+import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 
-import Login from '../Login';
-import SignUp from '../SignUp';
+import Login from "../Login";
+import SignUp from "../SignUp";
 
 const LoginScreen = ({ setUser }) => {
   const [fadeIn, setFadeIn] = useState(true);
@@ -10,13 +10,13 @@ const LoginScreen = ({ setUser }) => {
   return (
     <NativeRouter>
       <Switch>
-        <Route path='/signup'>
+        <Route path="/signup">
           <SignUp />
         </Route>
-        <Route path='/'>
+        <Route path="/">
           <Login setUser={setUser} fadeIn={fadeIn} setFadeIn={setFadeIn} />
         </Route>
-        <Redirect to='/' />
+        <Redirect to="/" />
       </Switch>
     </NativeRouter>
   );

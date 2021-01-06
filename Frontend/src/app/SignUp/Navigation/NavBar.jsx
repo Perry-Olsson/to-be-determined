@@ -1,23 +1,22 @@
-import React, { useState, useRef, useImperativeHandle } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import React, { useRef, useImperativeHandle } from "react";
+import { ScrollView, View, StyleSheet } from "react-native";
 
-import NavTab from './NavTab';
+import NavTab from "./NavTab";
 
 const NavBar = React.forwardRef((props, ref) => {
-  const [navBarWidth, setNavBarWidth] = useState(null);
   const scrollRef = useRef();
   const scroll = {
-    toStart: function() {
+    toStart: function () {
       scrollRef.current.scrollTo({
         x: 0,
-        animated: true
+        animated: true,
       });
     },
-    toEnd: function() {
+    toEnd: function () {
       scrollRef.current.scrollToEnd({
-        animated: true
+        animated: true,
       });
-    }
+    },
   };
 
   useImperativeHandle(ref, () => {
@@ -27,17 +26,27 @@ const NavBar = React.forwardRef((props, ref) => {
   return (
     <View style={styles.container}>
       <ScrollView ref={scrollRef} horizontal>
-        <View onStartShouldSetResponder={() => true} style={styles.innerContainer}>
-          <NavTab title='Name' route='/' scrollNavBar={scroll.toStart} />
-          <NavTab title='Email' route='/email' scrollNavBar={scroll.toStart} />
-          <NavTab title='Username' route='/username' scrollNavBar={scroll.toEnd} />
-          <NavTab title='Password' route='/password' scrollNavBar={scroll.toEnd} />
+        <View
+          onStartShouldSetResponder={() => true}
+          style={styles.innerContainer}
+        >
+          <NavTab title="Name" route="/" scrollNavBar={scroll.toStart} />
+          <NavTab title="Email" route="/email" scrollNavBar={scroll.toStart} />
+          <NavTab
+            title="Username"
+            route="/username"
+            scrollNavBar={scroll.toEnd}
+          />
+          <NavTab
+            title="Password"
+            route="/password"
+            scrollNavBar={scroll.toEnd}
+          />
         </View>
       </ScrollView>
     </View>
   );
-}
-);
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -45,11 +54,11 @@ const styles = StyleSheet.create({
     height: 65,
   },
   innerContainer: {
-    width: '100%',
-    flexDirection: 'row',
-  }
+    width: "100%",
+    flexDirection: "row",
+  },
 });
 
-NavBar.displayName = 'NavBar';
+NavBar.displayName = "NavBar";
 
 export default NavBar;

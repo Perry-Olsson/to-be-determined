@@ -1,25 +1,23 @@
-import React from 'react';
-import { Formik } from 'formik';
+import React from "react";
+import { Formik } from "formik";
 
-import SignUpForm from './SignUpForm';
+import SignUpForm from "./SignUpForm";
 
 const Body = () => {
-  const onSubmit = (values) => {
+  const onSubmit = values => {
     console.log(values);
   };
   const initialValues = {
-    firstName: '',
-    lastName:'',
-    email: '',
-    username: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit }) => (
-        <SignUpForm onSubmit={handleSubmit} />
-      )}
+      {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };

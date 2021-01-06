@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-native';
+import { useHistory } from "react-router-native";
 
 export const useNext = (route) => {
   const history = useHistory();

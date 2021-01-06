@@ -1,24 +1,32 @@
-import React from 'react';
+import React from "react";
 
-import FormikTextInput  from '../../../../components/FormikTextInput';
-import NextButton from '../NextButton';
+import FormikTextInput from "../../../../components/FormikTextInput";
+import NextButton from "../NextButton";
 
-import { useNext } from '../../../../hooks';
+import { useNext } from "../../../../hooks";
 
 export const Name = () => {
-  const next = useNext('/email');
+  const next = useNext("/email");
 
   return (
     <>
-      <FormikTextInput type='secondary' name='firstName' placeholder='First Name' />
-      <FormikTextInput type='secondary' name='lastName' placeholder='Last Name' />
+      <FormikTextInput
+        type="secondary"
+        name="firstName"
+        placeholder="First Name"
+      />
+      <FormikTextInput
+        type="secondary"
+        name="lastName"
+        placeholder="Last Name"
+      />
       <NextButton onPress={next} />
     </>
   );
 };
 
 export const Email = ({ scrollViewRef }) => {
-  const nextRoute = useNext('/username');
+  const nextRoute = useNext("/username");
   const handleNextRoute = () => {
     nextRoute();
     scrollViewRef.current.toEnd();
@@ -26,23 +34,32 @@ export const Email = ({ scrollViewRef }) => {
 
   return (
     <>
-      <FormikTextInput type='secondary' name='email' placeholder='Email' />
+      <FormikTextInput type="secondary" name="email" placeholder="Email" />
       <NextButton onPress={handleNextRoute} />
     </>
   );
 };
 
 export const Username = () => {
-  const next = useNext('/password');
+  const next = useNext("/password");
 
   return (
     <>
-      <FormikTextInput type='secondary' name='username' placeholder='Username' />
+      <FormikTextInput
+        type="secondary"
+        name="username"
+        placeholder="Username"
+      />
       <NextButton onPress={next} />
     </>
   );
 };
 
 export const Password = () => (
-  <FormikTextInput type='secondary' name='password' placeholder='Password' secureTextEntry />
+  <FormikTextInput
+    type="secondary"
+    name="password"
+    placeholder="Password"
+    secureTextEntry
+  />
 );

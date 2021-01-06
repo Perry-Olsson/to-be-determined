@@ -1,18 +1,18 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { useField } from 'formik';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { useField } from "formik";
 
-import TextInput from './TextInput';
-import Text from './Text';
+import TextInput from "./TextInput";
+import Text from "./Text";
 
 //style
-import theme from './theme';
+import theme from "./theme";
 
 const FormikTextInput = ({ name, type, ...props }) => {
   const [field, meta, helpers] = useField(name);
   const showError = false;
 
-  const fieldStyles = [styles.field, type === 'secondary' && styles.secondary, showError && styles.errorField];
+  const fieldStyles = [styles.field, type === "secondary" && styles.secondary, showError && styles.errorField];
 
   return (
     <>
@@ -34,7 +34,7 @@ const FormikTextInput = ({ name, type, ...props }) => {
 
 const styles = StyleSheet.create({
   seperator: {
-    justifyContent: 'center',
+    justifyContent: "center",
     height: 30,
   },
   field: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   secondary: {
     color: theme.colors.textSecondary,
-    backgroundColor: 'rgba(30, 30, 30, 0.8)',
+    backgroundColor: "rgba(30, 30, 30, 0.8)",
   },
 });
 
