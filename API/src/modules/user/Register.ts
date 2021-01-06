@@ -41,17 +41,17 @@ export class RegisterResolver {
     data: RegisterInput,
     @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
-    const { initializeUser, persistAndFlush } = em.getRepository(User);
+    const repo = em.getRepository(User);
 
     const { password } = data;
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const response = await initializeUser({
+    const response = await repo.initializeUser({
       ...data,
       password: hashedPassword,
     });
 
-    if (response.user) await persistAndFlush(response.user);
+    if (response.user) await repo.persistAndFlush(response.user);
 
     return response;
   }

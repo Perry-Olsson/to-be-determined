@@ -14,6 +14,7 @@ import {
 
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(data: RegisterInput): Promise<UserResponse> {
+    console.log("---------", this, "----------");
     const formattedInput = this.formatRegistration(data);
     const qb = this.createQueryBuilder();
 

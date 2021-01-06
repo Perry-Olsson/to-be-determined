@@ -3,15 +3,16 @@ import express from "express";
 import { buildSchema } from "type-graphql";
 import cors from "cors";
 import { MikroORM } from "@mikro-orm/core";
-
-import { resolvers } from "./utils/combineResolvers";
+import path from "path";
 
 const main = async () => {
   const orm = await MikroORM.init();
   await orm.getSchemaGenerator().updateSchema();
 
   const schema = await buildSchema({
-    resolvers,
+    resolvers: [
+      path.join(__dirname, "./modules/user/{Login,Register,Me}.{ts,js}"),
+    ],
   });
 
   const apolloServer = new ApolloServer({
