@@ -6,6 +6,8 @@ import { MikroORM } from "@mikro-orm/core";
 import ormConfig from "./mikro-orm.config";
 import path from "path";
 
+import config from "./utils/config";
+
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
   await orm.getSchemaGenerator().updateSchema();
@@ -30,8 +32,8 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => {
-    console.log("Server is running on http://localhost:4000/graphql");
+  app.listen(config.port, () => {
+    console.log(`Server is running on http://localhost:${config.port}/graphql`);
   });
 };
 

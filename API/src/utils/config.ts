@@ -3,6 +3,7 @@ import path from "path";
 dotenv.config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
 export default {
+  port: Number(process.env.PORT),
   jwtSecret: process.env.SECRET,
   database: process.env.DATABASE,
   databaseUser: process.env.DB_USER,
@@ -11,6 +12,7 @@ export default {
 } as Config;
 
 interface Config {
+  port: number;
   jwtSecret: string;
   database: string;
   databaseUser: string;
