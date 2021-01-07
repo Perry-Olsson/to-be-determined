@@ -1,19 +1,27 @@
 import React from "react";
 import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Formik } from "formik";
+import { useMutation } from "urql";
 
 import LoginForm from "./LoginForm";
+import { Login } from "../../graphql/mutations";
 
 const initialValues = {
-  username: "",
+  email: "",
   password: "",
 };
 
 const Body = ({ setUser }) => {
-  const onSubmit = ({ username, password }) => {
-    if (username === "testUser" && password === "password")
-      setUser({ username: "testUser" });
-    else alert("invalid username or password");
+  const [{ error }, login] = useMutation(Login);
+  const onSubmit = async input => {
+    try {
+      const variables = { data: input };
+      const { data } = await login(variables);
+      setUser({ token: data.login.token, username: data.login.user.username });
+    } catch (e) {
+      console.error(e);
+      console.log(error);
+    }
   };
 
   return (

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import LaunchScreen from "./app/Screens/LaunchScreen";
-import MapScreen from "./app/Screens/MapScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
+import TestScreen from "./app/Screens/TestScreen";
 
 const Main = () => {
   const [user, setUser] = useState(null);
@@ -13,7 +13,7 @@ const Main = () => {
     if (!user) {
       setTimeout(() => {
         setLaunching(false);
-      }, 2000);
+      }, twoSeconds);
     }
   }, []);
 
@@ -22,7 +22,7 @@ const Main = () => {
   ) : (
     <View style={styles.container}>
       {user ? (
-        <MapScreen setUser={setUser} />
+        <TestScreen setUser={setUser} />
       ) : (
         <LoginScreen setUser={setUser} />
       )}
@@ -36,5 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const twoSeconds = 2000;
 
 export default Main;

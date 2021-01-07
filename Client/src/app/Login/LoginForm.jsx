@@ -13,11 +13,7 @@ const LoginForm = ({ onSubmit }) => {
   return (
     <View style={styles.formContainer}>
       <Logo style={styles.logo} />
-      <FormikTextInput
-        type="secondary"
-        name="username"
-        placeholder="Username"
-      />
+      <FormikTextInput type="secondary" name="email" placeholder="email" />
       <FormikTextInput
         type="secondary"
         name="password"
@@ -33,8 +29,8 @@ const LoginForm = ({ onSubmit }) => {
   );
 };
 
-const inputIsValid = ({ username, password }) =>
-  username && password ? true : false;
+const inputIsValid = ({ email, password }) =>
+  email && password ? true : false;
 
 const styles = StyleSheet.create({
   formContainer: {
