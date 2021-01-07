@@ -5,7 +5,7 @@ import { Connection, IDatabaseDriver, Options } from "@mikro-orm/core";
 
 export default {
   migrations: {
-    path: path.join(__dirname, "./migrations"),
+    path: path.resolve(__dirname, "migrations"),
     pattern: /^[\w-]+\d+\.[tj]s$/,
     disableForeignKeys: true,
   },
