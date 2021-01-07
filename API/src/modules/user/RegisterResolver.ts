@@ -4,7 +4,6 @@ import {
   Mutation,
   Arg,
   Ctx,
-  UseMiddleware,
   ObjectType,
   Field,
 } from "type-graphql";
