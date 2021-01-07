@@ -1,3 +1,3 @@
-export * from "./Login";
-export * from "./Me";
-export * from "./Register";
+export * from "./LoginResolver";
+export * from "./MeResolver";
+export * from "./RegisterResolver";

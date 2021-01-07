@@ -13,9 +13,7 @@ const main = async () => {
   await orm.getSchemaGenerator().updateSchema();
 
   const schema = await buildSchema({
-    resolvers: [
-      path.join(__dirname, "./modules/user/{Login,Register,Me}.{ts,js}"),
-    ],
+    resolvers: [path.join(__dirname, "./modules/**/*Resolver.{ts,js}")],
   });
 
   const apolloServer = new ApolloServer({
