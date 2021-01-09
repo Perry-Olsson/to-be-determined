@@ -7,7 +7,7 @@ import LoginForm from "./LoginForm";
 import { Login } from "../../graphql/mutations";
 
 const initialValues = {
-  email: "",
+  usernameOrEmail: "",
   password: "",
 };
 
