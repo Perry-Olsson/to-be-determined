@@ -11,6 +11,7 @@ import {
   RegisterInput,
   UserResponse,
 } from "../../modules/user/types";
+import validateEmail from "../../utils/validateEmail";
 
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(data: RegisterInput): Promise<UserResponse> {
@@ -25,9 +26,10 @@ export class UserRepository extends EntityRepository<User> {
   }
 
   public async validateLogin(data: LoginInput): Promise<LoginResponse> {
-    const { email, password } = this.formatLogin(data);
+    const { usernameOrEmail, password } = this.formatLogin(data);
 
-    const user = await this.findOne({ email });
+    const user = await this.getUser(usernameOrEmail);
+
     if (!user) return loginError;
 
     const match = await bcrypt.compare(password, user.password);
@@ -41,6 +43,12 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
+  private async getUser(usernameOrEmail: string): Promise<User | null> {
+    return validateEmail(usernameOrEmail)
+      ? await this.findOne({ email: usernameOrEmail })
+      : await this.findOne({ username: usernameOrEmail });
+  }
+
   private formatRegistration(data: RegisterInput): RegisterInput {
     return {
       email: data.email.toLowerCase().trim(),
@@ -51,9 +59,9 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
-  private formatLogin({ email, password }: LoginInput): LoginInput {
+  private formatLogin({ usernameOrEmail, password }: LoginInput): LoginInput {
     return {
-      email: email.toLowerCase().trim(),
+      usernameOrEmail: usernameOrEmail.toLowerCase().trim(),
       password,
     };
   }
