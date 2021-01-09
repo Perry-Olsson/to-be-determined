@@ -1,10 +1,15 @@
 import React from "react";
-import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
+import { View, TouchableHighlight, StyleSheet } from "react-native";
+
+import Text from "../../components/Text";
+
+import theme from "../../components/theme";
 
 const TestScreen = ({ setUser }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <TempLogoutButton setUser={setUser}></TempLogoutButton>
+      <Text style={styles.text}>Logged in!</Text>
     </View>
   );
 };
@@ -28,6 +33,15 @@ const styles = StyleSheet.create({
     width: 70,
     justifyContent: "center",
     alignItems: "center",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    color: theme.colors.logo,
+    fontSize: 30,
   },
 });
 

@@ -17,9 +17,10 @@ const Main = () => {
     }
   }, []);
 
-  return launching ? (
-    <LaunchScreen setUser={setUser} setLaunching={setLaunching} />
-  ) : (
+  if (launching)
+    return <LaunchScreen setUser={setUser} setLaunching={setLaunching} />;
+
+  return (
     <View style={styles.container}>
       {user ? (
         <TestScreen setUser={setUser} />
