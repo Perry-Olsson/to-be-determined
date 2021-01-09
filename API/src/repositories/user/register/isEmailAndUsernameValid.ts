@@ -54,7 +54,7 @@ const getErrors = (
     if (username === user.username) errors.push(duplicateUsernameError);
   });
 
-  if (username.length <= 2) errors.push(usernameLengthError);
+  if (username.length < 3) errors.push(usernameLengthError);
   return errors;
 };
 
