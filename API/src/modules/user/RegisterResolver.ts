@@ -30,17 +30,17 @@ export class RegisterResolver {
 
   @Mutation(() => UserResponse)
   async register(
-    @Arg("data")
-    data: RegisterInput,
+    @Arg("input")
+    input: RegisterInput,
     @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
     const repo = em.getRepository(User);
 
-    const { password } = data;
+    const { password } = input;
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const response = await repo.initializeUser({
-      ...data,
+      ...input,
       password: hashedPassword,
     });
 

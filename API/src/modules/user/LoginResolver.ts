@@ -9,12 +9,12 @@ import { MyContext } from "../../types";
 export class LoginResolver {
   @Mutation(() => LoginResponse)
   async login(
-    @Arg("data") data: LoginInput,
+    @Arg("input") input: LoginInput,
     @Ctx() { em }: MyContext
   ): Promise<LoginResponse> {
     const repo = em.getRepository(User);
 
-    const response = await repo.validateLogin(data);
+    const response = await repo.validateLogin(input);
 
     return response;
   }
