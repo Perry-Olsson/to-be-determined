@@ -3,11 +3,11 @@ import { useMutation } from "urql";
 import { Login } from "../graphql/mutations";
 
 export const useLogin = setUser => {
-  const [result, _login] = useMutation(Login);
+  const [result, login] = useMutation(Login);
 
   const tryLogin = async input => {
     try {
-      const { data } = await _login({ input });
+      const { data } = await login({ input });
       const {
         login: { errors, token, user },
       } = data;
