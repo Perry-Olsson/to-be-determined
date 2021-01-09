@@ -5,11 +5,6 @@ import { Formik } from "formik";
 import LoginForm from "./LoginForm";
 import { useLogin } from "../../hooks";
 
-const initialValues = {
-  emailOrUsername: "",
-  password: "",
-};
-
 const Body = ({ setUser }) => {
   const [, tryLogin] = useLogin(setUser);
 
@@ -24,6 +19,11 @@ const Body = ({ setUser }) => {
       )}
     </Formik>
   );
+};
+
+const initialValues = {
+  emailOrUsername: "",
+  password: "",
 };
 
 const styles = StyleSheet.create({

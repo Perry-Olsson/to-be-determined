@@ -3,6 +3,10 @@ import { createClient, Provider } from "urql";
 
 import Main from "./src/Main";
 import GalaxyBackground from "./src/components/GalaxyBackground";
+import AuthStorage from "./src/utils/AuthStorage";
+import AuthStorageProvider from "./src/contexts/AuthStorageContext";
+
+const authStorage = new AuthStorage();
 
 const App = () => {
   const client = createClient({
@@ -11,9 +15,11 @@ const App = () => {
 
   return (
     <Provider value={client}>
-      <GalaxyBackground>
-        <Main />
-      </GalaxyBackground>
+      <AuthStorageProvider value={authStorage}>
+        <GalaxyBackground>
+          <Main />
+        </GalaxyBackground>
+      </AuthStorageProvider>
     </Provider>
   );
 };
