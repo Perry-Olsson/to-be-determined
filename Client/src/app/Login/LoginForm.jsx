@@ -34,7 +34,7 @@ const LoginForm = ({ onSubmit }) => {
 };
 
 const inputIsValid = ({ emailOrUsername, password }) =>
-  emailOrUsername && password ? true : false;
+  emailOrUsername.length > 2 && password.length > 5 ? true : false;
 
 const styles = StyleSheet.create({
   formContainer: {
