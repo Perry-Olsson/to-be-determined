@@ -1,10 +1,9 @@
 import React from "react";
 import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Formik } from "formik";
-import { useMutation } from "urql";
 
 import LoginForm from "./LoginForm";
-import { Login } from "../../graphql/mutations";
+import { useLogin } from "../../hooks/useLogin";
 
 const initialValues = {
   emailOrUsername: "",
@@ -12,12 +11,18 @@ const initialValues = {
 };
 
 const Body = ({ setUser }) => {
-  const [{ error }, login] = useMutation(Login);
+  const [{ error }, loginUser] = useLogin();
+
   const onSubmit = async input => {
     try {
-      const variables = { data: input };
-      const { data } = await login(variables);
-      setUser({ token: data.login.token, username: data.login.user.username });
+      const { errors, token, user } = await loginUser({ data: input });
+
+      if (errors) console.log(errors);
+      else
+        setUser({
+          token,
+          user,
+        });
     } catch (e) {
       console.error(e);
       console.log(error);
