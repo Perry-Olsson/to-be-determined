@@ -17,7 +17,7 @@ const Body = ({ setUser }) => {
     try {
       const { errors, token, user } = await loginUser({ data: input });
 
-      if (errors) alert(errors[0].message);
+      if (errors) alert(errors.message);
       else
         setUser({
           token,
