@@ -7,7 +7,7 @@ export const useLogin = setUser => {
 
   const tryLogin = async input => {
     try {
-      const { data } = await _login({ data: input });
+      const { data } = await _login({ input });
       const {
         login: { errors, token, user },
       } = data;

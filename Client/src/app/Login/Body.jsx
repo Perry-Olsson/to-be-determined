@@ -13,9 +13,7 @@ const initialValues = {
 const Body = ({ setUser }) => {
   const [, tryLogin] = useLogin(setUser);
 
-  const onSubmit = input => {
-    tryLogin(input);
-  };
+  const onSubmit = input => tryLogin(input);
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>

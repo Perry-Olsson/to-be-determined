@@ -1,6 +1,6 @@
 export const Login = `
-  mutation ($data: LoginInput!) {
-    login (data: $data) {
+  mutation ($input: LoginInput!) {
+    login (input: $input) {
       errors {
         message
       }
