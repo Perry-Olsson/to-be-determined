@@ -4,7 +4,7 @@ import { FieldError } from "../../../types";
 export const loginError: LoginResponse = {
   errors: [
     {
-      message: "Invalid email or password",
+      message: "Invalid username/email or password",
     },
   ],
 };

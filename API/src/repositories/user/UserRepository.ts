@@ -26,9 +26,9 @@ export class UserRepository extends EntityRepository<User> {
   }
 
   public async validateLogin(data: LoginInput): Promise<LoginResponse> {
-    const { usernameOrEmail, password } = this.formatLogin(data);
+    const { emailOrUsername, password } = this.formatLogin(data);
 
-    const user = await this.getUser(usernameOrEmail);
+    const user = await this.getUser(emailOrUsername);
 
     if (!user) return loginError;
 
@@ -43,10 +43,10 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
-  private async getUser(usernameOrEmail: string): Promise<User | null> {
-    return validateEmail(usernameOrEmail)
-      ? await this.findOne({ email: usernameOrEmail })
-      : await this.findOne({ username: usernameOrEmail });
+  private async getUser(emailOrUsername: string): Promise<User | null> {
+    return validateEmail(emailOrUsername)
+      ? await this.findOne({ email: emailOrUsername })
+      : await this.findOne({ username: emailOrUsername });
   }
 
   private formatRegistration(data: RegisterInput): RegisterInput {
@@ -59,9 +59,9 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
-  private formatLogin({ usernameOrEmail, password }: LoginInput): LoginInput {
+  private formatLogin({ emailOrUsername, password }: LoginInput): LoginInput {
     return {
-      usernameOrEmail: usernameOrEmail.toLowerCase().trim(),
+      emailOrUsername: emailOrUsername.toLowerCase().trim(),
       password,
     };
   }
