@@ -11,22 +11,10 @@ const initialValues = {
 };
 
 const Body = ({ setUser }) => {
-  const [{ error }, loginUser] = useLogin();
+  const [, tryLogin] = useLogin(setUser);
 
-  const onSubmit = async input => {
-    try {
-      const { errors, token, user } = await loginUser({ data: input });
-
-      if (errors) alert(errors.message);
-      else
-        setUser({
-          token,
-          user,
-        });
-    } catch (e) {
-      console.error(e);
-      console.log(error);
-    }
+  const onSubmit = input => {
+    tryLogin(input);
   };
 
   return (
