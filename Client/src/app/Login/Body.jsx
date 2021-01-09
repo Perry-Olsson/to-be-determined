@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Formik } from "formik";
 
 import LoginForm from "./LoginForm";
-import { useLogin } from "../../hooks/useLogin";
+import { useLogin } from "../../hooks";
 
 const initialValues = {
   emailOrUsername: "",
@@ -17,7 +17,7 @@ const Body = ({ setUser }) => {
     try {
       const { errors, token, user } = await loginUser({ data: input });
 
-      if (errors) console.log(errors);
+      if (errors) alert(errors[0].message);
       else
         setUser({
           token,

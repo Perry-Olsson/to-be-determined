@@ -2,11 +2,9 @@ import { LoginResponse } from "../../../modules/user/types";
 import { FieldError } from "../../../types";
 
 export const loginError: LoginResponse = {
-  errors: [
-    {
-      message: "Invalid username/email or password",
-    },
-  ],
+  errors: {
+    message: "Invalid username/email or password",
+  },
 };
 
 export const usernameLengthError: FieldError = {
