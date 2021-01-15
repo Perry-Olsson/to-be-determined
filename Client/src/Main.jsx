@@ -9,14 +9,12 @@ import { ME } from "./graphql/queries";
 
 const Main = () => {
   const { data } = useQuery(ME);
-  const [launching, setLaunching] = useState(false);
+  const [launching, setLaunching] = useState(true);
 
   useEffect(() => {
-    if (!data) {
-      setTimeout(() => {
-        setLaunching(false);
-      }, twoSeconds);
-    }
+    setTimeout(() => {
+      setLaunching(false);
+    }, twoSeconds);
   }, []);
 
   if (launching) return <LaunchScreen setLaunching={setLaunching} />;
@@ -25,7 +23,6 @@ const Main = () => {
       {data && data.me ? <TestScreen /> : <LoginScreen />}
     </View>
   );
-  // return <MapScreen />;
 };
 
 const styles = StyleSheet.create({
