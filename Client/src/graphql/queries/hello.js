@@ -1,4 +1,4 @@
-export const HelloQuery = `
+export const HELLO = `
   query {
     hello {
       hello

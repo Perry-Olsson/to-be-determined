@@ -5,24 +5,26 @@ import Text from "../../components/Text";
 import { useAuthStorage } from "../../contexts/AuthStorageContext";
 
 import theme from "../../components/theme";
+import { useApolloClient } from "@apollo/client";
 
-const TestScreen = ({ setUser }) => {
+const TestScreen = () => {
   return (
     <View style={styles.container}>
-      <TempLogoutButton setUser={setUser}></TempLogoutButton>
+      <TempLogoutButton></TempLogoutButton>
       <Text style={styles.text}>Logged in!</Text>
     </View>
   );
 };
 
-const TempLogoutButton = ({ setUser }) => {
+const TempLogoutButton = () => {
+  const client = useApolloClient();
   const authStorage = useAuthStorage();
   return (
     <TouchableHighlight
       style={styles.logout}
-      onPress={() => {
-        setUser(null);
-        authStorage.removeAccessToken();
+      onPress={async () => {
+        await authStorage.removeAccessToken();
+        client.resetStore();
       }}
     >
       <Text>logout</Text>

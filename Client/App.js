@@ -1,26 +1,25 @@
 import React from "react";
-import { createClient, Provider } from "urql";
+import { ApolloProvider } from "@apollo/client";
 
+import createApolloClient from "./src/utils/apolloClient";
 import Main from "./src/Main";
 import GalaxyBackground from "./src/components/GalaxyBackground";
 import AuthStorage from "./src/utils/AuthStorage";
 import AuthStorageProvider from "./src/contexts/AuthStorageContext";
 
-const authStorage = new AuthStorage();
+export const authStorage = new AuthStorage();
 
 const App = () => {
-  const client = createClient({
-    url: "http://localhost:4000/graphql",
-  });
+  const client = createApolloClient(authStorage);
 
   return (
-    <Provider value={client}>
+    <ApolloProvider client={client}>
       <AuthStorageProvider value={authStorage}>
         <GalaxyBackground>
           <Main />
         </GalaxyBackground>
       </AuthStorageProvider>
-    </Provider>
+    </ApolloProvider>
   );
 };
 

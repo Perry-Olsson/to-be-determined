@@ -10,10 +10,10 @@ import DismissKeyboard from "../../components/DismissKeyboard";
 
 import theme from "../../components/theme";
 
-const Login = ({ setUser, fadeIn, setFadeIn }) => (
+const Login = ({ fadeIn, setFadeIn }) => (
   <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
     <DismissKeyboard>
-      <Body setUser={setUser} />
+      <Body />
       <Footer color="secondary">
         <Text color="light">New to Friday?</Text>
         <Link

@@ -9,7 +9,7 @@ import {
 
 import SvgMap from "../Map/SvgMap";
 
-const TempLogoutButton = ({ setUser }) => {
+const TempLogoutButton = () => {
   return (
     <TouchableHighlight
       style={styles.logout}
@@ -20,15 +20,15 @@ const TempLogoutButton = ({ setUser }) => {
   );
 };
 
-function MapScreen(props) {
+function MapScreen() {
   return (
     <ImageBackground
       style={styles.Background}
       source={require("../../assets/Miami1.png")}
     >
       <View style={{ flex: 1, height: "100%", width: "100%" }}>
-        <TempLogoutButton setUser={props.setUser} />
-        <SvgMap setUser={props.setUser} />
+        <TempLogoutButton />
+        <SvgMap />
 
         {/* <Text style={{ color: 'red' }}>
                 STROKED Text: {this.}

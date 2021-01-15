@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useQuery } from "@apollo/client";
 
 import LaunchScreen from "./app/Screens/LaunchScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
 import TestScreen from "./app/Screens/TestScreen";
+import { ME } from "./graphql/queries";
 
 const Main = () => {
-  const [user, setUser] = useState(null);
-  const [launching, setLaunching] = useState(true);
+  const { data } = useQuery(ME);
+  const [launching, setLaunching] = useState(false);
 
   useEffect(() => {
-    if (!user) {
+    if (!data) {
       setTimeout(() => {
         setLaunching(false);
       }, twoSeconds);
     }
   }, []);
 
-  if (launching)
-    return <LaunchScreen setUser={setUser} setLaunching={setLaunching} />;
-
+  if (launching) return <LaunchScreen setLaunching={setLaunching} />;
   return (
     <View style={styles.container}>
-      {user ? (
-        <TestScreen setUser={setUser} />
-      ) : (
-        <LoginScreen setUser={setUser} />
-      )}
+      {data && data.me ? <TestScreen /> : <LoginScreen />}
     </View>
   );
   // return <MapScreen />;

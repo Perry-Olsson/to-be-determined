@@ -1,26 +1,32 @@
-import { useMutation } from "urql";
+import { useMutation, useApolloClient } from "@apollo/client";
 
-import { Login } from "../graphql/mutations";
+import { LOGIN } from "../graphql/mutations";
 import { useAuthStorage } from "../contexts/AuthStorageContext";
+import { ME } from "../graphql/queries";
 
-export const useLogin = setUser => {
-  const [result, login] = useMutation(Login);
+export const useLogin = () => {
+  const client = useApolloClient();
+  const [login, result] = useMutation(LOGIN);
   const authStorage = useAuthStorage();
 
   const tryLogin = async input => {
     try {
-      const { data } = await login({ input });
+      const { data } = await login({ variables: { input } });
       const {
         login: { errors, token, user },
       } = data;
 
       if (errors) alert(errors.message);
       else {
-        authStorage.setAccessToken(token);
-        setUser({
-          token,
-          user,
+        client.writeQuery({
+          query: ME,
+          data: {
+            me: {
+              ...user,
+            },
+          },
         });
+        await authStorage.setAccessToken(token);
       }
     } catch (e) {
       console.error(e);

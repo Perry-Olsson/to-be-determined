@@ -4,7 +4,7 @@ import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 import Login from "../Login";
 import SignUp from "../SignUp";
 
-const LoginScreen = ({ setUser }) => {
+const LoginScreen = () => {
   const [fadeIn, setFadeIn] = useState(true);
 
   return (
@@ -14,7 +14,7 @@ const LoginScreen = ({ setUser }) => {
           <SignUp />
         </Route>
         <Route path="/">
-          <Login setUser={setUser} fadeIn={fadeIn} setFadeIn={setFadeIn} />
+          <Login fadeIn={fadeIn} setFadeIn={setFadeIn} />
         </Route>
         <Redirect to="/" />
       </Switch>
