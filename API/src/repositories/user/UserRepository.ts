@@ -12,6 +12,7 @@ import {
   UserResponse,
 } from "../../modules/user/types";
 import validateEmail from "../../utils/validateEmail";
+import { lowerCaseUsername } from "../../constants";
 
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(data: RegisterInput): Promise<UserResponse> {
@@ -46,7 +47,7 @@ export class UserRepository extends EntityRepository<User> {
   private async getUser(emailOrUsername: string): Promise<User | null> {
     return validateEmail(emailOrUsername)
       ? await this.findOne({ email: emailOrUsername })
-      : await this.findOne({ username: emailOrUsername });
+      : await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any); // eslint-disable-line
   }
 
   private formatRegistration(data: RegisterInput): RegisterInput {
@@ -54,7 +55,7 @@ export class UserRepository extends EntityRepository<User> {
       email: data.email.toLowerCase().trim(),
       firstName: data.firstName.trim(),
       lastName: data.lastName.trim(),
-      username: data.username.toLowerCase().trim(),
+      username: data.username.trim(),
       password: data.password,
     };
   }

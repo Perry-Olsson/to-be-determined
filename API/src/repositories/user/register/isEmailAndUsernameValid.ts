@@ -7,6 +7,7 @@ import {
   invalidEmailError,
   usernameLengthError,
 } from "../types";
+import { lowerCaseUsername } from "../../../constants";
 
 const isEmailAndUsernameValid = async (
   input: ValidationInput
@@ -37,7 +38,7 @@ const getUsers = async ({
 }: ValidationInput): Promise<User[]> => {
   qb.select("*")
     .where({ email: email.toLowerCase() })
-    .orWhere({ username: username.toLowerCase() });
+    .orWhere({ [lowerCaseUsername]: username.toLowerCase() });
 
   return await qb.execute();
 };
@@ -51,11 +52,12 @@ const getErrors = (
 
   users.forEach(user => {
     if (email === user.email) errors.push(duplicateEmailError);
-    if (username === user.username) errors.push(duplicateUsernameError);
+    if (username.toLowerCase() === user.username.toLowerCase()) errors.push(duplicateUsernameError);
   });
 
   if (username.length < 3) errors.push(usernameLengthError);
   return errors;
 };
+
 
 export default isEmailAndUsernameValid;
