@@ -16,7 +16,8 @@
     "schema:drop": "npx mikro-orm schema:drop -r",
     "db:clear": "yarn schema:drop && yarn schema:create",
     "db:addUsers": "ts-node ./src/devServices/addUsers.ts",
-    "db:clearUsers": "ts-node ./src/devServices/clearUsers.ts"
+    "db:clearUsers": "ts-node ./src/devServices/clearUsers.ts",
+    "db:test": "ts-node ./src/devServices/test.ts"
   },
   "dependencies": {
     "-": "^0.0.1",
