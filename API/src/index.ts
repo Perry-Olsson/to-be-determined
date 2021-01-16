@@ -7,13 +7,11 @@ import ormConfig from "./mikro-orm.config";
 import path from "path";
 
 import config from "./utils/config";
+import updateSchema from "./utils/updateSchema";
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
-  await orm.getSchemaGenerator().updateSchema();
-  await orm
-    .getSchemaGenerator()
-    .execute("CREATE INDEX lower_username_index ON users (lower(username))");
+  await updateSchema(orm);
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],

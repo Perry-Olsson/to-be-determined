@@ -3,11 +3,12 @@ import bcrypt from "bcryptjs";
 
 import { User } from "../entities/User";
 import { users } from "../testResources";
+import updateSchema from "../utils/updateSchema";
 import { clearUsers } from "./clearUsers";
 
 const main = async () => {
   const orm = await MikroORM.init();
-  await orm.getSchemaGenerator().updateSchema();
+  await updateSchema(orm);
   await clearUsers(orm);
   await addUsers(orm);
   orm.close();

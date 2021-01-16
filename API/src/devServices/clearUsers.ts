@@ -1,10 +1,11 @@
 import { Connection, IDatabaseDriver, MikroORM } from "@mikro-orm/core";
 
 import { User } from "../entities/User";
+import updateSchema from "../utils/updateSchema";
 
 const main = async () => {
   const orm = await MikroORM.init();
-  await orm.getSchemaGenerator().updateSchema();
+  await updateSchema(orm);
   await clearUsers(orm);
   orm.close();
 };
