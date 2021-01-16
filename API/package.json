@@ -7,7 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "watch": "tsc --watch",
-    "start": "node ./dist/index.js",
+    "start": "NODE_ENV=production node ./dist/index.js",
     "dev": "NODE_ENV=development ts-node-dev --respawn src/index.ts",
     "dev:js": "NODE_ENV=development nodemon dist/index.js",
     "lint": "eslint ./src/**/*.ts",
