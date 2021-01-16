@@ -14,3 +14,4 @@ export const useNext = route => {
 
 export * from "./useLogin";
 export * from "./useAuthorizedUserQuery";
+export * from "./useRegister";

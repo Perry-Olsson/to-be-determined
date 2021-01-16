@@ -6,7 +6,7 @@ import LoginForm from "./LoginForm";
 import { useLogin } from "../../hooks";
 
 const Body = () => {
-  const [, tryLogin] = useLogin();
+  const [tryLogin] = useLogin();
 
   const onSubmit = input => tryLogin(input);
 

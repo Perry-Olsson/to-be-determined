@@ -2,17 +2,15 @@ import React from "react";
 import { Formik } from "formik";
 
 import SignUpForm from "./SignUpForm";
+import { useRegister, useLogin } from "../../hooks";
 
 const Body = () => {
-  const onSubmit = values => {
-    console.log(values);
-  };
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    username: "",
-    password: "",
+  const [tryRegister] = useRegister();
+  const [tryLogin] = useLogin();
+  const onSubmit = async input => {
+    const user = await tryRegister(input);
+    if (user)
+      tryLogin({ emailOrUsername: user.email, password: input.password });
   };
 
   return (
@@ -20,6 +18,14 @@ const Body = () => {
       {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
     </Formik>
   );
+};
+
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  username: "",
+  password: "",
 };
 
 export default Body;

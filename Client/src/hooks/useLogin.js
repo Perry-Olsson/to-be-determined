@@ -3,6 +3,7 @@ import { useMutation, useApolloClient } from "@apollo/client";
 import { LOGIN } from "../graphql/mutations";
 import { useAuthStorage } from "../contexts/AuthStorageContext";
 import { ME } from "../graphql/queries";
+import logGqlError from "../utils/logGqlError";
 
 export const useLogin = () => {
   const client = useApolloClient();
@@ -30,9 +31,9 @@ export const useLogin = () => {
       }
     } catch (e) {
       console.error(e);
-      console.log("------------gql error-----------\n", result.error);
+      logGqlError(result.error);
     }
   };
 
-  return [result, tryLogin];
+  return [tryLogin, result];
 };
