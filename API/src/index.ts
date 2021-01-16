@@ -23,6 +23,7 @@ const main = async () => {
       req,
       em: orm.em.fork(),
     }),
+    playground: true,
   });
 
   const app = express();
