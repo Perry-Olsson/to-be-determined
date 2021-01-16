@@ -4,8 +4,6 @@
 .yarnrc.yml
 .VSCodeCounter/
 
-testResources.ts
-
 node_modules/
 dist/
 
