@@ -26,6 +26,7 @@ const initialValues = {
   email: "",
   username: "",
   password: "",
+  passwordConfirmation: "",
 };
 
 export default Body;

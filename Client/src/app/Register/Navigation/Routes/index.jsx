@@ -56,10 +56,18 @@ export const Username = () => {
 };
 
 export const Password = () => (
-  <FormikTextInput
-    type="secondary"
-    name="password"
-    placeholder="Password"
-    secureTextEntry
-  />
+  <>
+    <FormikTextInput
+      type="secondary"
+      name="password"
+      placeholder="Password"
+      secureTextEntry
+    />
+    <FormikTextInput
+      type="secondary"
+      name="passwordConfirmation"
+      placeholder="Confirm password"
+      secureTextEntry
+    />
+  </>
 );

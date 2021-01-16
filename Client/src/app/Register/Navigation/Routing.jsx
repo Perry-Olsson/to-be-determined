@@ -7,13 +7,17 @@ import Button from "../../../components/Button";
 
 const Routing = ({ onSubmit, scrollViewRef }) => {
   const { values } = useFormikContext();
-  const submitStyles = !inputIsValid(values) && { backgroundColor: "#917082" };
+  const submitStyles = !isInputValid(values) && { backgroundColor: "#917082" };
 
   return (
     <Switch>
       <Route path="/password">
         <Password />
-        <Button title="Sign Up!" onPress={onSubmit} style={submitStyles} />
+        <Button
+          title="Register!"
+          onPress={isInputValid(values) ? onSubmit : null}
+          style={submitStyles}
+        />
       </Route>
       <Route path="/username">
         <Username />
@@ -28,7 +32,8 @@ const Routing = ({ onSubmit, scrollViewRef }) => {
   );
 };
 
-const inputIsValid = values => {
+const isInputValid = values => {
+  if (values.password !== values.passwordConfirmation) return false;
   for (let value in values) {
     if (!values[value]) return false;
   }
