@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useQuery } from "@apollo/client";
 
+import { useAuthorizedUserQuery } from "./hooks";
 import LaunchScreen from "./app/Screens/LaunchScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
 import TestScreen from "./app/Screens/TestScreen";
-import { ME } from "./graphql/queries";
-
 const Main = () => {
-  const { data } = useQuery(ME);
+  const { user, loading } = useAuthorizedUserQuery();
   const [launching, setLaunching] = useState(true);
 
   useEffect(() => {
@@ -17,10 +15,11 @@ const Main = () => {
     }, twoSeconds);
   }, []);
 
-  if (launching) return <LaunchScreen setLaunching={setLaunching} />;
+  if (launching || loading) return <LaunchScreen />;
+
   return (
     <View style={styles.container}>
-      {data && data.me ? <TestScreen /> : <LoginScreen />}
+      {user ? <TestScreen /> : <LoginScreen />}
     </View>
   );
 };

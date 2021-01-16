@@ -24,7 +24,7 @@ const TempLogoutButton = () => {
       style={styles.logout}
       onPress={async () => {
         await authStorage.removeAccessToken();
-        client.resetStore();
+        await client.resetStore();
       }}
     >
       <Text>logout</Text>
