@@ -17,9 +17,9 @@ const Login = ({ fadeIn, setFadeIn }) => (
       <Footer color="secondary">
         <Text color="light">New to Friday?</Text>
         <Link
-          to="/signup"
+          to="/register"
           component={Button}
-          title="Sign Up"
+          title="Register"
           color={theme.colors.logo}
         >
           <Text color="logo">{"  "}Sign Up</Text>

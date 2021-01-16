@@ -1,12 +1,12 @@
-import React, { useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { NativeRouter } from 'react-router-native';
+import React, { useRef } from "react";
+import { View, StyleSheet } from "react-native";
+import { NativeRouter } from "react-router-native";
 
-import NavBar from './Navigation/NavBar';
-import Header from './Header';
-import Routing from './Navigation/Routing';
+import NavBar from "./Navigation/NavBar";
+import Header from "./Header";
+import Routing from "./Navigation/Routing";
 
-const SignUpForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit }) => {
   const scrollViewRef = useRef();
 
   return (
@@ -20,12 +20,11 @@ const SignUpForm = ({ onSubmit }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
-    height: '50%',
+    height: "50%",
     padding: 30,
   },
 });
 
-export default SignUpForm;
+export default RegisterForm;

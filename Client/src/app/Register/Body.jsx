@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-import SignUpForm from "./SignUpForm";
+import RegisterForm from "./RegisterForm";
 import { useRegister, useLogin } from "../../hooks";
 
 const Body = () => {
@@ -15,7 +15,7 @@ const Body = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };

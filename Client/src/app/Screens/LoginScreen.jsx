@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 
 import Login from "../Login";
-import SignUp from "../SignUp";
+import Register from "../Register";
 
 const LoginScreen = () => {
   const [fadeIn, setFadeIn] = useState(true);
@@ -10,8 +10,8 @@ const LoginScreen = () => {
   return (
     <NativeRouter>
       <Switch>
-        <Route path="/signup">
-          <SignUp />
+        <Route path="/register">
+          <Register />
         </Route>
         <Route path="/">
           <Login fadeIn={fadeIn} setFadeIn={setFadeIn} />
