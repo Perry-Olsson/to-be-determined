@@ -7,7 +7,6 @@ import {
   ObjectType,
   Field,
 } from "type-graphql";
-import bcrypt from "bcryptjs";
 import { User } from "../../entities/User";
 import { RegisterInput } from "./register/RegisterInput";
 import { MyContext } from "../../types";
@@ -36,12 +35,8 @@ export class RegisterResolver {
   ): Promise<UserResponse> {
     const repo = em.getRepository(User);
 
-    const { password } = input;
-    const hashedPassword = await bcrypt.hash(password, 12);
-
     const response = await repo.initializeUser({
       ...input,
-      password: hashedPassword,
     });
 
     if (response.user) await repo.persistAndFlush(response.user);

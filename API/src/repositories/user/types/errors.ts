@@ -12,6 +12,11 @@ export const usernameLengthError: FieldError = {
   message: "Your username must be longer than 2 characters",
 };
 
+export const passwordLenghError: FieldError = {
+  field: "password",
+  message: "Password must be 6 characters or longer",
+};
+
 export const duplicateEmailError: FieldError = {
   field: "email",
   message: "That email is already associated with an account.",

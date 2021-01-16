@@ -3,6 +3,7 @@ import { User } from "../../entities";
 import validateRegistration from "./register/validateRegistration";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
 import config from "../../utils/config";
 import { loginError } from "./types";
 import {
@@ -15,14 +16,23 @@ import validateEmail from "../../utils/validateEmail";
 import { lowerCaseUsername } from "../../constants";
 
 export class UserRepository extends EntityRepository<User> {
-  public async initializeUser(data: RegisterInput): Promise<UserResponse> {
-    const formattedInput = this.formatRegistration(data);
+  public async initializeUser(input: RegisterInput): Promise<UserResponse> {
+    const formattedInput = this.formatRegistration(input);
 
     const errors = await validateRegistration(formattedInput, this);
 
-    if (!errors.length) return { user: this.create(formattedInput) };
+    if (!errors.length)
+      return { user: this.create(await this.hashPassword(formattedInput)) };
 
     return { errors };
+  }
+
+  private async hashPassword(input: RegisterInput): Promise<RegisterInput> {
+    const hashedPassword = await bcrypt.hash(input.password, 12);
+    return {
+      ...input,
+      password: hashedPassword,
+    };
   }
 
   public async validateLogin(data: LoginInput): Promise<LoginResponse> {
@@ -49,13 +59,13 @@ export class UserRepository extends EntityRepository<User> {
       : await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any); // eslint-disable-line
   }
 
-  private formatRegistration(data: RegisterInput): RegisterInput {
+  private formatRegistration(input: RegisterInput): RegisterInput {
     return {
-      email: data.email.toLowerCase().trim(),
-      firstName: data.firstName.trim(),
-      lastName: data.lastName.trim(),
-      username: data.username.trim(),
-      password: data.password,
+      email: input.email.toLowerCase().trim(),
+      firstName: input.firstName.trim(),
+      lastName: input.lastName.trim(),
+      username: input.username.trim(),
+      password: input.password,
     };
   }
 
