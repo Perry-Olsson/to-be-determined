@@ -1,20 +1,13 @@
-import { Connection, IDatabaseDriver, MikroORM } from "@mikro-orm/core";
+import { MikroORM } from "@mikro-orm/core";
+import { clearUsers } from "./helpers";
 
-import { User } from "../entities/User";
-import updateSchema from "../utils/updateSchema";
+// import updateSchema from "../utils/updateSchema";
 
 const main = async () => {
   const orm = await MikroORM.init();
-  await updateSchema(orm);
-  await clearUsers(orm);
+  // await updateSchema(orm);
+  await clearUsers(orm.em);
   orm.close();
-};
-
-export const clearUsers = async (
-  orm: MikroORM<IDatabaseDriver<Connection>>
-): Promise<void> => {
-  const em = orm.em;
-  await em.nativeDelete(User, {});
 };
 
 main();
