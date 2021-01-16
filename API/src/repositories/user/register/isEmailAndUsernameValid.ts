@@ -1,11 +1,12 @@
 import { User } from "../../../entities";
 import isValidEmail from "../../../utils/validateEmail";
-import { FieldError, ValidationInput } from "../../../types";
+import { FieldError } from "../../../types";
 import {
   duplicateEmailError,
   duplicateUsernameError,
   invalidEmailError,
   usernameLengthError,
+  ValidationInput,
 } from "../types";
 import { lowerCaseUsername } from "../../../constants";
 
@@ -34,13 +35,11 @@ const validateUniqueConstraints = async (
 const getUsers = async ({
   email,
   username,
-  qb,
+  repo,
 }: ValidationInput): Promise<User[]> => {
-  qb.select("*")
-    .where({ email: email.toLowerCase() })
-    .orWhere({ [lowerCaseUsername]: username.toLowerCase() });
-
-  return await qb.execute();
+  return await repo.find({
+    $or: [{ email }, { [lowerCaseUsername]: username.toLowerCase() }],
+  });
 };
 
 const getErrors = (
@@ -52,12 +51,12 @@ const getErrors = (
 
   users.forEach(user => {
     if (email === user.email) errors.push(duplicateEmailError);
-    if (username.toLowerCase() === user.username.toLowerCase()) errors.push(duplicateUsernameError);
+    if (username.toLowerCase() === user.username.toLowerCase())
+      errors.push(duplicateUsernameError);
   });
 
   if (username.length < 3) errors.push(usernameLengthError);
   return errors;
 };
-
 
 export default isEmailAndUsernameValid;

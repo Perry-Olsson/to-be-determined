@@ -17,9 +17,8 @@ import { lowerCaseUsername } from "../../constants";
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(data: RegisterInput): Promise<UserResponse> {
     const formattedInput = this.formatRegistration(data);
-    const qb = this.createQueryBuilder();
 
-    const errors = await validateRegistration(formattedInput, qb);
+    const errors = await validateRegistration(formattedInput, this);
 
     if (!errors.length) return { user: this.create(formattedInput) };
 
