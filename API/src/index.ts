@@ -7,11 +7,11 @@ import ormConfig from "./mikro-orm.config";
 import path from "path";
 
 import config from "./utils/config";
-import updateSchema from "./utils/updateSchema";
+import updateSchemaAndCreateIndexes from "./utils/updateSchema";
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
-  await updateSchema(orm);
+  await updateSchemaAndCreateIndexes(orm);
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],

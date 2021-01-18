@@ -1,6 +1,6 @@
 import { Connection, IDatabaseDriver, MikroORM } from "@mikro-orm/core";
 
-const updateSchema = async (
+const updateSchemaAndCreateIndexes = async (
   orm: MikroORM<IDatabaseDriver<Connection>>
 ): Promise<void> => {
   const generator = orm.getSchemaGenerator();
@@ -11,4 +11,4 @@ const updateSchema = async (
   return;
 };
 
-export default updateSchema;
+export default updateSchemaAndCreateIndexes;
