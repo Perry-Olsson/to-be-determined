@@ -6,9 +6,9 @@ export default {
     slug: "Friday",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./src/assets/Fri.png",
+    icon: "./assets/Fri.png",
     splash: {
-      image: "./src/assets/splash.png",
+      image: "./assets/splash.png",
       resizeMode: "contain",
       backgroundColor: "#ffffff",
     },
@@ -20,7 +20,7 @@ export default {
       supportsTablet: true,
     },
     web: {
-      favicon: "./src/assets/Fri.png",
+      favicon: "./assets/Fri.png",
     },
     description: "",
     extra: {
