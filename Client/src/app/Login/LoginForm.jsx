@@ -17,6 +17,8 @@ const LoginForm = ({ onSubmit }) => {
         type="secondary"
         name="emailOrUsername"
         placeholder="Email or username"
+        autoCapitalize="none"
+        keyboardType="email-address"
       />
       <FormikTextInput
         type="secondary"
