@@ -39,6 +39,8 @@ export const Email = ({ scrollViewRef }) => {
         type="secondary"
         name="email"
         placeholder="Email"
+        keyboardType="email-address"
+        autoCapitalize="none"
         autoFocus
       />
       <NextButton onPress={handleNextRoute} />
@@ -55,6 +57,7 @@ export const Username = () => {
         type="secondary"
         name="username"
         placeholder="Username"
+        autoCapitalize="none"
         autoFocus
       />
       <NextButton onPress={next} />
