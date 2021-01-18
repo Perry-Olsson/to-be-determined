@@ -5,6 +5,7 @@
 .VSCodeCounter/
 
 yarn-error.log
+credentials.csv
 
 node_modules/
 dist/

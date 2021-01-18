@@ -14,6 +14,7 @@ import {
 } from "../../modules/user/types";
 import validateEmail from "../../utils/validateEmail";
 import { lowerCaseUsername } from "../../constants";
+import { sendAccountConfirmation } from "../../utils/sendMail";
 
 export class UserRepository extends EntityRepository<User> {
   public async initializeUser(input: RegisterInput): Promise<UserResponse> {
@@ -21,8 +22,11 @@ export class UserRepository extends EntityRepository<User> {
 
     const errors = await validateRegistration(formattedInput, this);
 
-    if (!errors.length)
-      return { user: this.create(await this.hashPassword(formattedInput)) };
+    if (!errors.length) {
+      const user = this.create(await this.hashPassword(formattedInput));
+      sendAccountConfirmation(user);
+      return { user };
+    }
 
     return { errors };
   }

@@ -8,6 +8,8 @@ import path from "path";
 
 import config from "./utils/config";
 import updateSchemaAndCreateIndexes from "./utils/updateSchema";
+import jwt from "jsonwebtoken";
+import { User } from "./entities";
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
@@ -29,6 +31,21 @@ const main = async () => {
   const app = express();
 
   app.use(cors());
+
+  app.get("/user/confirm/:id", async (req, res) => {
+    try {
+      const token = req.params.id;
+      const email = jwt.verify(token, config.jwtSecret);
+      const user = await orm.em.findOne(User, { email });
+      if (user) {
+        user.confirmed = true;
+        await orm.em.flush();
+        res.end();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
   apolloServer.applyMiddleware({ app });
 
