@@ -25,11 +25,12 @@ const NavBar = React.forwardRef((props, ref) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView ref={scrollRef} horizontal>
-        <View
-          onStartShouldSetResponder={() => true}
-          style={styles.innerContainer}
-        >
+      <ScrollView
+        ref={scrollRef}
+        keyboardShouldPersistTaps="handled"
+        horizontal
+      >
+        <View style={styles.innerContainer}>
           <NavTab title="Name" route="/" scrollNavBar={scroll.toStart} />
           <NavTab title="Email" route="/email" scrollNavBar={scroll.toStart} />
           <NavTab
