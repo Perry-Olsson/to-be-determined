@@ -3,10 +3,10 @@ import React from "react";
 import FormikTextInput from "../../../../components/FormikTextInput";
 import NextButton from "../NextButton";
 
-import { useNext } from "../../../../hooks";
+import { useNextRoute } from "../../../../hooks";
 
 export const Name = () => {
-  const next = useNext("/email");
+  const next = useNextRoute("/email");
 
   return (
     <>
@@ -26,7 +26,7 @@ export const Name = () => {
 };
 
 export const Email = ({ scrollViewRef }) => {
-  const nextRoute = useNext("/username");
+  const nextRoute = useNextRoute("/username");
   const handleNextRoute = () => {
     nextRoute();
     scrollViewRef.current.toEnd();
@@ -41,7 +41,7 @@ export const Email = ({ scrollViewRef }) => {
 };
 
 export const Username = () => {
-  const next = useNext("/password");
+  const next = useNextRoute("/password");
 
   return (
     <>

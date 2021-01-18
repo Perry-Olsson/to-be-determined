@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-native";
 
-export const useNext = route => {
+export const useNextRoute = route => {
   const history = useHistory();
 
   return route
