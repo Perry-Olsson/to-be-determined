@@ -30,20 +30,18 @@ const NavBar = React.forwardRef((props, ref) => {
         keyboardShouldPersistTaps="handled"
         horizontal
       >
-        <View style={styles.innerContainer}>
-          <NavTab title="Name" route="/" scrollNavBar={scroll.toStart} />
-          <NavTab title="Email" route="/email" scrollNavBar={scroll.toStart} />
-          <NavTab
-            title="Username"
-            route="/username"
-            scrollNavBar={scroll.toEnd}
-          />
-          <NavTab
-            title="Password"
-            route="/password"
-            scrollNavBar={scroll.toEnd}
-          />
-        </View>
+        <NavTab title="Name" route="/" scrollNavBar={scroll.toStart} />
+        <NavTab title="Email" route="/email" scrollNavBar={scroll.toStart} />
+        <NavTab
+          title="Username"
+          route="/username"
+          scrollNavBar={scroll.toEnd}
+        />
+        <NavTab
+          title="Password"
+          route="/password"
+          scrollNavBar={scroll.toEnd}
+        />
       </ScrollView>
     </View>
   );
@@ -53,10 +51,6 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 30,
     height: 65,
-  },
-  innerContainer: {
-    width: "100%",
-    flexDirection: "row",
   },
 });
 
