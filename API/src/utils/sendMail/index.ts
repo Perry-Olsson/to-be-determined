@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import { User } from "../../entities";
 import { createConfirmationUrl } from "./createConfirmationUrl";
+import { getConfirmationHTML } from "./pages/confirmation";
 
 export const sendAccountConfirmation = async (user: User): Promise<void> => {
   const transporter = nodemailer.createTransport({
@@ -18,11 +19,7 @@ export const sendAccountConfirmation = async (user: User): Promise<void> => {
     from: "'Friday' <friday@gmail.com",
     to: user.email,
     subject: "Account confirmation",
-    html: `
-    <h1>Hello ${user.firstName} ${user.lastName}!</h1>
-    <h3>Click the link to confirm your account</h3>
-    <p><a href="${url}">${url}</a></p>
-    `,
+    html: getConfirmationHTML(user, url),
   });
 
   console.log(info);
