@@ -4,6 +4,8 @@
 .yarnrc.yml
 .VSCodeCounter/
 
+yarn-error.log
+
 node_modules/
 dist/
 
