@@ -14,6 +14,7 @@ export const Name = () => {
         type="secondary"
         name="firstName"
         placeholder="First Name"
+        autoFocus
       />
       <FormikTextInput
         type="secondary"
@@ -34,7 +35,12 @@ export const Email = ({ scrollViewRef }) => {
 
   return (
     <>
-      <FormikTextInput type="secondary" name="email" placeholder="Email" />
+      <FormikTextInput
+        type="secondary"
+        name="email"
+        placeholder="Email"
+        autoFocus
+      />
       <NextButton onPress={handleNextRoute} />
     </>
   );
@@ -49,6 +55,7 @@ export const Username = () => {
         type="secondary"
         name="username"
         placeholder="Username"
+        autoFocus
       />
       <NextButton onPress={next} />
     </>
@@ -61,6 +68,7 @@ export const Password = () => (
       type="secondary"
       name="password"
       placeholder="Password"
+      autoFocus
       secureTextEntry
     />
     <FormikTextInput
