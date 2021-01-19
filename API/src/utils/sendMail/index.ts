@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+
 import { User } from "../../entities";
 import { createConfirmationUrl } from "./createConfirmationUrl";
 import { getConfirmationHTML } from "./pages/confirmation";
@@ -16,7 +17,7 @@ export const sendAccountConfirmation = async (user: User): Promise<void> => {
   const url = createConfirmationUrl(user.email);
 
   const info = await transporter.sendMail({
-    from: "'Friday' <friday@gmail.com",
+    from: "'Friday' <friday@gmail.com>",
     to: user.email,
     subject: "Account confirmation",
     html: getConfirmationHTML(user, url),
