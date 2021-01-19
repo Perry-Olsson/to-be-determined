@@ -7,8 +7,9 @@ export interface MyContext {
 }
 
 export interface DecodedToken {
-  id: number;
-  iat: number;
+  email: string;
+  iat?: number;
+  error: string;
 }
 
 export type validator<T> = false | T;

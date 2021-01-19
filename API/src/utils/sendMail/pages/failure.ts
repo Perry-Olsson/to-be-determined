@@ -1,6 +1,7 @@
 import { User } from "../../../entities";
 
-export const getFailureHTML = (user?: User): string => {
+export const getFailureHTML = (user: User | null, error?: string): string => {
+  console.log(error);
   const message: string = user
     ? `
     <h3>Looks like we recognize your account ${user.firstName}</h3>

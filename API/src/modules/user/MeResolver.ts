@@ -1,20 +1,16 @@
 import { User } from "../../entities";
-import { MyContext, DecodedToken } from "src/types";
+import { MyContext } from "src/types";
 import { Ctx, Query, Resolver } from "type-graphql";
-import jwt from "jsonwebtoken";
-import { getToken } from "../../utils/authorization";
-import config from "../../utils/config";
+import { getDecodedToken, getToken } from "../../utils/authorization";
 
 @Resolver()
 export class MeResolver {
   @Query(() => User, { nullable: true })
   async me(@Ctx() { req, em }: MyContext): Promise<User | null> {
     try {
-      const decodedToken = jwt.verify(
-        getToken(req),
-        config.jwtSecret
-      ) as DecodedToken;
-      const user = await em.findOne(User, { id: decodedToken.id });
+      const repo = em.getRepository(User);
+      const { email } = getDecodedToken(getToken(req));
+      const user = await repo.getUser(email);
       return user ? user : null;
     } catch (e) {
       return null;

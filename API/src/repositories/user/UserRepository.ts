@@ -49,7 +49,7 @@ export class UserRepository extends EntityRepository<User> {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return loginError;
 
-    const token = jwt.sign({ id: user.id }, config.jwtSecret);
+    const token = jwt.sign({ email: user.email }, config.jwtSecret);
 
     return {
       user,
@@ -57,7 +57,7 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 
-  private async getUser(emailOrUsername: string): Promise<User | null> {
+  public async getUser(emailOrUsername: string): Promise<User | null> {
     return validateEmail(emailOrUsername)
       ? await this.findOne({ email: emailOrUsername })
       : await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any); // eslint-disable-line

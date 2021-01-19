@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 import { User } from "../../entities";
 import { createConfirmationUrl } from "./createConfirmationUrl";
-import { getConfirmationHTML } from "./pages/confirmation";
+import { getConfirmationHTML } from "./pages";
 
 export const sendAccountConfirmation = async (user: User): Promise<void> => {
   const transporter = nodemailer.createTransport({

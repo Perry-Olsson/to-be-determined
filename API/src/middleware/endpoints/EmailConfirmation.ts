@@ -1,34 +1,34 @@
-import { RequestContext } from "@mikro-orm/core";
 import express from "express";
-import jwt from "jsonwebtoken";
-import { User } from "../../entities";
 
-import config from "../../utils/config";
-import { getFailureHTML } from "../../utils/sendMail/pages/failure";
-import { getSuccessHTML } from "../../utils/sendMail/pages/success";
+import { User } from "../../entities";
+import { getDecodedToken } from "../../utils/authorization";
+import { getEntityManager } from "../../utils/getEntityManager";
+import { getFailureHTML } from "../../utils/sendMail/pages";
+import { getSuccessHTML } from "../../utils/sendMail/pages";
 
 export const ConfirmationRoute = express.Router();
 
 ConfirmationRoute.get("/:id", async (req, res) => {
-  const em = RequestContext.getEntityManager();
-  if (em) {
-    try {
-      const token = req.params.id;
-      const email = jwt.verify(token, config.jwtSecret);
-      const user = await em.findOne(User, { email });
-      if (user) {
-        try {
-          user.confirmed = true;
-          await em.flush();
-          return res.send(getSuccessHTML(user));
-        } catch (e) {
-          return res.send(getFailureHTML(user));
-        }
-      }
-      return res.send(getFailureHTML());
-    } catch (e) {
-      console.log(e);
-      return res.send(getFailureHTML());
-    }
-  } else return res.end(getFailureHTML());
+  const { email, error } = getDecodedToken(req.params.id);
+
+  if (email) {
+    const response = await updateAndFlush(email);
+    return res.send(response);
+  }
+  return res.send(getFailureHTML(null, error));
 });
+
+const updateAndFlush = async (email: string) => {
+  const repo = getEntityManager().getRepository(User);
+  try {
+    const user = await repo.getUser(email);
+    if (user) {
+      user.confirmed = true;
+      await repo.flush();
+      return getSuccessHTML(user);
+    }
+    return getFailureHTML(user);
+  } catch (e) {
+    return getFailureHTML(null, e.message);
+  }
+};
