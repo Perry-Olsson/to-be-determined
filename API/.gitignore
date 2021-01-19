@@ -4,6 +4,8 @@
 .yarnrc.yml
 .VSCodeCounter/
 
+.DS_Store
+
 yarn-error.log
 credentials.csv
 
