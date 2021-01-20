@@ -1,6 +1,6 @@
 import { User } from "../../../../entities";
 
-export const getFailureHTML = ({ user, error }: Args): string => {
+export const getUnconfirmedHTML = ({ user, error }: Args): string => {
   console.log(error);
   const message: string = user
     ? `

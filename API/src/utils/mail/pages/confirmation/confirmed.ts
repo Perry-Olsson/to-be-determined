@@ -1,6 +1,6 @@
 import { User } from "../../../../entities";
 
-export const getSuccessHTML = ({ firstName }: User): string => {
+export const getConfirmedHTML = ({ firstName }: User): string => {
   return `
     <!DOCTYPE html>
       <head>
