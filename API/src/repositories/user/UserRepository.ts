@@ -5,19 +5,19 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import config from "../../utils/config";
-import { loginError } from "./types";
+import { loginError, updateError, UpdateResponse } from "./types";
 import {
   LoginInput,
   LoginResponse,
   RegisterInput,
-  UserResponse,
+  RegisterResponse,
 } from "../../modules/user/types";
 import validateEmail from "../../utils/validateEmail";
 import { lowerCaseUsername } from "../../constants";
 import { sendAccountConfirmation } from "../../utils/mail";
 
 export class UserRepository extends EntityRepository<User> {
-  public async initializeUser(input: RegisterInput): Promise<UserResponse> {
+  public async initializeUser(input: RegisterInput): Promise<RegisterResponse> {
     const formattedInput = this.formatRegistration(input);
 
     const errors = await validateRegistration(formattedInput, this);
@@ -27,6 +27,19 @@ export class UserRepository extends EntityRepository<User> {
     const user = this.create(await this.hashPassword(formattedInput));
     sendAccountConfirmation(user);
     return { user };
+  }
+
+  public async updateUser(
+    emailOrUsername: string,
+    update: (user: User) => void
+  ): Promise<UpdateResponse> {
+    const user = await this.getUser(emailOrUsername);
+    if (!user) return { error: updateError, user: null };
+
+    update(user);
+    await this.flush();
+
+    return { user, error: null };
   }
 
   private async hashPassword(input: RegisterInput): Promise<RegisterInput> {

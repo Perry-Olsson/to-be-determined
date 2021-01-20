@@ -1,10 +1,11 @@
 import express from "express";
 
 import { User } from "../../entities";
+import { UpdateResponse } from "../../repositories/user/types";
 import { getDecodedToken } from "../../utils/authorization";
 import { getEntityManager } from "../../utils/getEntityManager";
-import { getFailureHTML } from "../../utils/mail/pages";
-import { getSuccessHTML } from "../../utils/mail/pages";
+import { getFailureHTML } from "../../utils/mail/pages/confirmation";
+import { getSuccessHTML } from "../../utils/mail/pages/confirmation";
 
 export const ConfirmationRoute = express.Router();
 
@@ -12,23 +13,23 @@ ConfirmationRoute.get("/:id", async (req, res) => {
   const { email, error } = getDecodedToken(req.params.id);
 
   if (email) {
-    const response = await updateAndFlush(email);
-    return res.send(response);
+    const isConfirmed = await confirmUser(email);
+    const html = getHTML(isConfirmed);
+    return res.send(html);
   }
-  return res.send(getFailureHTML(null, error));
+  return res.send(getFailureHTML({ error }));
 });
 
-const updateAndFlush = async (email: string) => {
-  const repo = getEntityManager().getRepository(User);
+const confirmUser = async (email: string) => {
   try {
-    const user = await repo.getUser(email);
-    if (user) {
-      user.confirmed = true;
-      await repo.flush();
-      return getSuccessHTML(user);
-    }
-    return getFailureHTML(user);
+    const repo = getEntityManager().getRepository(User);
+    return await repo.updateUser(email, user => (user.confirmed = true));
   } catch (e) {
-    return getFailureHTML(null, e.message);
+    return { error: e.message, user: null };
   }
+};
+
+const getHTML = ({ user, error }: UpdateResponse) => {
+  if (user) return getSuccessHTML(user);
+  else return getFailureHTML(error ? { error: error.message } : {});
 };

@@ -3,16 +3,16 @@ import { Resolver, Mutation, Arg, Ctx } from "type-graphql";
 import { User } from "../../entities/User";
 import { RegisterInput } from "./register/RegisterInput";
 import { MyContext } from "../../types";
-import { UserResponse } from "./register/UserResponse";
+import { RegisterResponse } from "./register/UserResponse";
 
 @Resolver()
 export class RegisterResolver {
-  @Mutation(() => UserResponse)
+  @Mutation(() => RegisterResponse)
   async register(
     @Arg("input")
     input: RegisterInput,
     @Ctx() { em }: MyContext
-  ): Promise<UserResponse> {
+  ): Promise<RegisterResponse> {
     const repo = em.getRepository(User);
 
     const response = await repo.initializeUser({

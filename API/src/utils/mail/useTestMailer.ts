@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { sendMail } from "./sendMail";
 import { User } from "../../entities";
 import { createConfirmationUrl } from "./createConfirmationUrl";
-import { getConfirmationHTML } from "./pages";
+import { getConfirmationHTML } from "./pages/confirmation";
 import { SMTPMailResponse } from "./types";
 
 export const useTestMailer = async (user: User): Promise<void> => {

@@ -1,5 +1,5 @@
 import { LoginResponse } from "../../../modules/user/types";
-import { FieldError } from "../../../types";
+import { BaseError, FieldError } from "../../../types";
 
 export const loginError: LoginResponse = {
   errors: {
@@ -30,4 +30,8 @@ export const duplicateUsernameError: FieldError = {
 export const invalidEmailError: FieldError = {
   field: "email",
   message: "Email provided is not valid",
+};
+
+export const updateError: BaseError = {
+  message: "Could not find a user with that email or username",
 };

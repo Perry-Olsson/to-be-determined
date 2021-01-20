@@ -1,4 +1,4 @@
-import { User } from "../../../entities";
+import { User } from "../../../../entities";
 
 export const getConfirmationHTML = (user: User, url: string): string => {
   return `
