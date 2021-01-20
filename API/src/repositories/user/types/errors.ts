@@ -19,7 +19,7 @@ export const passwordLenghError: FieldError = {
 
 export const duplicateEmailError: FieldError = {
   field: "email",
-  message: "That email is already associated with an account.",
+  message: "That email is already associated with an account",
 };
 
 export const duplicateUsernameError: FieldError = {
