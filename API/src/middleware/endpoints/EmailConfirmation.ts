@@ -3,8 +3,8 @@ import express from "express";
 import { User } from "../../entities";
 import { getDecodedToken } from "../../utils/authorization";
 import { getEntityManager } from "../../utils/getEntityManager";
-import { getFailureHTML } from "../../utils/sendMail/pages";
-import { getSuccessHTML } from "../../utils/sendMail/pages";
+import { getFailureHTML } from "../../utils/mail/pages";
+import { getSuccessHTML } from "../../utils/mail/pages";
 
 export const ConfirmationRoute = express.Router();
 
