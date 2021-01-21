@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@react-native-community/async-storage": "^1.12.1",
+    "apollo-link-timeout": "^4.0.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "expo": "~39.0.2",

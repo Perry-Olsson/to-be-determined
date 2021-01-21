@@ -6,7 +6,7 @@ import LaunchScreen from "./app/Screens/LaunchScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
 import TestScreen from "./app/Screens/TestScreen";
 const Main = () => {
-  const { user, loading } = useAuthorizedUserQuery();
+  const { user, loading, error } = useAuthorizedUserQuery();
   const [launching, setLaunching] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,8 @@ const Main = () => {
     }, twoSeconds);
   }, []);
 
-  if (launching || loading) return <LaunchScreen />;
+  if (!error && (launching || loading))
+    return <LaunchScreen loading={!launching && loading} />;
 
   return (
     <View style={styles.container}>

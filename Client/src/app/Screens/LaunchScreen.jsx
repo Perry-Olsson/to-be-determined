@@ -1,21 +1,25 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 //components
 import Logo from "../../components/Logo";
 
-function LaunchScreen() {
+const LaunchScreen = ({ loading }) => {
   return (
     <View style={styles.container}>
-      <Logo />
+      <Logo style={styles.logo} />
+      <ActivityIndicator size="large" animating={loading} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  logo: {
+    margin: 30,
   },
 });
 
