@@ -5,8 +5,11 @@ import RegisterForm from "./RegisterForm";
 import { useRegister, useLogin } from "../../hooks";
 
 const Body = () => {
-  const [tryRegister, { loading }] = useRegister();
-  const [tryLogin] = useLogin();
+  const [tryRegister, registerResult] = useRegister();
+  const [tryLogin, loginResult] = useLogin();
+
+  const loading = registerResult.loading || loginResult.loading;
+
   const onSubmit = async input => {
     const user = await tryRegister(input);
     if (user)
