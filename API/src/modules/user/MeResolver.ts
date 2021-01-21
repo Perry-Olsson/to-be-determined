@@ -1,7 +1,7 @@
 import { User } from "../../entities";
 import { MyContext } from "src/types";
 import { Ctx, Query, Resolver } from "type-graphql";
-import { getDecodedToken, getToken } from "../../utils/authorization";
+import { decodeToken, getToken } from "../../utils/authorization";
 
 @Resolver()
 export class MeResolver {
@@ -9,7 +9,7 @@ export class MeResolver {
   async me(@Ctx() { req, em }: MyContext): Promise<User | null> {
     try {
       const repo = em.getRepository(User);
-      const { email } = getDecodedToken(getToken(req));
+      const { email } = decodeToken(getToken(req));
       const user = await repo.getUser(email);
       return user ? user : null;
     } catch (e) {
