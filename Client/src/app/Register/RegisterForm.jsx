@@ -6,7 +6,7 @@ import NavBar from "./Navigation/NavBar";
 import Header from "./Header";
 import Routing from "./Navigation/Routing";
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, loading }) => {
   const scrollViewRef = useRef();
 
   return (
@@ -14,7 +14,11 @@ const RegisterForm = ({ onSubmit }) => {
       <NativeRouter>
         <Header />
         <NavBar ref={scrollViewRef} />
-        <Routing onSubmit={onSubmit} scrollViewRef={scrollViewRef} />
+        <Routing
+          onSubmit={onSubmit}
+          scrollViewRef={scrollViewRef}
+          loading={loading}
+        />
       </NativeRouter>
     </View>
   );

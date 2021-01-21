@@ -5,7 +5,7 @@ import { useFormikContext } from "formik";
 import { Name, Email, Username, Password } from "./Routes";
 import Button from "../../../components/Button";
 
-const Routing = ({ onSubmit, scrollViewRef }) => {
+const Routing = ({ onSubmit, scrollViewRef, loading }) => {
   const { values } = useFormikContext();
   const submitStyles = !isInputValid(values) && { backgroundColor: "#917082" };
 
@@ -17,6 +17,7 @@ const Routing = ({ onSubmit, scrollViewRef }) => {
           title="Register!"
           onPress={isInputValid(values) ? onSubmit : null}
           style={submitStyles}
+          loading={loading}
         />
       </Route>
       <Route path="/username">
