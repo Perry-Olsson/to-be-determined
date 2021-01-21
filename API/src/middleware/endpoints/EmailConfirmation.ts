@@ -4,8 +4,10 @@ import { User } from "../../entities";
 import { UpdateResponse } from "../../repositories/user/types";
 import { getDecodedToken } from "../../utils/authorization";
 import { getEntityManager } from "../../utils/getEntityManager";
-import { getUnconfirmedHTML } from "../../utils/mail/pages/confirmation";
-import { getConfirmedHTML } from "../../utils/mail/pages/confirmation";
+import {
+  getConfirmedHTML,
+  getUnconfirmedHTML,
+} from "../../utils/mail/pages/confirmation";
 
 export const ConfirmationRoute = express.Router();
 

@@ -13,3 +13,12 @@ interface Envelope {
   from: string;
   to: string[];
 }
+
+export type Email = ConfirmationEmail;
+
+export interface ConfirmationEmail {
+  from: "'Friday' <friday@gmail.com>";
+  to: string;
+  subject: "Account confirmation";
+  html: string;
+}
