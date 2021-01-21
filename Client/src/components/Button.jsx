@@ -1,16 +1,26 @@
 import React from "react";
-import { TouchableHighlight, StyleSheet } from "react-native";
+import {
+  TouchableHighlight,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 
 import Text from "./Text";
 
 import theme from "./theme";
 
-const Button = ({ title, onPress, style, textStyle }) => {
+const Button = ({ title, onPress, style, textStyle, loading }) => {
   const buttonStyles = [styles.submit, style];
 
   return (
     <TouchableHighlight style={buttonStyles} onPress={onPress}>
-      <Text fontSize='form' style={textStyle}>{title}</Text>
+      {loading ? (
+        <ActivityIndicator animating={true} />
+      ) : (
+        <Text fontSize="form" style={textStyle}>
+          {title}
+        </Text>
+      )}
     </TouchableHighlight>
   );
 };
@@ -22,8 +32,8 @@ const styles = StyleSheet.create({
     padding: 10,
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.form,
-    backgroundColor: theme.colors.logo
-  }
+    backgroundColor: theme.colors.logo,
+  },
 });
 
 export default Button;

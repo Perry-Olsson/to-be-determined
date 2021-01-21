@@ -6,7 +6,7 @@ import FormikTextInput from "../../components/FormikTextInput";
 import Logo from "../../components/Logo";
 import SubmitButton from "../../components/Button";
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loading }) => {
   const { values } = useFormikContext();
   const submitStyles = !inputIsValid(values) && { backgroundColor: "#917082" };
 
@@ -30,6 +30,7 @@ const LoginForm = ({ onSubmit }) => {
         title="Sign in"
         onPress={inputIsValid(values) ? onSubmit : null}
         style={submitStyles}
+        loading={loading}
       />
     </View>
   );
