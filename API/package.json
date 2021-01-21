@@ -5,8 +5,8 @@
   "author": "Perry Olsson <olsson.perry@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "tsc": "tsc",
-    "watch": "tsc --watch",
+    "tsc": "rm -rf dist/ && tsc",
+    "watch": "rm -rf dist/ && tsc --watch",
     "start": "NODE_ENV=production node ./dist/index.js",
     "dev": "NODE_ENV=development ts-node-dev --respawn src/index.ts",
     "dev:js": "NODE_ENV=development nodemon dist/index.js",

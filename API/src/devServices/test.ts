@@ -6,10 +6,9 @@ import updateSchemaAndCreateIndexes from "../utils/updateSchema";
 const main = async (): Promise<void> => {
   const orm = await MikroORM.init();
   await updateSchemaAndCreateIndexes(orm);
-  const orQuery = await orm.em.find(User, {
+  await orm.em.find(User, {
     $or: [{ email: "doe.john@gmail.com" }, { [lowerCaseUsername]: "pdog" }],
   });
-  console.log(orQuery);
   orm.close();
 };
 
