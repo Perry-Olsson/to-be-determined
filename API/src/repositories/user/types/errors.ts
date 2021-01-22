@@ -32,6 +32,11 @@ export const invalidEmailError: FieldError = {
   message: "Email provided is not valid",
 };
 
+export const invalidAtSymbolError: FieldError = {
+  field: "username",
+  message: "Cannot use the '@' symbol in your username",
+};
+
 export const updateError: BaseError = {
   message: "Could not find a user with that email or username",
 };

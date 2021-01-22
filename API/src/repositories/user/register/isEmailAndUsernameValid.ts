@@ -4,6 +4,7 @@ import { FieldError } from "../../../types";
 import {
   duplicateEmailError,
   duplicateUsernameError,
+  invalidAtSymbolError,
   invalidEmailError,
   usernameLengthError,
   ValidationInput,
@@ -14,8 +15,15 @@ const isEmailAndUsernameValid = async (
   input: ValidationInput
 ): Promise<Array<FieldError | false>> => {
   if (!isValidEmail(input.email)) return [invalidEmailError];
+  const errors = validateUsername(input.username);
+  return errors.concat(await validateUniqueConstraints(input));
+};
 
-  return validateUniqueConstraints(input);
+const validateUsername = (username: string): Array<FieldError | false> => {
+  const errors = [];
+  if (username.length < 3) errors.push(usernameLengthError);
+  if (username.includes("@")) errors.push(invalidAtSymbolError);
+  return errors;
 };
 
 const validateUniqueConstraints = async (
@@ -55,7 +63,6 @@ const getErrors = (
       errors.push(duplicateUsernameError);
   });
 
-  if (username.length < 3) errors.push(usernameLengthError);
   return errors;
 };
 
