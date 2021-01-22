@@ -9,7 +9,7 @@ function loadingReducer(state, action) {
       return [...state, action.payload];
     }
     case "done": {
-      return state.slice(1, -1);
+      return state.filter(payload => payload !== action.payload);
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
