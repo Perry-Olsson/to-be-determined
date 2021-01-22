@@ -6,6 +6,7 @@ import Main from "./src/Main";
 import GalaxyBackground from "./src/components/GalaxyBackground";
 import AuthStorage from "./src/utils/AuthStorage";
 import AuthStorageProvider from "./src/contexts/AuthStorageContext";
+import { LoadingProvider } from "./src/contexts/LoadingIcon";
 
 export const authStorage = new AuthStorage();
 
@@ -15,9 +16,11 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <AuthStorageProvider value={authStorage}>
-        <GalaxyBackground>
-          <Main />
-        </GalaxyBackground>
+        <LoadingProvider>
+          <GalaxyBackground>
+            <Main />
+          </GalaxyBackground>
+        </LoadingProvider>
       </AuthStorageProvider>
     </ApolloProvider>
   );

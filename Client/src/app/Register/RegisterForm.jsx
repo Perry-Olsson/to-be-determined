@@ -5,9 +5,11 @@ import { NativeRouter } from "react-router-native";
 import NavBar from "./Navigation/NavBar";
 import Header from "./Header";
 import Routing from "./Navigation/Routing";
+import { useLoadingState } from "../../contexts/LoadingIcon";
 
-const RegisterForm = ({ onSubmit, loading }) => {
+const RegisterForm = ({ onSubmit }) => {
   const scrollViewRef = useRef();
+  const loading = useLoadingState();
 
   return (
     <View style={styles.container}>

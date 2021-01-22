@@ -6,7 +6,7 @@ import LoginForm from "./LoginForm";
 import { useLogin } from "../../hooks";
 
 const Body = () => {
-  const [tryLogin, { loading }] = useLogin();
+  const [tryLogin] = useLogin();
 
   const onSubmit = input => tryLogin(input);
 
@@ -14,7 +14,7 @@ const Body = () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ handleSubmit }) => (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <LoginForm onSubmit={handleSubmit} loading={loading} />
+          <LoginForm onSubmit={handleSubmit} />
         </KeyboardAvoidingView>
       )}
     </Formik>

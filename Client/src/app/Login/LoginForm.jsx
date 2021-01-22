@@ -5,10 +5,12 @@ import { useFormikContext } from "formik";
 import FormikTextInput from "../../components/FormikTextInput";
 import Logo from "../../components/Logo";
 import SubmitButton from "../../components/Button";
+import { useLoadingState } from "../../contexts/LoadingIcon";
 
-const LoginForm = ({ onSubmit, loading }) => {
+const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
   const submitStyles = !inputIsValid(values) && { backgroundColor: "#917082" };
+  const loading = useLoadingState();
 
   return (
     <View style={styles.formContainer}>

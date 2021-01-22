@@ -2,12 +2,14 @@ import React from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 //components
 import Logo from "../../components/Logo";
+import { useLoadingState } from "../../contexts/LoadingIcon";
 
-const LaunchScreen = ({ loading }) => {
+const LaunchScreen = ({ launching }) => {
+  const loading = useLoadingState();
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
-      <ActivityIndicator size="large" animating={loading} />
+      <ActivityIndicator size="large" animating={!launching && loading} />
     </View>
   );
 };

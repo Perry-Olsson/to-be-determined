@@ -2,9 +2,12 @@ import { useMutation } from "@apollo/client";
 
 import { REGISTER } from "../graphql/mutations";
 import logGqlError from "../utils/logGqlError";
+import { useLoading } from "./useLoading";
 
 export const useRegister = () => {
   const [register, result] = useMutation(REGISTER);
+
+  useLoading(result.loading);
 
   const tryRegister = async ({
     firstName,
@@ -24,7 +27,7 @@ export const useRegister = () => {
       } = data;
 
       if (errors) {
-        alert(errors.reduce((acc, { message }) => `${acc}\n${message}`, ""));
+        alert(format(errors));
       } else return user;
     } catch (e) {
       console.log(e);
@@ -33,4 +36,8 @@ export const useRegister = () => {
   };
 
   return [tryRegister, result];
+};
+
+const format = errors => {
+  errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };

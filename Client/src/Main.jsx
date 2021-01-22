@@ -5,6 +5,7 @@ import { useAuthorizedUserQuery } from "./hooks";
 import LaunchScreen from "./app/Screens/LaunchScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
 import TestScreen from "./app/Screens/TestScreen";
+
 const Main = () => {
   const { user, loading, error } = useAuthorizedUserQuery();
   const [launching, setLaunching] = useState(true);
@@ -15,8 +16,8 @@ const Main = () => {
     }, twoSeconds);
   }, []);
 
-  if (!error && (launching || loading))
-    return <LaunchScreen loading={!launching && loading} />;
+  if ((!error && loading) || launching)
+    return <LaunchScreen launching={launching} />;
 
   return (
     <View style={styles.container}>

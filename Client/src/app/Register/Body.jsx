@@ -5,10 +5,8 @@ import RegisterForm from "./RegisterForm";
 import { useRegister, useLogin } from "../../hooks";
 
 const Body = () => {
-  const [tryRegister, registerResult] = useRegister();
-  const [tryLogin, loginResult] = useLogin();
-
-  const loading = registerResult.loading || loginResult.loading;
+  const [tryRegister] = useRegister();
+  const [tryLogin] = useLogin();
 
   const onSubmit = async input => {
     const user = await tryRegister(input);
@@ -18,9 +16,7 @@ const Body = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit }) => (
-        <RegisterForm onSubmit={handleSubmit} loading={loading} />
-      )}
+      {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };
