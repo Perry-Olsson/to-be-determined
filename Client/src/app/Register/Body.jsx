@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik } from "formik";
 
 import RegisterForm from "./RegisterForm";
 import { useRegister, useLogin } from "../../hooks";
-import { useLoadingDispatch } from "../../contexts/LoadingIcon";
+import { useCombineLoaders } from "../../hooks";
 
 const Body = () => {
-  const dispatch = useLoadingDispatch();
   const [tryRegister, registerResult] = useRegister();
   const [tryLogin, loginResult] = useLogin();
 
-  useEffect(() => {
-    if (registerResult.loading)
-      dispatch({ type: "loading", payload: "REGISTRATION" });
-    else if (registerResult.data.register.errors)
-      dispatch({ type: "done", payload: "REGISTRATION" });
-  }, [registerResult.loading]);
-
-  useEffect(() => {
-    if (!loginResult.loading)
-      dispatch({ type: "done", payload: "REGISTRATION" });
-  }, [loginResult.loading]);
+  useCombineLoaders(
+    registerResult.loading,
+    loginResult.loading,
+    registerResult.data?.register.errors,
+    "REGISTRATION"
+  );
 
   const onSubmit = async input => {
     const user = await tryRegister(input);
