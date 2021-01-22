@@ -39,5 +39,5 @@ export const useRegister = () => {
 };
 
 const format = errors => {
-  errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
+  return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };

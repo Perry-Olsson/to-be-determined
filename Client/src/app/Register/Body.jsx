@@ -13,6 +13,8 @@ const Body = () => {
   useEffect(() => {
     if (registerResult.loading)
       dispatch({ type: "loading", payload: "REGISTRATION" });
+    else if (registerResult.data.register.errors)
+      dispatch({ type: "done", payload: "REGISTRATION" });
   }, [registerResult.loading]);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const Body = () => {
     if (user)
       tryLogin({ emailOrUsername: user.email, password: input.password });
   };
-  console.log("hello");
+
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
