@@ -3,13 +3,13 @@ import React, { createContext, useContext, useReducer } from "react";
 const LoadingStateContext = createContext();
 const LoadingDispatchContext = createContext();
 
-function loadingReducer(_, action) {
+function loadingReducer(state, action) {
   switch (action.type) {
     case "loading": {
-      return true;
+      return [...state, action.payload];
     }
     case "done": {
-      return false;
+      return state.slice(1, -1);
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -17,7 +17,7 @@ function loadingReducer(_, action) {
   }
 }
 function LoadingProvider({ children }) {
-  const [state, dispatch] = useReducer(loadingReducer, false);
+  const [state, dispatch] = useReducer(loadingReducer, []);
   return (
     <LoadingStateContext.Provider value={state}>
       <LoadingDispatchContext.Provider value={dispatch}>
@@ -32,7 +32,7 @@ const useLoadingState = () => {
   if (context === undefined) {
     throw new Error("useLoadingState must be called within its provider");
   }
-  return context;
+  return context.length;
 };
 
 const useLoadingDispatch = () => {

@@ -4,10 +4,12 @@ import { useFormikContext } from "formik";
 
 import { Name, Email, Username, Password } from "./Routes";
 import Button from "../../../components/Button";
+import { useLoadingState } from "../../../contexts/LoadingIcon";
 
-const Routing = ({ onSubmit, scrollViewRef, loading }) => {
+const Routing = ({ onSubmit, scrollViewRef }) => {
   const { values } = useFormikContext();
   const submitStyles = !isInputValid(values) && { backgroundColor: "#917082" };
+  const loading = useLoadingState();
 
   return (
     <Switch>

@@ -7,7 +7,7 @@ import { useLoading } from "./useLoading";
 export const useRegister = () => {
   const [register, result] = useMutation(REGISTER);
 
-  useLoading(result.loading);
+  useLoading(result.loading, "REGISTER");
 
   const tryRegister = async ({
     firstName,

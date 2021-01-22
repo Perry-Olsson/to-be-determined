@@ -11,7 +11,7 @@ export const useLogin = () => {
   const [login, result] = useMutation(LOGIN);
   const authStorage = useAuthStorage();
 
-  useLoading(result.loading);
+  useLoading(result.loading, "LOGIN");
 
   const tryLogin = async input => {
     try {

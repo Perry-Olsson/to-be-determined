@@ -5,22 +5,16 @@ import { NativeRouter } from "react-router-native";
 import NavBar from "./Navigation/NavBar";
 import Header from "./Header";
 import Routing from "./Navigation/Routing";
-import { useLoadingState } from "../../contexts/LoadingIcon";
 
 const RegisterForm = ({ onSubmit }) => {
   const scrollViewRef = useRef();
-  const loading = useLoadingState();
 
   return (
     <View style={styles.container}>
       <NativeRouter>
         <Header />
         <NavBar ref={scrollViewRef} />
-        <Routing
-          onSubmit={onSubmit}
-          scrollViewRef={scrollViewRef}
-          loading={loading}
-        />
+        <Routing onSubmit={onSubmit} scrollViewRef={scrollViewRef} />
       </NativeRouter>
     </View>
   );
