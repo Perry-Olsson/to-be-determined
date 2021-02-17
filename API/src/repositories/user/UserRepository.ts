@@ -91,22 +91,3 @@ export class UserRepository extends EntityRepository<User> {
     };
   }
 }
-//   private formatInput(data: UserInput): UserInput {
-//     const formattedData: any = {}
-//     for (const field in data) {
-//       switch (field) {
-//         case "username" || "email":
-//           formattedData[field] = data[field].toLowerCase().trim();
-//           break;
-//         case "password":
-//           formattedData[field] = data[field];
-//           break;
-//         default:
-//           formattedData[field] = data[field].trim();
-//       }
-//     }
-//     return formattedData;
-//   }
-// }
-
-// type UserInput = LoginInput | RegisterInput
