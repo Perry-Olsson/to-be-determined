@@ -1,41 +1,34 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "yarn start:client & (cd ../API && tsc && yarn start)",
-    "start:client": "expo start",
+    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject",
-    "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
+    "eject": "expo eject"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.7",
-    "@react-native-community/async-storage": "^1.12.1",
+    "@apollo/client": "^3.3.19",
+    "@expo/webpack-config": "^0.12.72",
+    "@react-native-async-storage/async-storage": "^1.13.0",
     "apollo-link-timeout": "^4.0.0",
     "axios": "^0.21.1",
-    "dotenv": "^8.2.0",
-    "expo": "~39.0.2",
-    "expo-status-bar": "~1.0.2",
-    "formik": "^2.2.4",
-    "graphql": "^15.4.0",
+    "dotenv": "^9.0.2",
+    "expo": "~41.0.1",
+    "expo-status-bar": "~1.0.4",
+    "formik": "^2.2.7",
+    "graphql": "^15.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
-    "react-native-chart-kit": "^6.6.1",
-    "react-native-svg": "^12.1.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-chart-kit": "^6.11.0",
+    "react-native-svg": "^12.1.1",
     "react-native-web": "~0.13.12",
     "react-router-native": "^5.2.0",
-    "yup": "^0.29.3"
+    "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
-    "@expo/webpack-config": "^0.12.44",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.13.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-native": "^3.10.0"
+    "@babel/core": "^7.9.0"
   },
-  "private": true,
-  "proxy": "http://localhost:5000"
+  "private": true
 }

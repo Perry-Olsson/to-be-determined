@@ -1,30 +1,37 @@
 import "dotenv/config";
 
 export default {
-  expo: {
-    name: "Friday",
-    slug: "Friday",
-    version: "1.0.0",
-    orientation: "portrait",
-    icon: "./assets/Fri.png",
-    splash: {
-      image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#ffffff",
+  "expo": {
+    "name": "my-app",
+    "slug": "my-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
-    updates: {
-      fallbackToCacheTimeout: 0,
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
-    assetBundlePatterns: ["**/*"],
-    ios: {
-      supportsTablet: true,
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
     },
-    web: {
-      favicon: "./assets/Fri.png",
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     },
-    description: "",
-    extra: {
-      apolloURI: process.env.APOLLO_URI, // eslint-disable-line
+    "web": {
+      "favicon": "./assets/favicon.png"
     },
-  },
-};
+    "extra": {
+      apolloURI: process.env.APOLLO_URI
+    }
+  }
+}
