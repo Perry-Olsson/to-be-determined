@@ -98,6 +98,16 @@ export type User = {
   confirmed: Scalars['Boolean'];
 };
 
+export type BaseUserFieldsFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'id' | 'username' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'confirmed'>
+);
+
+export type ExtraUserFieldsFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'createdAt' | 'updatedAt'>
+);
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
@@ -113,7 +123,7 @@ export type LoginMutation = (
       & Pick<BaseError, 'message'>
     )>, user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'username' | 'email'>
+      & BaseUserFieldsFragment
     )> }
   ) }
 );
@@ -137,11 +147,6 @@ export type RegisterMutation = (
   ) }
 );
 
-export type ExtraUserFieldsFragment = (
-  { __typename?: 'User' }
-  & Pick<User, 'createdAt' | 'updatedAt'>
-);
-
 export type MeQueryVariables = Exact<{
   getAllFields?: Maybe<Scalars['Boolean']>;
 }>;
@@ -151,11 +156,22 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'username' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'confirmed'>
+    & BaseUserFieldsFragment
     & ExtraUserFieldsFragment
   )> }
 );
 
+export const BaseUserFieldsFragmentDoc = gql`
+    fragment baseUserFields on User {
+  id
+  username
+  email
+  firstName
+  lastName
+  fullName
+  confirmed
+}
+    `;
 export const ExtraUserFieldsFragmentDoc = gql`
     fragment extraUserFields on User {
   createdAt
@@ -169,14 +185,12 @@ export const LoginDocument = gql`
       message
     }
     user {
-      id
-      username
-      email
+      ...baseUserFields
     }
     token
   }
 }
-    `;
+    ${BaseUserFieldsFragmentDoc}`;
 export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
@@ -247,17 +261,12 @@ export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutatio
 export const MeDocument = gql`
     query Me($getAllFields: Boolean = false) {
   me {
-    id
-    username
-    email
-    firstName
-    lastName
-    fullName
-    confirmed
+    ...baseUserFields
     ...extraUserFields @include(if: $getAllFields)
   }
 }
-    ${ExtraUserFieldsFragmentDoc}`;
+    ${BaseUserFieldsFragmentDoc}
+${ExtraUserFieldsFragmentDoc}`;
 
 /**
  * __useMeQuery__

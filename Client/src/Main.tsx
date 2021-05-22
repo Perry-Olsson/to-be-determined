@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { useAuthorizedUserQuery } from "./hooks";
 import { Profile, LaunchScreen, LoginScreen } from "./app/Screens";
 
-const Main = () => {
+interface MainProps {
+  launching: boolean;
+  setLaunching: React.Dispatch<boolean>;
+}
+
+const Main: FC<MainProps> = ({ launching, setLaunching }) => {
   const { user, loading, error } = useAuthorizedUserQuery();
-  const [launching, setLaunching] = useState(true);
+  console.log(user);
 
   useEffect(() => {
     setTimeout(() => {

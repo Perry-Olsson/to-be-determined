@@ -1,20 +1,35 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   TouchableHighlight,
   StyleSheet,
   ActivityIndicator,
+  TextStyle,
 } from "react-native";
 
-import Text from "./Text";
+import { Text } from "./Text";
 
 import theme from "./theme";
 
-const Button = ({ title, onPress, style, textStyle, loading }) => {
+interface ButtonProps {
+  title: String;
+  onPress: () => void;
+  style?: any;
+  textStyle: TextStyle;
+  loading?: string[];
+}
+
+const Button: FC<ButtonProps> = ({
+  title,
+  onPress,
+  style,
+  textStyle,
+  loading = [],
+}) => {
   const buttonStyles = [styles.submit, style];
 
   return (
     <TouchableHighlight style={buttonStyles} onPress={onPress}>
-      {loading ? (
+      {loading.length ? (
         <ActivityIndicator animating={true} />
       ) : (
         <Text fontSize="form" style={textStyle}>

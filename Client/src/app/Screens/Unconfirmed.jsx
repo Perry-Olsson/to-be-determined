@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TouchableHighlight, StyleSheet } from "react-native";
 
-import Text from "../../components/Text";
+import { Text } from "../../components/Text";
 import { useAuthStorage } from "../../contexts/AuthStorageContext";
 
 import theme from "../../components/theme";

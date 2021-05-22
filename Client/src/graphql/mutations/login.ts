@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { baseUserFields } from "../fragments";
 
 export const LOGIN = gql`
   mutation Login($input: LoginInput!) {
@@ -7,11 +8,10 @@ export const LOGIN = gql`
         message
       }
       user {
-        id
-        username
-        email
+        ...baseUserFields
       }
       token
     }
   }
+  ${baseUserFields}
 `;

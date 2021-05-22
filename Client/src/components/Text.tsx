@@ -12,7 +12,7 @@ interface TextProps {
   restProps?: any;
 }
 
-const Text: FC<TextProps> = ({
+export const Text: FC<TextProps> = ({
   color,
   fontSize,
   fontWeight,
@@ -71,5 +71,3 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
   },
 });
-
-export default Text;

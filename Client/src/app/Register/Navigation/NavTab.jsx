@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { useLocation, Link } from "react-router-native";
 
-import Text from "../../../components/Text";
+import { Text } from "../../../components/Text";
 
 import theme from "../../../components/theme";
 

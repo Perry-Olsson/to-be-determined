@@ -3,7 +3,7 @@ import { Button } from "react-native";
 import { Link } from "react-router-native";
 
 import FadeInView from "../../components/FadeInView";
-import Text from "../../components/Text";
+import { Text } from "../../components/Text";
 import Footer from "../../components/Footer";
 import Body from "./Body";
 import DismissKeyboard from "../../components/DismissKeyboard";

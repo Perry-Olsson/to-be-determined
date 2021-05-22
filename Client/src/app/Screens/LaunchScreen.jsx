@@ -8,7 +8,10 @@ export const LaunchScreen = ({ launching }) => {
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
-      <ActivityIndicator size="large" animating={!launching && loading} />
+      <ActivityIndicator
+        size="large"
+        animating={!launching && loading.length}
+      />
     </View>
   );
 };

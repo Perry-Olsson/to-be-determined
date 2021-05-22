@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 
 import DismissKeyboard from "../../components/DismissKeyboard";
 import Body from "./Body";
-import Text from "../../components/Text";
+import { Text } from "../../components/Text";
 import Footer from "../../components/Footer";
 
 import theme from "../../components/theme";

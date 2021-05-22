@@ -1,22 +1,26 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, FC, useContext, useReducer } from "react";
 
-const LoadingStateContext = createContext();
-const LoadingDispatchContext = createContext();
+const LoadingStateContext = createContext<string[]>([]);
+const LoadingDispatchContext =
+  createContext<React.Dispatch<any> | undefined>(undefined);
 
-function loadingReducer(state, action) {
+function loadingReducer(
+  state: string[],
+  action: { type: string; payload: string }
+) {
   switch (action.type) {
     case "loading": {
       return [...state, action.payload];
     }
     case "done": {
-      return state.filter(payload => payload !== action.payload);
+      return state.filter((payload) => payload !== action.payload);
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
-function LoadingProvider({ children }) {
+const LoadingProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(loadingReducer, []);
   return (
     <LoadingStateContext.Provider value={state}>
@@ -25,14 +29,14 @@ function LoadingProvider({ children }) {
       </LoadingDispatchContext.Provider>
     </LoadingStateContext.Provider>
   );
-}
+};
 
 const useLoadingState = () => {
   const context = useContext(LoadingStateContext);
   if (context === undefined) {
     throw new Error("useLoadingState must be called within its provider");
   }
-  return context.length;
+  return context;
 };
 
 const useLoadingDispatch = () => {

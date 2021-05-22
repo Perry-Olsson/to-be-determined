@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ApolloProvider } from "@apollo/client";
 
 import createApolloClient from "./src/utils/apolloClient";
@@ -12,13 +12,14 @@ export const authStorage = new AuthStorage();
 
 const App = () => {
   const client = createApolloClient(authStorage);
+  const [launching, setLaunching] = useState(true);
 
   return (
     <ApolloProvider client={client}>
       <AuthStorageProvider value={authStorage}>
         <LoadingProvider>
           <GalaxyBackground>
-            <Main />
+            <Main launching={launching} setLaunching={setLaunching} />
           </GalaxyBackground>
         </LoadingProvider>
       </AuthStorageProvider>

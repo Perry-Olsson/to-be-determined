@@ -35,7 +35,7 @@ const Routing = ({ onSubmit, scrollViewRef }) => {
   );
 };
 
-const isInputValid = values => {
+const isInputValid = (values) => {
   if (values.password !== values.passwordConfirmation) return false;
   for (let value in values) {
     if (!values[value]) return false;

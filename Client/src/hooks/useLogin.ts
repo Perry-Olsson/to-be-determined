@@ -1,9 +1,8 @@
-import { useMutation, useApolloClient } from "@apollo/client";
+import { ApolloClient, useApolloClient } from "@apollo/client";
 
-import { LOGIN } from "../graphql/mutations";
 import { useAuthStorage } from "../contexts/AuthStorageContext";
 import { ME } from "../graphql/queries";
-import { useLoginMutation } from "../generated/graphql";
+import { LoginInput, useLoginMutation, User } from "../generated/graphql";
 import logGqlError from "../utils/logGqlError";
 import { useLoading } from "./useLoading";
 
@@ -14,17 +13,23 @@ export const useLogin = () => {
 
   useLoading(result.loading, "LOGIN");
 
-  const tryLogin = async (input) => {
+  const tryLogin = async (input: LoginInput) => {
     try {
       const { data } = await login({ variables: { input } });
-      const {
-        login: { errors, token, user },
-      } = data;
 
-      if (errors) alert(errors.message);
-      else {
-        writeMeQuery(client, user);
-        await authStorage.setAccessToken(token);
+      if (data) {
+        if (data.login.errors) alert(data.login.errors.message);
+        else {
+          client.writeQuery({
+            query: ME,
+            data: {
+              me: {
+                ...data.login.user,
+              },
+            },
+          });
+          await authStorage.setAccessToken(data.login.token);
+        }
       }
     } catch (e) {
       console.error(e);
@@ -33,15 +38,4 @@ export const useLogin = () => {
   };
 
   return [tryLogin, result];
-};
-
-const writeMeQuery = (client, user) => {
-  client.writeQuery({
-    query: ME,
-    data: {
-      me: {
-        ...user,
-      },
-    },
-  });
 };
