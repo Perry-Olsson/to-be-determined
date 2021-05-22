@@ -1,11 +1,9 @@
-import { useMutation } from "@apollo/client";
-
-import { REGISTER } from "../graphql/mutations";
 import logGqlError from "../utils/logGqlError";
 import { useLoading } from "./useLoading";
+import { useRegisterMutation } from "../generated/graphql";
 
 export const useRegister = () => {
-  const [register, result] = useMutation(REGISTER);
+  const [register, result] = useRegisterMutation();
 
   useLoading(result.loading, "REGISTER");
 
@@ -38,6 +36,6 @@ export const useRegister = () => {
   return [tryRegister, result];
 };
 
-const format = errors => {
+const format = (errors) => {
   return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };

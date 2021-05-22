@@ -53,7 +53,6 @@ const TempLogoutButton: FC<{
         setLoggingOut(true);
         await authStorage.removeAccessToken();
         await client.resetStore();
-        setLoggingOut(false);
         client.writeQuery({
           query: ME,
           data: {

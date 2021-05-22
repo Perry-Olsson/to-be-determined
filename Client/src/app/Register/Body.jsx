@@ -2,20 +2,24 @@ import React from "react";
 import { Formik } from "formik";
 
 import RegisterForm from "./RegisterForm";
-import { useRegisterMutation, useLoginMutation } from "../../generated/graphql";
 import { useLoading } from "../../hooks/useLoading";
+import { useLogin, useRegister } from "../../hooks";
 
 const Body = () => {
-  const [tryRegister, registerResult] = useRegisterMutation();
-  const [tryLogin, loginResult] = useLoginMutation();
+  const [tryRegister, registerResult] = useRegister();
+  const [tryLogin, loginResult] = useLogin();
 
   useLoading(registerResult.loading, "REGISTRATION");
   useLoading(loginResult.loading, "LOGIN");
 
   const onSubmit = async (input) => {
-    const user = await tryRegister(input);
-    if (user)
-      tryLogin({ emailOrUsername: user.email, password: input.password });
+    try {
+      const user = await tryRegister(input);
+      if (user)
+        tryLogin({ emailOrUsername: user.email, password: input.password });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
