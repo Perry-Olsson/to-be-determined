@@ -35,6 +35,16 @@ const main = async () => {
     RequestContext.create(orm.em, next);
   });
 
+  if (config.slowInternet)
+    app.use(async (_, __, next) => {
+      await new Promise((res) =>
+        setTimeout(() => {
+          res("");
+        }, 2000)
+      );
+      next();
+    });
+
   app.use("/user/confirm", ConfirmationRoute);
 
   apolloServer.applyMiddleware({ app });

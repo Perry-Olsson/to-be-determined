@@ -9,6 +9,7 @@ export default {
   databaseUser: process.env.DB_USER,
   databasePassword: process.env.DB_PASSWORD,
   databasePort: Number(process.env.DB_PORT),
+  slowInternet: process.env.SLOW_INTERNET,
 } as Config;
 
 interface Config {
@@ -18,4 +19,5 @@ interface Config {
   databaseUser: string;
   databasePassword: string;
   databasePort: number;
+  slowInternet: boolean | undefined;
 }
