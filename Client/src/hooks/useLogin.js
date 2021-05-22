@@ -3,17 +3,18 @@ import { useMutation, useApolloClient } from "@apollo/client";
 import { LOGIN } from "../graphql/mutations";
 import { useAuthStorage } from "../contexts/AuthStorageContext";
 import { ME } from "../graphql/queries";
+import { useLoginMutation } from "../generated/graphql";
 import logGqlError from "../utils/logGqlError";
 import { useLoading } from "./useLoading";
 
 export const useLogin = () => {
   const client = useApolloClient();
-  const [login, result] = useMutation(LOGIN);
+  const [login, result] = useLoginMutation();
   const authStorage = useAuthStorage();
 
   useLoading(result.loading, "LOGIN");
 
-  const tryLogin = async input => {
+  const tryLogin = async (input) => {
     try {
       const { data } = await login({ variables: { input } });
       const {

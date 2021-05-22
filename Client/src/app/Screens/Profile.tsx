@@ -1,12 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, TouchableHighlight, StyleSheet } from "react-native";
 import Text from "../../components/Text";
 import { useAuthStorage } from "../../contexts/AuthStorageContext";
 import theme from "../../components/theme";
 import { useApolloClient } from "@apollo/client";
 import { Unconfirmed } from "./Unconfirmed";
+import { User } from "../../generated/graphql";
 
-export const Profile = ({ user }) => {
+interface ProfileProps {
+  user: User;
+}
+
+export const Profile: FC<ProfileProps> = ({ user }) => {
   if (!user.confirmed) return <Unconfirmed user={user} />;
 
   return (

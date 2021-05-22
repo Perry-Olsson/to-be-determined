@@ -1,10 +1,8 @@
-import { useQuery } from "@apollo/client";
-
 import { useLoading } from "./useLoading";
-import { ME } from "../graphql/queries";
+import { useMeQuery } from "../generated/graphql";
 
 export const useAuthorizedUserQuery = () => {
-  const { data, loading, error, refetch } = useQuery(ME);
+  const { data, loading, error, refetch } = useMeQuery();
 
   useLoading(loading, "ME");
 

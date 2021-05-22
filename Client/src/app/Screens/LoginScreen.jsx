@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 
-import Login from "../Login";
+import { Login } from "../Login";
 import Register from "../Register";
 
-const LoginScreen = () => {
+export const LoginScreen = () => {
   const [fadeIn, setFadeIn] = useState(true);
 
   return (
@@ -21,5 +21,3 @@ const LoginScreen = () => {
     </NativeRouter>
   );
 };
-
-export default LoginScreen;

@@ -10,7 +10,7 @@ import DismissKeyboard from "../../components/DismissKeyboard";
 
 import theme from "../../components/theme";
 
-const Login = ({ fadeIn, setFadeIn }) => (
+export const Login = ({ fadeIn, setFadeIn }) => (
   <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
     <DismissKeyboard>
       <Body />
@@ -19,14 +19,10 @@ const Login = ({ fadeIn, setFadeIn }) => (
         <Link
           to="/register"
           component={Button}
-          title="Register"
+          title="Sign up"
           color={theme.colors.logo}
-        >
-          <Text color="logo">{"  "}Sign Up</Text>
-        </Link>
+        />
       </Footer>
     </DismissKeyboard>
   </FadeInView>
 );
-
-export default Login;

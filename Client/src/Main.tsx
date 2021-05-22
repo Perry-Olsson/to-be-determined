@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { useAuthorizedUserQuery } from "./hooks";
-import LaunchScreen from "./app/Screens/LaunchScreen";
-import LoginScreen from "./app/Screens/LoginScreen";
-import { Profile, Unconfirmed } from "./app/Screens";
+import { Profile, LaunchScreen, LoginScreen } from "./app/Screens";
 
 const Main = () => {
   const { user, loading, error } = useAuthorizedUserQuery();

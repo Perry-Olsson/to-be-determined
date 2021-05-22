@@ -14,9 +14,12 @@ const Register = () => (
     <Body />
     <Footer color="secondary">
       <Text color="light">Have an Account?</Text>
-      <Link title="Log In" to="/" component={Button} color={theme.colors.logo}>
-        <Text>{"  "}Log In</Text>
-      </Link>
+      <Link
+        title="Log In"
+        to="/"
+        component={Button}
+        color={theme.colors.logo}
+      />
     </Footer>
   </DismissKeyboard>
 );

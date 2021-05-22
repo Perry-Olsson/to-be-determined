@@ -3,8 +3,8 @@ import { createHttpLink, InMemoryCache, ApolloClient } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Constants from "expo-constants";
 
-const createApolloClient = authStorage => {
-  const timeoutLink = new ApolloLinkTimeout(10000);
+const createApolloClient = (authStorage) => {
+  const timeoutLink = new ApolloLinkTimeout(6000);
 
   const httpLink = createHttpLink({
     uri: Constants.manifest.extra.apolloURI,

@@ -1,10 +1,9 @@
 import React from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
-//components
 import Logo from "../../components/Logo";
 import { useLoadingState } from "../../contexts/LoadingIcon";
 
-const LaunchScreen = ({ launching }) => {
+export const LaunchScreen = ({ launching }) => {
   const loading = useLoadingState();
   return (
     <View style={styles.container}>
@@ -24,5 +23,3 @@ const styles = StyleSheet.create({
     margin: 30,
   },
 });
-
-export default LaunchScreen;
