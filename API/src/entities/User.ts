@@ -32,6 +32,7 @@ export class User extends BaseEntity {
   @Property({ columnType: "varchar(60)" })
   password!: string;
 
+  @Field()
   @Property({ default: false })
   confirmed: boolean;
 }
