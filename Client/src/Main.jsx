@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { useAuthorizedUserQuery } from "./hooks";
 import LaunchScreen from "./app/Screens/LaunchScreen";
 import LoginScreen from "./app/Screens/LoginScreen";
-import TestScreen from "./app/Screens/TestScreen";
+import { Profile } from "./app/Screens/Profile";
 
 const Main = () => {
   const { user, loading, error } = useAuthorizedUserQuery();
@@ -21,7 +21,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      {user ? <TestScreen /> : <LoginScreen />}
+      {user ? <Profile user={user} /> : <LoginScreen />}
     </View>
   );
 };

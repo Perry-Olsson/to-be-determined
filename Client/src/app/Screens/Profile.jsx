@@ -7,11 +7,12 @@ import { useAuthStorage } from "../../contexts/AuthStorageContext";
 import theme from "../../components/theme";
 import { useApolloClient } from "@apollo/client";
 
-const TestScreen = () => {
+export const Profile = ({ user }) => {
+  console.log(user);
   return (
     <View style={styles.container}>
       <TempLogoutButton></TempLogoutButton>
-      <Text style={styles.text}>Logged in!</Text>
+      <Text style={styles.text}>Logged in as {user.fullName}</Text>
     </View>
   );
 };
@@ -54,5 +55,3 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 });
-
-export default TestScreen;

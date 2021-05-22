@@ -2,9 +2,6 @@ import { gql } from "@apollo/client";
 
 const extraUserFields = gql`
   fragment extraUserFields on User {
-    firstName
-    lastName
-    fullName
     createdAt
     updatedAt
   }
@@ -16,6 +13,9 @@ export const ME = gql`
       id
       username
       email
+      firstName
+      lastName
+      fullName
       ...extraUserFields @include(if: $getAllFields)
     }
   }
