@@ -1,18 +1,21 @@
 import React from "react";
 import { View, TouchableHighlight, StyleSheet } from "react-native";
+
 import Text from "../../components/Text";
 import { useAuthStorage } from "../../contexts/AuthStorageContext";
+
 import theme from "../../components/theme";
 import { useApolloClient } from "@apollo/client";
-import { Unconfirmed } from "./Unconfirmed";
 
-export const Profile = ({ user }) => {
-  if (!user.confirmed) return <Unconfirmed user={user} />;
-
+export const Unconfirmed = ({ user }) => {
+  console.log(user);
   return (
     <View style={styles.container}>
       <TempLogoutButton></TempLogoutButton>
-      <Text style={styles.text}>Logged in as {user.fullName}</Text>
+      <Text style={styles.text}>
+        Successfull Registration! Just waiting on your email confirmation{" "}
+        {user.firstName}
+      </Text>
     </View>
   );
 };

@@ -16,6 +16,7 @@ export const ME = gql`
       firstName
       lastName
       fullName
+      confirmed
       ...extraUserFields @include(if: $getAllFields)
     }
   }
