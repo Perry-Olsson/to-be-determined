@@ -1,19 +1,15 @@
-import React, { useEffect } from "react";
+import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "../../components/Text";
 import theme from "../../components/theme";
 import { Logout } from "../../components";
+import { User } from "../../generated/graphql";
 
-export const Unconfirmed = ({ user, refetchUser }) => {
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      console.log("fetched user");
-      refetchUser();
-    }, 1000);
+interface UnconfirmedProps {
+  user: User;
+}
 
-    return () => clearInterval(intervalId);
-  });
-
+export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
   return (
     <View style={styles.container}>
       <Logout />
