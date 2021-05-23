@@ -5,10 +5,13 @@ import cors from "cors";
 import { MikroORM, RequestContext } from "@mikro-orm/core";
 import ormConfig from "./mikro-orm.config";
 import path from "path";
-
+import http from "http";
 import config from "./utils/config";
 import updateSchemaAndCreateIndexes from "./utils/updateSchema";
 import { ConfirmationRoute } from "./middleware/endpoints";
+import { PubSub } from "apollo-server-express";
+
+export const pubSub = new PubSub();
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
@@ -16,6 +19,7 @@ const main = async () => {
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],
+    pubSub,
   });
 
   const apolloServer = new ApolloServer({
@@ -24,6 +28,9 @@ const main = async () => {
       req,
       em: orm.em.fork(),
     }),
+    subscriptions: {
+      path: "/subscriptions",
+    },
     playground: true,
   });
 
@@ -47,9 +54,12 @@ const main = async () => {
 
   app.use("/user/confirm", ConfirmationRoute);
 
-  apolloServer.applyMiddleware({ app });
+  const httpServer = http.createServer(app);
 
-  app.listen(config.port, () => {
+  apolloServer.applyMiddleware({ app });
+  apolloServer.installSubscriptionHandlers(httpServer);
+
+  httpServer.listen(config.port, () => {
     console.log(`Server is running on http://localhost:${config.port}/graphql`);
   });
 };

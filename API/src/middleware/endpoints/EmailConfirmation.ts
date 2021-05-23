@@ -8,6 +8,7 @@ import {
   getConfirmedHTML,
   getUnconfirmedHTML,
 } from "../../utils/mail/pages/confirmation";
+import { pubSub } from "../../index";
 
 export const ConfirmationRoute = express.Router();
 
@@ -16,6 +17,7 @@ ConfirmationRoute.get("/:id", async (req, res) => {
 
   if (email) {
     const isConfirmed = await confirmUser(email);
+    pubSub.publish(email, true);
     const html = getHTML(isConfirmed);
     return res.send(html);
   }
@@ -25,7 +27,7 @@ ConfirmationRoute.get("/:id", async (req, res) => {
 const confirmUser = async (email: string) => {
   try {
     const repo = getEntityManager().getRepository(User);
-    return await repo.updateUser(email, user => (user.confirmed = true));
+    return await repo.updateUser(email, (user) => (user.confirmed = true));
   } catch (e) {
     return { error: e.message, user: null };
   }
