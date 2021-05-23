@@ -1,16 +1,8 @@
 import { User } from "../../entities";
 import { MyContext } from "src/types";
-import {
-  Arg,
-  Ctx,
-  Field,
-  ObjectType,
-  Query,
-  Resolver,
-  Root,
-  Subscription,
-} from "type-graphql";
+import { Arg, Ctx, Query, Resolver, Root, Subscription } from "type-graphql";
 import { decodeToken, getToken } from "../../utils/authorization";
+import { Confirmation } from "./me/confirmedSubscription";
 
 @Resolver()
 export class MeResolver {
@@ -33,14 +25,7 @@ export class MeResolver {
   async confirmedNotification(
     @Root() confirmedPayload: boolean,
     @Arg("email") _email: string
-  ) {
-    console.log("hello");
+  ): Promise<Confirmation> {
     return { confirmed: confirmedPayload };
   }
-}
-
-@ObjectType()
-class Confirmation {
-  @Field()
-  confirmed: Boolean;
 }
