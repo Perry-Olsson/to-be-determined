@@ -32,6 +32,11 @@ export type BaseError = {
   message: Scalars['String'];
 };
 
+export type Confirmation = {
+  __typename?: 'Confirmation';
+  confirmed: Scalars['Boolean'];
+};
+
 export type FieldError = {
   __typename?: 'FieldError';
   message: Scalars['String'];
@@ -83,6 +88,16 @@ export type RegisterResponse = {
   __typename?: 'RegisterResponse';
   errors?: Maybe<Array<FieldError>>;
   user?: Maybe<User>;
+};
+
+export type Subscription = {
+  __typename?: 'Subscription';
+  confirmedNotification: Confirmation;
+};
+
+
+export type SubscriptionConfirmedNotificationArgs = {
+  email: Scalars['String'];
 };
 
 export type User = {
@@ -159,6 +174,19 @@ export type MeQuery = (
     & BaseUserFieldsFragment
     & ExtraUserFieldsFragment
   )> }
+);
+
+export type ConfirmedNotificationSubscriptionVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type ConfirmedNotificationSubscription = (
+  { __typename?: 'Subscription' }
+  & { confirmedNotification: (
+    { __typename?: 'Confirmation' }
+    & Pick<Confirmation, 'confirmed'>
+  ) }
 );
 
 export const BaseUserFieldsFragmentDoc = gql`
@@ -295,3 +323,33 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const ConfirmedNotificationDocument = gql`
+    subscription ConfirmedNotification($email: String!) {
+  confirmedNotification(email: $email) {
+    confirmed
+  }
+}
+    `;
+
+/**
+ * __useConfirmedNotificationSubscription__
+ *
+ * To run a query within a React component, call `useConfirmedNotificationSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useConfirmedNotificationSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useConfirmedNotificationSubscription({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useConfirmedNotificationSubscription(baseOptions: Apollo.SubscriptionHookOptions<ConfirmedNotificationSubscription, ConfirmedNotificationSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<ConfirmedNotificationSubscription, ConfirmedNotificationSubscriptionVariables>(ConfirmedNotificationDocument, options);
+      }
+export type ConfirmedNotificationSubscriptionHookResult = ReturnType<typeof useConfirmedNotificationSubscription>;
+export type ConfirmedNotificationSubscriptionResult = Apollo.SubscriptionResult<ConfirmedNotificationSubscription>;
