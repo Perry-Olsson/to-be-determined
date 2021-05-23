@@ -10,8 +10,7 @@ interface MainProps {
 }
 
 const Main: FC<MainProps> = ({ launching, setLaunching }) => {
-  const { user, loading, error } = useAuthorizedUserQuery();
-  console.log(user);
+  const { user, loading, error, refetch } = useAuthorizedUserQuery();
 
   useEffect(() => {
     setTimeout(() => {
@@ -26,7 +25,7 @@ const Main: FC<MainProps> = ({ launching, setLaunching }) => {
 
   return (
     <View style={styles.container}>
-      <Profile user={user} />
+      <Profile user={user} refetchUser={refetch} />
     </View>
   );
 };

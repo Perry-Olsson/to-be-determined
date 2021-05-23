@@ -1,38 +1,27 @@
-import React from "react";
-import { View, TouchableHighlight, StyleSheet } from "react-native";
-
+import React, { useEffect } from "react";
+import { View, StyleSheet } from "react-native";
 import { Text } from "../../components/Text";
-import { useAuthStorage } from "../../contexts/AuthStorageContext";
-
 import theme from "../../components/theme";
-import { useApolloClient } from "@apollo/client";
+import { Logout } from "../../components";
 
-export const Unconfirmed = ({ user }) => {
-  console.log(user);
+export const Unconfirmed = ({ user, refetchUser }) => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log("fetched user");
+      refetchUser();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  });
+
   return (
     <View style={styles.container}>
-      <TempLogoutButton></TempLogoutButton>
+      <Logout />
       <Text style={styles.text}>
         Successfull Registration! Just waiting on your email confirmation{" "}
         {user.firstName}
       </Text>
     </View>
-  );
-};
-
-const TempLogoutButton = () => {
-  const client = useApolloClient();
-  const authStorage = useAuthStorage();
-  return (
-    <TouchableHighlight
-      style={styles.logout}
-      onPress={async () => {
-        await authStorage.removeAccessToken();
-        await client.resetStore();
-      }}
-    >
-      <Text>logout</Text>
-    </TouchableHighlight>
   );
 };
 

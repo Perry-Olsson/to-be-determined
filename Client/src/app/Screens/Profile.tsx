@@ -1,29 +1,25 @@
-import React, { FC, SetStateAction, useState } from "react";
-import {
-  View,
-  TouchableHighlight,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import React, { FC, useState } from "react";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text } from "../../components/Text";
-import { useAuthStorage } from "../../contexts/AuthStorageContext";
 import theme from "../../components/theme";
-import { useApolloClient } from "@apollo/client";
 import { Unconfirmed } from "./Unconfirmed";
 import { User } from "../../generated/graphql";
-import { ME } from "../../graphql/queries";
+import { RefetchUser } from "./types";
+import { Logout } from "../../components";
 
 interface ProfileProps {
   user: User;
+  refetchUser: RefetchUser;
 }
 
-export const Profile: FC<ProfileProps> = ({ user }) => {
-  if (!user.confirmed) return <Unconfirmed user={user} />;
+export const Profile: FC<ProfileProps> = ({ user, refetchUser }) => {
+  if (!user.confirmed)
+    return <Unconfirmed user={user} refetchUser={refetchUser} />;
   const [loggingOut, setLogginOut] = useState(false);
 
   return (
     <View style={styles.container}>
-      <TempLogoutButton setLoggingOut={setLogginOut} />
+      <Logout setLoggingOut={setLogginOut} />
       <Text style={styles.text}>Logged in as {user.fullName}</Text>
       {loggingOut ? (
         <View>
@@ -41,43 +37,7 @@ export const Profile: FC<ProfileProps> = ({ user }) => {
   );
 };
 
-const TempLogoutButton: FC<{
-  setLoggingOut: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ setLoggingOut }) => {
-  const client = useApolloClient();
-  const authStorage = useAuthStorage();
-  return (
-    <TouchableHighlight
-      style={styles.logout}
-      onPress={async () => {
-        setLoggingOut(true);
-        await authStorage.removeAccessToken();
-        await client.resetStore();
-        client.writeQuery({
-          query: ME,
-          data: {
-            me: null,
-          },
-        });
-      }}
-    >
-      <Text>logout</Text>
-    </TouchableHighlight>
-  );
-};
-
 const styles = StyleSheet.create({
-  logout: {
-    position: "absolute",
-    top: 50,
-    left: 30,
-    backgroundColor: "#ffffff",
-    borderRadius: 5,
-    height: 30,
-    width: 70,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   container: {
     flex: 1,
     justifyContent: "center",

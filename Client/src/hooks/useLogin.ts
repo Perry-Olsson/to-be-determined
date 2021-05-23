@@ -1,4 +1,4 @@
-import { ApolloClient, useApolloClient } from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
 
 import { useAuthStorage } from "../contexts/AuthStorageContext";
 import { ME } from "../graphql/queries";

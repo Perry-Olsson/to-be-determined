@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { TextStyle, TextStyleIOS } from "react-native";
-import { Text as NativeText, StyleSheet, StyleProp } from "react-native";
+import { TextStyle } from "react-native";
+import { Text as NativeText, StyleSheet } from "react-native";
 
 import theme from "./theme";
 
