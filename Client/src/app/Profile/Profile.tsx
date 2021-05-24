@@ -1,33 +1,20 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import { Button, constants, Logout, Text } from "../../components";
+import { Logout, Text } from "../../components";
 import Footer from "../../components/Footer";
 import theme from "../../components/theme";
 import { useGetUser } from "../../contexts";
-
-const CreateTodo: FC = () => {
-  const styles = StyleSheet.create({
-    container: {
-      position: "absolute",
-      bottom: constants.footer.height,
-    },
-  });
-  return (
-    <View style={styles.container}>
-      <Button size="md" onPress={() => console.log("create todo")}>
-        <Text>create todo</Text>
-      </Button>
-    </View>
-  );
-};
+import { CreateTodo } from "./CreateTodo";
+import { TodoList } from "./TodoList";
 
 export const Profile: FC = () => {
   const user = useGetUser();
 
   return (
     <View style={styles.container}>
+      <TodoList />
+      <CreateTodo />
       <Footer>
-        <CreateTodo />
         <Logout style={styles.logout} />
         <View style={styles.footerTextContainer}>
           <Text style={styles.text}>{user.username}</Text>

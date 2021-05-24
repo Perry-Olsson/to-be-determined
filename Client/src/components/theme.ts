@@ -13,7 +13,7 @@ const theme: Theme = {
   },
   fontSizes: {
     body: 16,
-    header: 35,
+    header: 40,
     subheading: 22,
     form: 20,
   },
@@ -43,7 +43,7 @@ interface Theme {
   };
   fontSizes: {
     body: 16;
-    header: 35;
+    header: number;
     subheading: 22;
     form: 20;
   };
