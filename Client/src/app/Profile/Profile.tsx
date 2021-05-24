@@ -1,18 +1,12 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Text } from "../../components/Text";
-import theme from "../../components/theme";
-import { Unconfirmed } from "./Unconfirmed";
-import { User } from "../../generated/graphql";
-import { Logout } from "../../components";
+import { Logout, Text } from "../../components";
 import Footer from "../../components/Footer";
+import theme from "../../components/theme";
+import { useGetUser } from "../../contexts";
 
-interface ProfileProps {
-  user: User;
-}
-
-export const Profile: FC<ProfileProps> = ({ user }) => {
-  if (!user.confirmed) return <Unconfirmed user={user} />;
+export const Profile: FC = () => {
+  const user = useGetUser();
 
   return (
     <View style={styles.container}>

@@ -2,7 +2,8 @@ import React, { FC, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { useAuthorizedUserQuery } from "./hooks";
-import { Profile, LaunchScreen, LoginScreen } from "./app/Screens";
+import { ProfileScreen, LaunchScreen, LoginScreen } from "./app/Screens";
+import { UserProvider } from "./contexts";
 
 interface MainProps {
   launching: boolean;
@@ -10,7 +11,7 @@ interface MainProps {
 }
 
 const Main: FC<MainProps> = ({ launching, setLaunching }) => {
-  const { user, loading, error, refetch } = useAuthorizedUserQuery();
+  const { user, loading, error } = useAuthorizedUserQuery();
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,9 +25,11 @@ const Main: FC<MainProps> = ({ launching, setLaunching }) => {
   if (!user) return <LoginScreen />;
 
   return (
-    <View style={styles.container}>
-      <Profile user={user} refetchUser={refetch} />
-    </View>
+    <UserProvider user={user}>
+      <View style={styles.container}>
+        <ProfileScreen />
+      </View>
+    </UserProvider>
   );
 };
 
