@@ -5,17 +5,16 @@ import {
   ViewStyle,
   GestureResponderEvent,
   TextStyle,
+  ColorValue,
 } from "react-native";
 
-interface ButtonProps {
-  style?: ViewStyle | TextStyle;
-  size?: ButtonSize;
-  onPress: (event: GestureResponderEvent) => void;
-}
-
-type ButtonSize = "sm" | "md" | "lg";
-
-export const Button: FC<ButtonProps> = ({ children, style, size, onPress }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  style,
+  size,
+  onPress,
+  underlayColor,
+}) => {
   const buttonStyles = [
     styles.button,
     size === "sm" && styles.sm,
@@ -23,8 +22,14 @@ export const Button: FC<ButtonProps> = ({ children, style, size, onPress }) => {
     size === "lg" && styles.lg,
     style,
   ];
+
   return (
-    <TouchableHighlight style={buttonStyles} onPress={onPress}>
+    <TouchableHighlight
+      activeOpacity={0.3}
+      underlayColor={underlayColor || "#dddddd"}
+      style={buttonStyles}
+      onPress={onPress}
+    >
       {children}
     </TouchableHighlight>
   );
@@ -50,3 +55,12 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
   },
 });
+
+interface ButtonProps {
+  style?: ViewStyle | TextStyle;
+  size?: ButtonSize;
+  onPress: (event: GestureResponderEvent) => void;
+  underlayColor?: ColorValue;
+}
+
+type ButtonSize = "sm" | "md" | "lg";

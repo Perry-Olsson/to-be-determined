@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Todo } from "./Todo";
-import { Text } from "../../components";
+import { constants, Text } from "../../components";
 
 const testTodos = [
   { id: 0, title: "clean your room", notes: ["you need to do this"] },
@@ -9,9 +9,14 @@ const testTodos = [
   { id: 2, title: "wet your whistle", notes: ["you need to do this", "now"] },
   { id: 3, title: "have a beer", notes: ["you need to do this"] },
 ];
+
 export const TodoList: FC = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        marginBottom: constants.flatListOffset.height,
+      }}
+    >
       <Text
         fontSize="header"
         fontWeight="bold"
