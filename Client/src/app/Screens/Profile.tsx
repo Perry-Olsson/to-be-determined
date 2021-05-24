@@ -16,7 +16,7 @@ export const Profile: FC<ProfileProps> = ({ user }) => {
   return (
     <View style={styles.container}>
       <Logout />
-      <Text style={styles.text}>Logged in as {user.fullName}</Text>
+      <Text style={styles.text}>Logged in as {user.username}</Text>
     </View>
   );
 };

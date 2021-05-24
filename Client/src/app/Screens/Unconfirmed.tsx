@@ -3,13 +3,34 @@ import { View, StyleSheet } from "react-native";
 import { Text } from "../../components/Text";
 import theme from "../../components/theme";
 import { Logout } from "../../components";
-import { User } from "../../generated/graphql";
+import {
+  useConfirmedNotificationSubscription,
+  User,
+} from "../../generated/graphql";
+import { ME } from "../../graphql/queries";
 
 interface UnconfirmedProps {
   user: User;
 }
 
 export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
+  useConfirmedNotificationSubscription({
+    variables: { email: user.email },
+    shouldResubscribe: true,
+    onSubscriptionData: ({ client, subscriptionData }) => {
+      if (subscriptionData.data?.confirmedNotification.confirmed) {
+        client.writeQuery({
+          query: ME,
+          data: {
+            me: { __typename: "User", id: user.id, confirmed: true },
+          },
+        });
+      } else {
+        alert("Something went wrong with Your confirmation :/");
+      }
+    },
+  });
+
   return (
     <View style={styles.container}>
       <Logout />
