@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text } from "../../components/Text";
 import theme from "../../components/theme";
 import { Logout } from "../../components";
@@ -43,6 +43,7 @@ export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
       <Text style={styles.text}>
         Just waiting for email confirmation {user.firstName}
       </Text>
+      <ActivityIndicator animating={true} />
       <Footer>
         <Logout style={styles.logout} />
       </Footer>

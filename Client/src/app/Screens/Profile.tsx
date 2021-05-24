@@ -5,6 +5,7 @@ import theme from "../../components/theme";
 import { Unconfirmed } from "./Unconfirmed";
 import { User } from "../../generated/graphql";
 import { Logout } from "../../components";
+import Footer from "../../components/Footer";
 
 interface ProfileProps {
   user: User;
@@ -15,8 +16,10 @@ export const Profile: FC<ProfileProps> = ({ user }) => {
 
   return (
     <View style={styles.container}>
-      <Logout />
       <Text style={styles.text}>Logged in as {user.username}</Text>
+      <Footer>
+        <Logout style={styles.logout} />
+      </Footer>
     </View>
   );
 };
@@ -30,5 +33,8 @@ const styles = StyleSheet.create({
   text: {
     color: theme.colors.logo,
     fontSize: 30,
+  },
+  logout: {
+    marginLeft: 10,
   },
 });
