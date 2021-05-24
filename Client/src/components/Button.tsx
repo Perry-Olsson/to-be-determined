@@ -2,53 +2,51 @@ import React, { FC } from "react";
 import {
   TouchableHighlight,
   StyleSheet,
-  ActivityIndicator,
+  ViewStyle,
+  GestureResponderEvent,
   TextStyle,
 } from "react-native";
 
-import { Text } from "./Text";
-
-import theme from "./theme";
-
 interface ButtonProps {
-  title: String;
-  onPress: () => void;
-  style?: any;
-  textStyle: TextStyle;
-  loading?: string[];
+  style?: ViewStyle | TextStyle;
+  size?: ButtonSize;
+  onPress: (event: GestureResponderEvent) => void;
 }
 
-const Button: FC<ButtonProps> = ({
-  title,
-  onPress,
-  style,
-  textStyle,
-  loading = [],
-}) => {
-  const buttonStyles = [styles.submit, style];
+type ButtonSize = "sm" | "md" | "lg";
 
+export const Button: FC<ButtonProps> = ({ children, style, size, onPress }) => {
+  const buttonStyles = [
+    styles.button,
+    size === "sm" && styles.sm,
+    size === "md" && styles.md,
+    size === "lg" && styles.lg,
+    style,
+  ];
   return (
     <TouchableHighlight style={buttonStyles} onPress={onPress}>
-      {loading.length ? (
-        <ActivityIndicator animating={true} />
-      ) : (
-        <Text fontSize="form" style={textStyle}>
-          {title}
-        </Text>
-      )}
+      {children}
     </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
-  submit: {
+  button: {
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    justifyContent: "center",
     alignItems: "center",
-    borderRadius: 4,
     padding: 10,
-    color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.form,
-    backgroundColor: theme.colors.logo,
+  },
+  sm: {
+    padding: 10,
+  },
+  md: {
+    paddingHorizontal: 25,
+    paddingVertical: 13,
+  },
+  lg: {
+    paddingHorizontal: 35,
+    paddingVertical: 18,
   },
 });
-
-export default Button;

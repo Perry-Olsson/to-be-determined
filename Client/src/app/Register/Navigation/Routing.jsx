@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-native";
 import { useFormikContext } from "formik";
 
 import { Name, Email, Username, Password } from "./Routes";
-import Button from "../../../components/Button";
+import LoginButton from "../../../components/LoginButton";
 import { useLoadingState } from "../../../contexts/LoadingIcon";
 
 const Routing = ({ onSubmit, scrollViewRef }) => {
@@ -15,7 +15,7 @@ const Routing = ({ onSubmit, scrollViewRef }) => {
     <Switch>
       <Route path="/password">
         <Password />
-        <Button
+        <LoginButton
           title="Register!"
           onPress={isInputValid(values) ? onSubmit : null}
           style={submitStyles}

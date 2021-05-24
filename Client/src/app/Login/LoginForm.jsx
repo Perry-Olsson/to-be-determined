@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 
 import FormikTextInput from "../../components/FormikTextInput";
 import Logo from "../../components/Logo";
-import SubmitButton from "../../components/Button";
+import SubmitButton from "../../components/LoginButton";
 import { useLoadingState } from "../../contexts/LoadingIcon";
 
 const LoginForm = ({ onSubmit }) => {
