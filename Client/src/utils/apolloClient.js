@@ -9,14 +9,14 @@ const createApolloClient = (authStorage) => {
   const timeoutLink = new ApolloLinkTimeout(6000);
 
    const wsLink = new WebSocketLink({
-    uri: `${Constants.manifest.extra.apolloURI}/subscriptions`,
+    uri: `ws://${Constants.manifest.extra.apolloURI}/subscriptions`,
     options: {
       reconnect: true
     }
   });
 
   const _httpLink = createHttpLink({
-    uri: `${Constants.manifest.extra.apolloURI}/graphql`,
+    uri: `http://${Constants.manifest.extra.apolloURI}/graphql`,
   });
 
   const timeoutHttpLink = timeoutLink.concat(_httpLink);

@@ -5,19 +5,24 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
+  ViewStyle,
+  TextStyle,
 } from "react-native";
 import { useAuthStorage } from "../contexts";
 import { Text } from "./Text";
 import { ME } from "../graphql/queries";
 
-export const Logout: FC = () => {
+export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
   const [loggingOut, setLoggingOut] = useState(false);
   const client = useApolloClient();
   const authStorage = useAuthStorage();
+
+  const logoutStyles = [styles.logout, style];
+
   return (
     <>
       <TouchableHighlight
-        style={styles.logout}
+        style={logoutStyles}
         onPress={async () => {
           setLoggingOut(true);
           await authStorage.removeAccessToken();
@@ -50,9 +55,6 @@ export const Logout: FC = () => {
 
 const styles = StyleSheet.create({
   logout: {
-    position: "absolute",
-    top: 50,
-    left: 30,
     backgroundColor: "#ffffff",
     borderRadius: 5,
     height: 30,

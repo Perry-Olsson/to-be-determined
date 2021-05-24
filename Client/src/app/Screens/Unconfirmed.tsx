@@ -8,6 +8,9 @@ import {
   User,
 } from "../../generated/graphql";
 import { ME } from "../../graphql/queries";
+import Constants from "expo-constants";
+import Footer from "../../components/Footer";
+import Emoji from "react-native-emoji";
 
 interface UnconfirmedProps {
   user: User;
@@ -33,34 +36,39 @@ export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
 
   return (
     <View style={styles.container}>
-      <Logout />
+      <View style={styles.success}>
+        <Text style={styles.text}>Success!</Text>
+        <Emoji name="rocket" style={styles.emoji} />
+      </View>
       <Text style={styles.text}>
-        Successfull Registration! Just waiting on your email confirmation{" "}
-        {user.firstName}
+        Just waiting for email confirmation {user.firstName}
       </Text>
+      <Footer>
+        <Logout style={styles.logout} />
+      </Footer>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   logout: {
-    position: "absolute",
-    top: 50,
-    left: 30,
-    backgroundColor: "#ffffff",
-    borderRadius: 5,
-    height: 30,
-    width: 70,
-    justifyContent: "center",
-    alignItems: "center",
+    marginLeft: 10,
   },
   container: {
     flex: 1,
+    marginTop: Constants.statusBarHeight + 20,
+    alignItems: "center",
+  },
+  success: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
+  emoji: { fontSize: 30 },
   text: {
     color: theme.colors.logo,
     fontSize: 30,
+    padding: 30,
+    textAlign: "center",
   },
 });
