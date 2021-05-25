@@ -1,7 +1,9 @@
 import React, { FC } from "react";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Formik } from "formik";
 import { Fields } from "./Fields";
+import { Button, Text } from "../../../../components";
+import theme from "../../../../components/theme";
 
 export const Form: FC = () => {
   const onSubmit = (input: any) => {
@@ -12,6 +14,12 @@ export const Form: FC = () => {
       {({ handleSubmit }) => (
         <View style={{ flex: 1, width: "100%" }}>
           <Fields onSubmit={handleSubmit} />
+          <Button
+            style={{ paddingVertical: 20, backgroundColor: theme.colors.logo }}
+            onPress={() => handleSubmit()}
+          >
+            <Text fontSize="form">Save!</Text>
+          </Button>
         </View>
       )}
     </Formik>
