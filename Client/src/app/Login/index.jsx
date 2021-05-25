@@ -11,7 +11,7 @@ import DismissKeyboard from "../../components/DismissKeyboard";
 import theme from "../../components/theme";
 
 export const Login = ({ fadeIn, setFadeIn }) => (
-  <FadeInView fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
+  <FadeInView style={{ flex: 1}} fadeIn={fadeIn} setFadeIn={setFadeIn} duration={1000}>
     <DismissKeyboard>
       <Body />
       <Footer color="secondary">

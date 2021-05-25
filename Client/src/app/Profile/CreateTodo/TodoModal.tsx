@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { View, StyleSheet, Modal, Dimensions } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { Text } from "../../../components";
 import { ExitButton } from "./ExitButton";
 import { Form } from "./Form";
@@ -17,13 +23,15 @@ export const TodoModal: FC<{
         setVisible(!visible);
       }}
     >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <ExitButton setVisible={setVisible} />
-          <Text style={styles.modalText}>Create your todo</Text>
-          <Form />
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <ExitButton setVisible={setVisible} />
+            <Text style={styles.modalText}>Create your todo</Text>
+            <Form />
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
@@ -37,12 +45,16 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    width: Dimensions.get("screen").width / 1.2,
-    height: Dimensions.get("screen").height / 1.5,
+    position: "absolute",
+    top: 100,
+    bottom: 100,
+    left: 20,
+    right: 20,
     backgroundColor: "#ccccccee",
     borderRadius: 20,
     alignItems: "center",
     overflow: "scroll",
+    flex: 1,
   },
   textStyle: {
     color: "white",

@@ -10,7 +10,7 @@ export const Form: FC = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ handleSubmit }) => (
-        <View style={{ width: "100%" }}>
+        <View style={{ flex: 1, width: "100%" }}>
           <Fields onSubmit={handleSubmit} />
         </View>
       )}

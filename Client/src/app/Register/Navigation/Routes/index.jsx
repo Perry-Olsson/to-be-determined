@@ -2,6 +2,7 @@ import React from "react";
 
 import FormikTextInput from "../../../../components/FormikTextInput";
 import NextButton from "../NextButton";
+import { Seperator } from "../../../../components/FormikTextInput"
 
 import { useNextRoute } from "../../../../hooks";
 
@@ -16,11 +17,13 @@ export const Name = () => {
         placeholder="First Name"
         autoFocus
       />
+      <Seperator />
       <FormikTextInput
         type="secondary"
         name="lastName"
         placeholder="Last Name"
       />
+      <Seperator />
       <NextButton onPress={next} />
     </>
   );
@@ -43,6 +46,7 @@ export const Email = ({ scrollViewRef }) => {
         autoCapitalize="none"
         autoFocus
       />
+      <Seperator />
       <NextButton onPress={handleNextRoute} />
     </>
   );
@@ -60,6 +64,7 @@ export const Username = () => {
         autoCapitalize="none"
         autoFocus
       />
+      <Seperator />
       <NextButton onPress={next} />
     </>
   );
@@ -74,11 +79,13 @@ export const Password = () => (
       autoFocus
       secureTextEntry
     />
+    <Seperator />
     <FormikTextInput
       type="secondary"
       name="passwordConfirmation"
       placeholder="Confirm password"
       secureTextEntry
     />
+    <Seperator />
   </>
 );

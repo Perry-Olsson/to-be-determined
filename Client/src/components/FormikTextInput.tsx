@@ -41,9 +41,12 @@ const FormikTextInput: FC<Props> = ({
         style={fieldStyles}
         {...props}
       />
-      <View style={styles.seperator}></View>
     </>
   );
+};
+
+export const Seperator: FC = () => {
+  return <View style={styles.seperator} />;
 };
 
 const styles = StyleSheet.create({

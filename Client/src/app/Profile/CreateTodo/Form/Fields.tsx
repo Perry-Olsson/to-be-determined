@@ -15,12 +15,14 @@ export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
         name="title"
         placeholder="Title"
         autoCapitalize="none"
+        style={{ marginBottom: 30 }}
       />
       <FlatList
         data={values.notes}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ index }) => <NoteField index={index} />}
         keyboardShouldPersistTaps="handled"
+        style={{ flex: 1 }}
       />
     </View>
   );
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     padding: 15,
+    flex: 1,
   },
   logo: {
     alignSelf: "center",

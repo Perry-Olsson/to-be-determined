@@ -22,13 +22,13 @@ const Header = () => {
 
   return (
     <Text
-      fontSize="header"
       fontWeight="bold"
       color="logo"
       style={{
         alignSelf: "center",
         marginTop: Constants.statusBarHeight,
         marginBottom: 10,
+        fontSize: 30
       }}
     >
       {getHeader(location)}

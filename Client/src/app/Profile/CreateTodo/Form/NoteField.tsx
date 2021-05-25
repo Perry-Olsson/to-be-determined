@@ -9,9 +9,12 @@ import { AntDesign } from "@expo/vector-icons";
 export const NoteField: FC<{ index: number }> = ({ index }) => {
   const { values, setValues } = useFormikContext<TodoValues>();
   return index === 0 ? (
-    <View key={index} style={{ flexDirection: "row", marginBottom: 30 }}>
+    <View key={index} style={{ flex: 1, flexDirection: "row" }}>
       <FormikTextInput
-        style={{ width: "80%" }}
+        style={{
+          width: "80%",
+          marginBottom: 30,
+        }}
         type="secondary"
         name={`notes[${index}]`}
         placeholder="Note"
@@ -50,12 +53,14 @@ export const NoteField: FC<{ index: number }> = ({ index }) => {
       </Button>
     </View>
   ) : (
-    <FormikTextInput
-      key={index}
-      style={{ width: "80%" }}
-      type="secondary"
-      name={`notes[${index}]`}
-      placeholder="Note"
-    />
+    <View style={{ flex: 1 }}>
+      <FormikTextInput
+        key={index}
+        style={{ width: "80%", marginBottom: 30 }}
+        type="secondary"
+        name={`notes[${index}]`}
+        placeholder="Note"
+      />
+    </View>
   );
 };

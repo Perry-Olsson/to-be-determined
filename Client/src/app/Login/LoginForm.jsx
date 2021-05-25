@@ -6,6 +6,7 @@ import FormikTextInput from "../../components/FormikTextInput";
 import Logo from "../../components/Logo";
 import SubmitButton from "../../components/LoginButton";
 import { useLoadingState } from "../../contexts/LoadingIcon";
+import { Seperator } from "../../components/FormikTextInput"
 
 const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
@@ -22,12 +23,14 @@ const LoginForm = ({ onSubmit }) => {
         autoCapitalize="none"
         keyboardType="email-address"
       />
+      <Seperator />
       <FormikTextInput
         type="secondary"
         name="password"
         placeholder="Password"
         secureTextEntry
       />
+      <Seperator />
       <SubmitButton
         title="Sign in"
         onPress={inputIsValid(values) ? onSubmit : null}
