@@ -23,10 +23,13 @@ export const Button: FC<ButtonProps> = ({
     style,
   ];
 
+  const backgroundColor =
+    style?.backgroundColor || styles.button.backgroundColor;
+
   return (
     <TouchableHighlight
       activeOpacity={0.3}
-      underlayColor={underlayColor || "#dddddd"}
+      underlayColor={underlayColor || `${String(backgroundColor)}b0`}
       style={buttonStyles}
       onPress={onPress}
     >

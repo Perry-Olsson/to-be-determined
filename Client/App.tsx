@@ -18,9 +18,8 @@ const App = () => {
     <ApolloProvider client={client}>
       <AuthStorageProvider value={authStorage}>
         <LoadingProvider>
-          <GalaxyBackground>
-            <Main launching={launching} setLaunching={setLaunching} />
-          </GalaxyBackground>
+          <Main launching={launching} setLaunching={setLaunching} />
+          <GalaxyBackground />
         </LoadingProvider>
       </AuthStorageProvider>
     </ApolloProvider>

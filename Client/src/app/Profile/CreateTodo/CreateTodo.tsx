@@ -1,13 +1,19 @@
-import React, { FC } from "react";
-import { View, StyleSheet } from "react-native";
-import { Button, constants, Text } from "../../components";
+import React, { FC, useState } from "react";
+import { View, StyleSheet, Pressable } from "react-native";
+import { Button, constants, Text } from "../../../components";
+import { TodoModal } from "./TodoModal";
 
 export const CreateTodo: FC = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
+      <TodoModal visible={modalVisible} setVisible={setModalVisible} />
       <Button
         size="md"
-        onPress={() => console.log("create todo")}
+        onPress={() => {
+          setModalVisible(!modalVisible);
+        }}
         style={styles.button}
       >
         <Text>create todo</Text>

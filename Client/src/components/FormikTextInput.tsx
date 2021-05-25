@@ -1,37 +1,47 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { FC } from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { useField } from "formik";
-
 import TextInput from "./TextInput";
-import { Text } from "./Text";
-
-//style
 import theme from "./theme";
 
-const FormikTextInput = ({ name, type, ...props }) => {
+interface Props {
+  name: string;
+  type: string;
+  placeholder: string;
+  autoCapitalize?: string;
+  style?: ViewStyle;
+}
+
+const FormikTextInput: FC<Props> = ({
+  name,
+  type,
+  style,
+  autoCapitalize,
+  placeholder,
+  ...props
+}) => {
   const [field, meta, helpers] = useField(name);
   const showError = false;
 
   const fieldStyles = [
     styles.field,
     type === "secondary" && styles.secondary,
-    showError && styles.errorField,
+    style,
   ];
 
   return (
     <>
       <TextInput
-        onChangeText={(value) => helpers.setValue(value)}
+        onChangeText={(value: any) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
+        placeholder={placeholder}
         placeholderTextColor="#aaaaaa"
         error={showError}
         style={fieldStyles}
         {...props}
       />
-      <View style={styles.seperator}>
-        {showError && <Text style={styles.errorText}>{meta.error}</Text>}
-      </View>
+      <View style={styles.seperator}></View>
     </>
   );
 };

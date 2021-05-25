@@ -1,22 +1,22 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
-import { Button, Text } from "../../components";
+import { Button, Text } from "../../../components";
 import { Feather } from "@expo/vector-icons";
-import theme from "../../components/theme";
+import theme from "../../../components/theme";
+import { _Todo } from "../types";
+import { NotesList } from "./NotesList";
 
-export const Todo: FC<{ title: string }> = ({ title }) => {
+export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text color="secondary" fontSize="subheading" fontWeight="bold">
-          {title}
+        <Text color="secondary" style={{ fontSize: 30 }} fontWeight="bold">
+          {todo.title}
         </Text>
+        <NotesList notes={todo.notes} />
       </View>
       <Button
-        style={{
-          backgroundColor: "#00000000",
-          padding: 0,
-        }}
+        style={styles.button}
         onPress={() => console.log("todo deleted")}
         underlayColor="#00000000"
       >
@@ -36,5 +36,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#00000000",
+    padding: 0,
+    alignSelf: "flex-start",
   },
 });
