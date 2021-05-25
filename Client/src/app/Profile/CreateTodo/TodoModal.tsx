@@ -27,7 +27,9 @@ export const TodoModal: FC<{
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <ExitButton setVisible={setVisible} />
-            <Text style={styles.modalText}>Create your todo</Text>
+            <Text fontWeight="bold" style={styles.modalText}>
+              Create your todo
+            </Text>
             <Form />
           </View>
         </View>
@@ -64,5 +66,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    fontSize: 30,
   },
 });

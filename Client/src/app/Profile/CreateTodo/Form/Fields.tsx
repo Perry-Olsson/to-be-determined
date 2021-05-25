@@ -5,9 +5,11 @@ import FormikTextInput from "../../../../components/FormikTextInput";
 import { useFormikContext } from "formik";
 import { TodoValues } from "./Form";
 import { NoteField } from "./NoteField";
+import { AddNoteField } from "./AddNoteField";
 
 export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
-  const { values } = useFormikContext<TodoValues>();
+  const { values, setValues } = useFormikContext<TodoValues>();
+
   return (
     <View style={styles.formContainer}>
       <FormikTextInput
@@ -17,6 +19,7 @@ export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
         autoCapitalize="none"
         style={{ marginBottom: 30 }}
       />
+      <AddNoteField values={values} setValues={setValues} />
       <FlatList
         data={values.notes}
         keyExtractor={(_, index) => index.toString()}
