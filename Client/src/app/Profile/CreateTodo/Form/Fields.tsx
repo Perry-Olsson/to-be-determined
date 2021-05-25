@@ -8,7 +8,6 @@ import { NoteField } from "./NoteField";
 
 export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
   const { values } = useFormikContext<TodoValues>();
-  console.log(values);
   return (
     <View style={styles.formContainer}>
       <FormikTextInput
@@ -21,6 +20,7 @@ export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
         data={values.notes}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ index }) => <NoteField index={index} />}
+        keyboardShouldPersistTaps="handled"
       />
     </View>
   );
