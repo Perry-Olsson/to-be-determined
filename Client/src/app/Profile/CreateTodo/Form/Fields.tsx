@@ -3,11 +3,11 @@ import { FlatList, StyleSheet, View } from "react-native";
 
 import FormikTextInput from "../../../../components/FormikTextInput";
 import { useFormikContext } from "formik";
-import { TodoValues } from "./Form";
 import { NoteField } from "./NoteField";
 import { AddNoteField } from "./AddNoteField";
+import { TodoValues } from "../TodoModal";
 
-export const Fields: FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
+export const Fields: FC = () => {
   const { values, setValues } = useFormikContext<TodoValues>();
 
   return (
