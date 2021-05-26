@@ -23,14 +23,12 @@ const LoginForm = ({ onSubmit }) => {
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      <Seperator />
       <FormikTextInput
         type="secondary"
         name="password"
         placeholder="Password"
         secureTextEntry
       />
-      <Seperator />
       <SubmitButton
         title="Sign in"
         onPress={inputIsValid(values) ? onSubmit : null}
