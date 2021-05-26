@@ -3,6 +3,7 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { useField } from "formik";
 import TextInput from "./TextInput";
 import theme from "./theme";
+import { Text } from "./Text";
 
 interface Props {
   name: string;
@@ -21,7 +22,6 @@ const FormikTextInput: FC<Props> = ({
   ...props
 }) => {
   const [field, meta, helpers] = useField(name);
-  const showError = false;
 
   const fieldStyles = [
     styles.field,
@@ -38,10 +38,14 @@ const FormikTextInput: FC<Props> = ({
         placeholder={placeholder}
         placeholderTextColor="#aaaaaa"
         autoCapitalize={autoCapitalize}
-        error={showError}
         style={fieldStyles}
         {...props}
       />
+      <View style={styles.seperator}>
+        {meta.error && meta.touched ? (
+          <Text color="error">{meta.error}</Text>
+        ) : null}
+      </View>
     </>
   );
 };

@@ -17,7 +17,6 @@ export const Fields: FC = () => {
         name="title"
         placeholder="Title"
         autoCapitalize="none"
-        style={{ marginBottom: 30 }}
       />
       <AddNoteField values={values} setValues={setValues} />
       <FlatList

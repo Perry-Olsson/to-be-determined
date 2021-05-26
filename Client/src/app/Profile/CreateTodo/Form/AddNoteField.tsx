@@ -4,6 +4,7 @@ import { TodoValues } from "../TodoModal";
 import { Button } from "../../../../components";
 import { AntDesign } from "@expo/vector-icons";
 import { Text } from "../../../../components";
+import theme from "../../../../components/theme";
 
 export const AddNoteField: FC<AddNoteFieldProps> = ({ values, setValues }) => {
   return (
@@ -21,7 +22,7 @@ export const AddNoteField: FC<AddNoteFieldProps> = ({ values, setValues }) => {
         style={styles.clearAll}
         onPress={() => clearAll(values, setValues)}
       >
-        <Text style={{ color: "#fb4c4c" }}>clear all</Text>
+        <Text style={{ color: theme.colors.error }}>clear all</Text>
       </Button>
     </View>
   );

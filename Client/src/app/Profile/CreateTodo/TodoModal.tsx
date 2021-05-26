@@ -6,7 +6,7 @@ import { Text } from "../../../components";
 import DismissKeyboard from "../../../components/DismissKeyboard";
 import { _Todo } from "../types";
 import { ExitButton } from "./ExitButton";
-import { Form } from "./Form";
+import { Form as TodoForm } from "./Form";
 
 export const TodoModal: FC<{
   visible: boolean;
@@ -19,10 +19,17 @@ export const TodoModal: FC<{
       return { ...newTodo, notes: filteredNotes };
     };
     testTodos.push(validatedInput());
+    console.log("create todo ran");
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validate={(values) => {
+        if (values.title.length === 0) return { title: "Title is required" };
+      }}
+    >
       {({ handleSubmit }) => (
         <Modal
           animationType="slide"
@@ -39,7 +46,7 @@ export const TodoModal: FC<{
                 <Text fontWeight="bold" style={styles.modalText}>
                   Create your todo
                 </Text>
-                <Form handleSubmit={handleSubmit} />
+                <TodoForm handleSubmit={handleSubmit} />
               </View>
             </View>
           </DismissKeyboard>

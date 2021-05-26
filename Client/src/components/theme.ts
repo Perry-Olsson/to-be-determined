@@ -10,6 +10,7 @@ const theme: Theme = {
     secondary: "#404040",
     opaqueGray: "rgba(105, 105, 105, 0.7)",
     logo: "#deb1c6",
+    error: "#fb4c4c",
   },
   fontSizes: {
     body: 16,
@@ -40,6 +41,7 @@ interface Theme {
     secondary: "#404040";
     opaqueGray: "rgba(105, 105, 105, 0.7)";
     logo: "#deb1c6";
+    error: string;
   };
   fontSizes: {
     body: 16;

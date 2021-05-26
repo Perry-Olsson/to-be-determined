@@ -7,7 +7,6 @@ export const NoteField: FC<{ index: number }> = ({ index }) => {
     <View style={{ flex: 1 }}>
       <FormikTextInput
         key={index}
-        style={{ marginBottom: 30 }}
         type="secondary"
         name={`notes[${index}]`}
         placeholder="Note"

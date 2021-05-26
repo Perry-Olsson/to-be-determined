@@ -26,6 +26,7 @@ export const Text: FC<TextProps> = ({
     color === "light" && styles.colorLight,
     color === "dark" && styles.colorDark,
     color === "logo" && styles.colorLogo,
+    color === "error" && styles.colorError,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontSize === "form" && styles.fontSizeForm,
     fontSize === "header" && styles.fontSizeHeader,
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
   },
   colorLogo: {
     color: theme.colors.logo,
+  },
+  colorError: {
+    color: theme.colors.error,
   },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
