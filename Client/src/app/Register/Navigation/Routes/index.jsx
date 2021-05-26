@@ -4,9 +4,14 @@ import FormikTextInput from "../../../../components/FormikTextInput";
 import NextButton from "../NextButton";
 
 import { useNextRoute } from "../../../../hooks";
+import theme from "../../../../components/theme";
+import { useFormikContext } from "formik";
 
-export const Name = () => {
+export const Name = ({ invalidFields: {firstName, lastName} }) => {
+  const { setFieldTouched } = useFormikContext()
   const next = useNextRoute("/email");
+  const invalid = firstName || lastName
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
 
   return (
     <>
@@ -21,17 +26,23 @@ export const Name = () => {
         name="lastName"
         placeholder="Last Name"
       />
-      <NextButton onPress={next} />
+      <NextButton onPress={ invalid ? () => {
+        setFieldTouched("firstName")
+        setFieldTouched("lastName")
+      } : next} style={buttonStyle} />
     </>
   );
 };
 
-export const Email = ({ scrollViewRef }) => {
+export const Email = ({ scrollViewRef, invalidFields: { email } }) => {
+  const { setFieldTouched } = useFormikContext()
   const nextRoute = useNextRoute("/username");
   const handleNextRoute = () => {
     nextRoute();
     scrollViewRef.current.toEnd();
   };
+  const invalid =  email 
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
 
   return (
     <>
@@ -43,13 +54,16 @@ export const Email = ({ scrollViewRef }) => {
         autoCapitalize="none"
         autoFocus
       />
-      <NextButton onPress={handleNextRoute} />
+      <NextButton onPress={invalid ? () => setFieldTouched("email"): handleNextRoute} style={buttonStyle} />
     </>
   );
 };
 
-export const Username = () => {
+export const Username = ({ invalidFields: {username}}) => {
+  const { setFieldTouched } = useFormikContext()
   const next = useNextRoute("/password");
+  const invalid =  username
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
 
   return (
     <>
@@ -60,7 +74,7 @@ export const Username = () => {
         autoCapitalize="none"
         autoFocus
       />
-      <NextButton onPress={next} />
+      <NextButton onPress={invalid ? () => setFieldTouched("username") : next} style={buttonStyle}/>
     </>
   );
 };
