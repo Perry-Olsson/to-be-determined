@@ -1,7 +1,13 @@
-import { Entity, EntityRepositoryType, Property } from "@mikro-orm/core";
+import {
+  Entity,
+  EntityRepositoryType,
+  Property,
+  OneToMany,
+} from "@mikro-orm/core";
 import { Field, ObjectType, Root } from "type-graphql";
 import { UserRepository } from "../repositories/user/UserRepository";
 import { BaseEntity } from "./BaseEntity";
+import { Todo } from "./Todo";
 
 @ObjectType()
 @Entity({ tableName: "users", customRepository: () => UserRepository })
@@ -35,4 +41,8 @@ export class User extends BaseEntity {
   @Field()
   @Property({ default: false })
   confirmed: boolean;
+
+  @Field(() => [Todo])
+  @OneToMany(() => Todo, (todo) => todo.user)
+  todos: Todo[];
 }
