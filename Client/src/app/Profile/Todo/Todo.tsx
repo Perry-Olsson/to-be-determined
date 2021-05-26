@@ -13,7 +13,9 @@ export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
         <Text color="secondary" style={{ fontSize: 30 }} fontWeight="bold">
           {todo.title}
         </Text>
-        <NotesList notes={todo.notes} />
+        {todo.notes.filter((n) => n !== "").length > 0 ? (
+          <NotesList notes={todo.notes} />
+        ) : null}
       </View>
       <Button
         style={styles.button}
