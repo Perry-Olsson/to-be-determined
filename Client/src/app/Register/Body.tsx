@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import RegisterForm from "./RegisterForm";
 import { useLoading } from "../../hooks/useLoading";
 import { useLogin, useRegister } from "../../hooks";
+import { validator } from "./Navigation/utils";
 
 const Body = () => {
   const [tryRegister, registerResult] = useRegister();
@@ -12,7 +13,7 @@ const Body = () => {
   useLoading(registerResult.loading, "REGISTRATION");
   useLoading(loginResult.loading, "LOGIN");
 
-  const onSubmit = async (input) => {
+  const onSubmit = async (input: RegisterValues) => {
     try {
       const user = await tryRegister(input);
       if (user)
@@ -23,7 +24,11 @@ const Body = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validate={validator}
+    >
       {({ handleSubmit }) => <RegisterForm onSubmit={handleSubmit} />}
     </Formik>
   );
@@ -37,5 +42,14 @@ const initialValues = {
   password: "",
   passwordConfirmation: "",
 };
+
+export interface RegisterValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 export default Body;

@@ -1,12 +1,17 @@
-import { useApolloClient } from "@apollo/client";
+import { MutationResult, useApolloClient } from "@apollo/client";
 
 import { useAuthStorage } from "../contexts/AuthStorageContext";
 import { ME } from "../graphql/queries";
-import { LoginInput, useLoginMutation, User } from "../generated/graphql";
+import {
+  LoginInput,
+  LoginMutation,
+  useLoginMutation,
+  User,
+} from "../generated/graphql";
 import logGqlError from "../utils/logGqlError";
 import { useLoading } from "./useLoading";
 
-export const useLogin = () => {
+export const useLogin = (): [TryLogin, MutationResult<LoginMutation>] => {
   const client = useApolloClient();
   const [login, result] = useLoginMutation();
   const authStorage = useAuthStorage();
@@ -39,3 +44,5 @@ export const useLogin = () => {
 
   return [tryLogin, result];
 };
+
+type TryLogin = (input: LoginInput) => Promise<void>;
