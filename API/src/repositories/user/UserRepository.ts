@@ -70,8 +70,11 @@ export class UserRepository extends EntityRepository<User> {
 
   public async getUser(emailOrUsername: string): Promise<User | null> {
     return validateEmail(emailOrUsername)
-      ? await this.findOne({ email: emailOrUsername })
-      : await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any); // eslint-disable-line
+      ? await this.findOne({ email: emailOrUsername }, ["todos"])
+      : // eslint-disable-next-line
+        await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any, [
+          "todos",
+        ]);
   }
 
   private formatRegistration(input: RegisterInput): RegisterInput {
