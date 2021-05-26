@@ -37,6 +37,7 @@ const FormikTextInput: FC<Props> = ({
         value={field.value}
         placeholder={placeholder}
         placeholderTextColor="#aaaaaa"
+        autoCapitalize={autoCapitalize}
         error={showError}
         style={fieldStyles}
         {...props}
