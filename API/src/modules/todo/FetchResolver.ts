@@ -7,8 +7,8 @@ import { FetchTodosResponse } from "./fetch";
 @Resolver()
 export class TodoResolver {
   @Query(() => FetchTodosResponse)
-  @UseMiddleware(isAuthorized)
-  async createTodo(@Ctx() { em, req }: MyContext): Promise<FetchTodosResponse> {
+  @UseMiddleware(isAuthorized())
+  async fetchTodo(@Ctx() { em, req }: MyContext): Promise<FetchTodosResponse> {
     const todos = await em.find(Todo, { user: req.user });
     return { todos };
   }

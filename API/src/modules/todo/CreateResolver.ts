@@ -7,7 +7,7 @@ import { isAuthorized } from "../../middleware/isAuthorized";
 @Resolver()
 export class TodoResolver {
   @Mutation(() => CreateTodoResponse)
-  @UseMiddleware(isAuthorized)
+  @UseMiddleware(isAuthorized())
   async createTodo(
     @Arg("input") input: CreateTodoInput,
     @Ctx() { em, req }: MyContext
