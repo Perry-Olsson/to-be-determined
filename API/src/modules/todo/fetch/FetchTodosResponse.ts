@@ -3,10 +3,10 @@ import { Todo } from "../../../entities";
 import { BaseError } from "../../../types";
 
 @ObjectType()
-export class CreateTodoResponse {
+export class FetchTodosResponse {
   @Field(() => [BaseError], { nullable: true })
   errors?: BaseError[];
 
-  @Field({ nullable: true })
-  todo?: Todo;
+  @Field(() => [Todo], { nullable: true })
+  todos?: Todo[];
 }

@@ -3,7 +3,7 @@ import { Request } from "express";
 import { User } from "../entities";
 
 interface MyRequest extends Request {
-  user?: User;
+  user: User;
 }
 export interface MyContext {
   req: MyRequest;

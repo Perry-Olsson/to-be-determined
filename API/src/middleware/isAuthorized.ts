@@ -11,7 +11,6 @@ export const isAuthorized: MiddlewareFn<MyContext> = async (
     const token = getToken(req);
     const { email, error } = decodeToken(token);
     if (error) {
-      console.log("hello");
       return { errors: [{ message: error }] };
     }
     const user = await em.findOne(User, { email });
