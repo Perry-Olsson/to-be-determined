@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: theme.colors.logo,
     padding: 10,
-    width: Dimensions.get("screen").width - 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    flex: 1,
   },
   button: {
     backgroundColor: "#00000000",

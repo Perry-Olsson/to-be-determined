@@ -35,6 +35,7 @@ const Seperator: FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    width: "95%",
     marginBottom: constants.flatListOffset.height,
     flex: 1,
   },
