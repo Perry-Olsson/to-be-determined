@@ -175,6 +175,25 @@ export type ExtraUserFieldsFragment = (
   & Pick<User, 'createdAt' | 'updatedAt'>
 );
 
+export type CreateTodoMutationVariables = Exact<{
+  input: CreateTodoInput;
+}>;
+
+
+export type CreateTodoMutation = (
+  { __typename?: 'Mutation' }
+  & { createTodo: (
+    { __typename?: 'CreateTodoResponse' }
+    & { errors?: Maybe<Array<(
+      { __typename?: 'BaseError' }
+      & Pick<BaseError, 'message'>
+    )>>, todo?: Maybe<(
+      { __typename?: 'Todo' }
+      & Pick<Todo, 'id' | 'title' | 'notes'>
+    )> }
+  ) }
+);
+
 export type DeleteTodoMutationVariables = Exact<{
   id: Scalars['Float'];
 }>;
@@ -290,6 +309,46 @@ export const ExtraUserFieldsFragmentDoc = gql`
   updatedAt
 }
     `;
+export const CreateTodoDocument = gql`
+    mutation CreateTodo($input: CreateTodoInput!) {
+  createTodo(input: $input) {
+    errors {
+      message
+    }
+    todo {
+      id
+      title
+      notes
+    }
+  }
+}
+    `;
+export type CreateTodoMutationFn = Apollo.MutationFunction<CreateTodoMutation, CreateTodoMutationVariables>;
+
+/**
+ * __useCreateTodoMutation__
+ *
+ * To run a mutation, you first call `useCreateTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTodoMutation, { data, loading, error }] = useCreateTodoMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateTodoMutation(baseOptions?: Apollo.MutationHookOptions<CreateTodoMutation, CreateTodoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTodoMutation, CreateTodoMutationVariables>(CreateTodoDocument, options);
+      }
+export type CreateTodoMutationHookResult = ReturnType<typeof useCreateTodoMutation>;
+export type CreateTodoMutationResult = Apollo.MutationResult<CreateTodoMutation>;
+export type CreateTodoMutationOptions = Apollo.BaseMutationOptions<CreateTodoMutation, CreateTodoMutationVariables>;
 export const DeleteTodoDocument = gql`
     mutation DeleteTodo($id: Float!) {
   deleteTodo(id: $id) {

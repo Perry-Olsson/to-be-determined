@@ -1,9 +1,10 @@
+import { useApolloClient } from "@apollo/client";
 import { Formik } from "formik";
 import React, { FC } from "react";
 import { View, StyleSheet, Modal } from "react-native";
-import { testTodos } from "../../../../assets/testTodos";
 import { Text } from "../../../components";
 import DismissKeyboard from "../../../components/DismissKeyboard";
+import { useSaveTodo } from "../../../hooks/useCreateTodo";
 import { _Todo } from "../types";
 import { ExitButton } from "./ExitButton";
 import { Form as TodoForm } from "./Form";
@@ -12,15 +13,7 @@ export const TodoModal: FC<{
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ visible, setVisible }) => {
-  const onSubmit = (input: TodoValues) => {
-    const validatedInput = () => {
-      const newTodo: _Todo = { ...input, id: testTodos.length };
-      const filteredNotes = newTodo.notes.filter((n) => n !== "");
-      return { ...newTodo, notes: filteredNotes };
-    };
-    testTodos.push(validatedInput());
-    console.log("create todo ran");
-  };
+  const onSubmit = useSaveTodo(setVisible);
 
   return (
     <Formik
