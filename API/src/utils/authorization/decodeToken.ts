@@ -12,3 +12,16 @@ export const decodeToken = (token: string): DecodedToken => {
     return { email: "", error: e.message };
   }
 };
+
+export const decodeConfirmationToken = (token: string): DecodedToken => {
+  try {
+    const decodedToken = jwt.verify(
+      token,
+      config.jwtConfirmationSecret
+    ) as DecodedToken;
+
+    return { ...decodedToken, error: "" };
+  } catch (e) {
+    return { email: "", error: e.message };
+  }
+};

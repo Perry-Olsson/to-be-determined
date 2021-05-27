@@ -2,7 +2,7 @@ import express from "express";
 
 import { User } from "../../entities";
 import { UpdateResponse } from "../../repositories/user/types";
-import { decodeToken } from "../../utils/authorization";
+import { decodeConfirmationToken } from "../../utils/authorization";
 import { getEntityManager } from "../../utils/getEntityManager";
 import {
   getConfirmedHTML,
@@ -13,7 +13,7 @@ import { pubSub } from "../../index";
 export const ConfirmationRoute = express.Router();
 
 ConfirmationRoute.get("/:id", async (req, res) => {
-  const { email, error } = decodeToken(req.params.id);
+  const { email, error } = decodeConfirmationToken(req.params.id);
 
   if (email) {
     const isConfirmed = await confirmUser(email);

@@ -5,6 +5,7 @@ dotenv.config({ path: path.resolve(__dirname, "..", "..", ".env") });
 export default {
   port: Number(process.env.PORT),
   jwtSecret: process.env.SECRET,
+  jwtConfirmationSecret: process.env.CONFIRMATION_SECRET,
   database: process.env.DATABASE,
   databaseUser: process.env.DB_USER,
   databasePassword: process.env.DB_PASSWORD,
@@ -15,6 +16,7 @@ export default {
 interface Config {
   port: number;
   jwtSecret: string;
+  jwtConfirmationSecret: string;
   database: string;
   databaseUser: string;
   databasePassword: string;
