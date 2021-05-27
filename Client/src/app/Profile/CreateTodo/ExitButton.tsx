@@ -7,7 +7,7 @@ export const ExitButton: FC<{
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ setVisible }) => {
   return (
-    <View style={{ width: "100%", alignItems: "flex-end" }}>
+    <View>
       <Button
         style={{ backgroundColor: "#00000000" }}
         onPress={() => setVisible(false)}

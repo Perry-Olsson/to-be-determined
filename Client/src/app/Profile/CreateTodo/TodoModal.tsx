@@ -7,6 +7,7 @@ import {
   Keyboard,
   KeyboardEventListener,
   Animated,
+  Dimensions,
 } from "react-native";
 import { Text } from "../../../components";
 import DismissKeyboard from "../../../components/DismissKeyboard";
@@ -14,15 +15,15 @@ import { useSaveTodo } from "../../../hooks/useCreateTodo";
 import { _Todo } from "../types";
 import { ExitButton } from "./ExitButton";
 import { Form as TodoForm } from "./Form";
-import { constants } from "../../../components";
 
 export const TodoModal: FC<{
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ visible, setVisible }) => {
   const onSubmit = useSaveTodo(setVisible);
-  const bottomAnim = useRef(new Animated.Value(180)).current; // Initial value for opacity: 0
-  const topAnim = useRef(new Animated.Value(180)).current;
+  const topAndBottomValue = Math.ceil(Dimensions.get("screen").height * 0.1);
+  const bottomAnim = useRef(new Animated.Value(topAndBottomValue)).current; // Initial value for opacity: 0
+  const topAnim = useRef(new Animated.Value(topAndBottomValue)).current;
 
   const onKeyBoardShow: KeyboardEventListener = (e) => {
     Animated.timing(bottomAnim, {
@@ -31,20 +32,20 @@ export const TodoModal: FC<{
       useNativeDriver: false,
     }).start();
     Animated.timing(topAnim, {
-      toValue: 50,
+      toValue: 0,
       duration: 350,
       useNativeDriver: false,
     }).start();
   };
   const onKeyBoardHide = () => {
     Animated.timing(bottomAnim, {
-      toValue: 180,
+      toValue: topAndBottomValue,
       duration: 350,
       useNativeDriver: false,
     }).start();
 
     Animated.timing(topAnim, {
-      toValue: 180,
+      toValue: topAndBottomValue,
       duration: 350,
       useNativeDriver: false,
     }).start();
@@ -84,10 +85,19 @@ export const TodoModal: FC<{
                   bottom: bottomAnim,
                 }}
               >
-                <ExitButton setVisible={setVisible} />
-                <Text fontWeight="bold" style={styles.modalText}>
-                  Create your todo
-                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text fontWeight="bold" style={styles.modalText}>
+                    Create your todo
+                  </Text>
+                  <ExitButton setVisible={setVisible} />
+                </View>
                 <TodoForm handleSubmit={handleSubmit} />
               </Animated.View>
             </View>
@@ -118,8 +128,6 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     position: "absolute",
-    top: 180,
-    bottom: 180,
     left: 20,
     right: 20,
     backgroundColor: "#ccccccee",
@@ -134,8 +142,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-    fontSize: 30,
+    fontSize: 24,
+    paddingLeft: 20,
   },
 });
