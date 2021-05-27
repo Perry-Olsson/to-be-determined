@@ -8,7 +8,7 @@ import createEmail from "./createEmail";
 export const sendAccountConfirmation = async (user: User): Promise<void> => {
   if (!__prod__) {
     const url = createUrl(user.email);
-    useTestMailer(createEmail(user, url));
+    await useTestMailer(createEmail(user, url));
   }
 };
 

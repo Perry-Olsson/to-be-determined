@@ -6,10 +6,15 @@ import { User } from "../entities";
 interface Options {
   populate?: string[];
   intercept?: boolean;
+  checkConfirmation?: boolean;
 }
 
 export const isAuthorized = (
-  { populate, intercept }: Options = { populate: [], intercept: true }
+  { populate, intercept, checkConfirmation }: Options = {
+    populate: [],
+    intercept: true,
+    checkConfirmation: true,
+  }
 ): MiddlewareFn<MyContext> => {
   return async ({ context: { req, em } }, next) => {
     const errors = [];
@@ -27,7 +32,7 @@ export const isAuthorized = (
             message:
               "No user associated with your session, try logging in again.",
           });
-        else if (!user.confirmed)
+        else if (checkConfirmation && !user.confirmed)
           errors.push({
             message: "You must confirm your account first",
           });
