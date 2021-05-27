@@ -16,7 +16,8 @@ export const Fields: FC = () => {
         type="secondary"
         name="title"
         placeholder="Title"
-        autoCapitalize="none"
+        autoCapitalize="sentences"
+        autoFocus={true}
       />
       <AddNoteField values={values} setValues={setValues} />
       <FlatList

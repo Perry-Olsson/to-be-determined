@@ -1,15 +1,20 @@
 import React, { FC } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ViewStyle,
+  TextInput as _TextInput,
+  TextInputProps,
+} from "react-native";
 import { useField } from "formik";
 import TextInput from "./TextInput";
 import theme from "./theme";
 import { Text } from "./Text";
 
-interface Props {
+interface Props extends TextInputProps {
   name: string;
   type: string;
   placeholder: string;
-  autoCapitalize?: string;
   style?: ViewStyle;
 }
 
