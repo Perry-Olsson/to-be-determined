@@ -22,7 +22,6 @@ export const isAuthorized = (
 
       if (!errors.length) {
         const user = await em.findOne(User, { email }, populate);
-        console.log(user);
         if (!user)
           errors.push({
             message:
