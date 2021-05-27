@@ -1,19 +1,62 @@
-import { useApolloClient } from "@apollo/client";
 import { Formik } from "formik";
-import React, { FC } from "react";
-import { View, StyleSheet, Modal } from "react-native";
+import React, { FC, useEffect, useRef, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Modal,
+  Keyboard,
+  KeyboardEventListener,
+  Animated,
+} from "react-native";
 import { Text } from "../../../components";
 import DismissKeyboard from "../../../components/DismissKeyboard";
 import { useSaveTodo } from "../../../hooks/useCreateTodo";
 import { _Todo } from "../types";
 import { ExitButton } from "./ExitButton";
 import { Form as TodoForm } from "./Form";
+import { constants } from "../../../components";
 
 export const TodoModal: FC<{
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ visible, setVisible }) => {
   const onSubmit = useSaveTodo(setVisible);
+  const bottomAnim = useRef(new Animated.Value(180)).current; // Initial value for opacity: 0
+  const topAnim = useRef(new Animated.Value(180)).current;
+
+  const onKeyBoardShow: KeyboardEventListener = (e) => {
+    Animated.timing(bottomAnim, {
+      toValue: e.endCoordinates.height,
+      duration: 350,
+      useNativeDriver: false,
+    }).start();
+    Animated.timing(topAnim, {
+      toValue: 50,
+      duration: 350,
+      useNativeDriver: false,
+    }).start();
+  };
+  const onKeyBoardHide = () => {
+    Animated.timing(bottomAnim, {
+      toValue: 180,
+      duration: 350,
+      useNativeDriver: false,
+    }).start();
+
+    Animated.timing(topAnim, {
+      toValue: 180,
+      duration: 350,
+      useNativeDriver: false,
+    }).start();
+  };
+  useEffect(() => {
+    Keyboard.addListener("keyboardWillShow", onKeyBoardShow);
+    Keyboard.addListener("keyboardWillHide", onKeyBoardHide);
+    return () => {
+      Keyboard.removeListener("keyboardWillShow", onKeyBoardShow);
+      Keyboard.removeListener("keyboardWillHide", onKeyBoardHide);
+    };
+  });
 
   return (
     <Formik
@@ -34,13 +77,19 @@ export const TodoModal: FC<{
         >
           <DismissKeyboard>
             <View style={styles.centeredView}>
-              <View style={styles.modalView}>
+              <Animated.View
+                style={{
+                  ...styles.modalView,
+                  top: topAnim,
+                  bottom: bottomAnim,
+                }}
+              >
                 <ExitButton setVisible={setVisible} />
                 <Text fontWeight="bold" style={styles.modalText}>
                   Create your todo
                 </Text>
                 <TodoForm handleSubmit={handleSubmit} />
-              </View>
+              </Animated.View>
             </View>
           </DismissKeyboard>
         </Modal>
@@ -69,8 +118,8 @@ const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     position: "absolute",
-    top: 100,
-    bottom: 100,
+    top: 180,
+    bottom: 180,
     left: 20,
     right: 20,
     backgroundColor: "#ccccccee",

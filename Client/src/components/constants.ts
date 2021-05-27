@@ -5,4 +5,7 @@ export const constants = {
   flatListOffset: {
     height: 160,
   },
+  todoModal: {
+    bottomOffset: 180,
+  },
 };
