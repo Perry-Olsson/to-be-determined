@@ -12,7 +12,7 @@
     "dev:js": "NODE_ENV=development nodemon dist/index.js",
     "lint": "eslint ./src/**/*.ts",
     "db:init": "docker exec api_db_1 psql -U postgres -c 'CREATE DATABASE dev;'",
-    "psql": "docker exec -it api_db_1 psql -U postgres",
+    "psql": "docker exec -it api_db_1 psql -U postgres -d dev",
     "migration:create": "npx mikro-orm migration:create",
     "schema:create": "npx mikro-orm schema:create -r",
     "schema:drop": "npx mikro-orm schema:drop -r",
