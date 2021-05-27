@@ -80,6 +80,7 @@ export type LoginResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  resendConfirmation: Scalars['Boolean'];
   createTodo: CreateTodoResponse;
   deleteTodo: DeleteTodoResponse;
   login: LoginResponse;
@@ -252,6 +253,14 @@ export type RegisterMutation = (
       & Pick<User, 'id' | 'email' | 'username'>
     )> }
   ) }
+);
+
+export type ResendConfirmationMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ResendConfirmationMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'resendConfirmation'>
 );
 
 export type MeQueryVariables = Exact<{
@@ -469,6 +478,36 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const ResendConfirmationDocument = gql`
+    mutation ResendConfirmation {
+  resendConfirmation
+}
+    `;
+export type ResendConfirmationMutationFn = Apollo.MutationFunction<ResendConfirmationMutation, ResendConfirmationMutationVariables>;
+
+/**
+ * __useResendConfirmationMutation__
+ *
+ * To run a mutation, you first call `useResendConfirmationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useResendConfirmationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [resendConfirmationMutation, { data, loading, error }] = useResendConfirmationMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useResendConfirmationMutation(baseOptions?: Apollo.MutationHookOptions<ResendConfirmationMutation, ResendConfirmationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ResendConfirmationMutation, ResendConfirmationMutationVariables>(ResendConfirmationDocument, options);
+      }
+export type ResendConfirmationMutationHookResult = ReturnType<typeof useResendConfirmationMutation>;
+export type ResendConfirmationMutationResult = Apollo.MutationResult<ResendConfirmationMutation>;
+export type ResendConfirmationMutationOptions = Apollo.BaseMutationOptions<ResendConfirmationMutation, ResendConfirmationMutationVariables>;
 export const MeDocument = gql`
     query Me($getAllFields: Boolean = false) {
   me {
