@@ -1,4 +1,5 @@
 import { useApolloClient } from "@apollo/client";
+import { FormikHelpers } from "formik";
 import { TodoValues } from "../app/Profile/CreateTodo/TodoModal";
 import { useCreateTodoMutation } from "../generated/graphql";
 import { ME } from "../graphql/queries";
@@ -10,7 +11,10 @@ export const useSaveTodo = (
   const client = useApolloClient();
   const [createTodo] = useCreateTodoMutation();
 
-  const onSubmit = async (input: TodoValues) => {
+  const onSubmit = async (
+    input: TodoValues,
+    helpers: FormikHelpers<TodoValues>
+  ) => {
     input.notes = input.notes.filter((n) => n !== "");
 
     const { data } = await createTodo({ variables: { input } });
@@ -31,6 +35,7 @@ export const useSaveTodo = (
           },
         });
       }
+      helpers.resetForm();
     } else {
       alert("oops something went wrong on our end");
       // alert(formatError(errors!));

@@ -2,14 +2,7 @@ import { RegisterValues } from "../../Body";
 import emailValidator from "email-validator";
 
 export const validator = (values: RegisterValues) => {
-  const errors: Errors = {
-    firstName: null,
-    lastName: null,
-    email: null,
-    username: null,
-    password: null,
-    passwordConfirmation: null,
-  };
+  const errors: Errors = {};
 
   if (values.firstName.length === 0) errors.firstName = "Required";
 
@@ -28,14 +21,16 @@ export const validator = (values: RegisterValues) => {
   if (values.password !== values.passwordConfirmation)
     errors.passwordConfirmation = "passwords do not match";
 
+  console.log(errors);
+
   return errors;
 };
 
 interface Errors {
-  firstName: string | null;
-  lastName: string | null;
-  email: string | null;
-  username: string | null;
-  password: string | null;
-  passwordConfirmation: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  username?: string | null;
+  password?: string | null;
+  passwordConfirmation?: string | null;
 }

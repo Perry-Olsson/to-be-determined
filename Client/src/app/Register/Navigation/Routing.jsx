@@ -11,8 +11,8 @@ import theme from "../../../components/theme";
 const Routing = ({ onSubmit, scrollViewRef }) => {
   const { values } = useFormikContext();
   const invalidFields = validator(values)
-  const isValid = isInputValid(invalidFields)
-  const submitStyles = isValid && { backgroundColor: theme.colors.inActiveLogo };
+  const isInValid = isInputValid(invalidFields) !== 0
+  const submitStyles = isInValid && { backgroundColor: theme.colors.inActiveLogo };
   const loading = useLoadingState();
 
   return (
@@ -21,7 +21,7 @@ const Routing = ({ onSubmit, scrollViewRef }) => {
         <Password />
         <LoginButton
           title="Register!"
-          onPress={isValid ? onSubmit : null}
+          onPress={isInValid ? undefined : () => onSubmit()}
           style={submitStyles}
           loading={loading}
         />
