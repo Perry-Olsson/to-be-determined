@@ -2,9 +2,13 @@ import React, { FC } from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import { Todo } from "./Todo";
 import { constants, Text } from "../../components";
-import { testTodos } from "../../../assets/testTodos";
+import { User } from "../../generated/graphql";
 
-export const TodoList: FC = () => {
+interface Props {
+  user: User;
+}
+
+export const TodoList: FC<Props> = ({ user }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text
@@ -16,7 +20,7 @@ export const TodoList: FC = () => {
         Todos
       </Text>
       <FlatList
-        data={testTodos}
+        data={user.todos}
         renderItem={({ item }) => <Todo todo={item} />}
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={Seperator}

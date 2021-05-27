@@ -12,7 +12,7 @@ export const Profile: FC = () => {
 
   return (
     <View style={styles.container}>
-      <TodoList />
+      <TodoList user={user} />
       <CreateTodo />
       <Footer>
         <Logout style={styles.logout} />

@@ -34,7 +34,30 @@ export type BaseError = {
 
 export type Confirmation = {
   __typename?: 'Confirmation';
-  confirmed: Scalars['Boolean'];
+  confirmed?: Maybe<Scalars['Boolean']>;
+};
+
+export type CreateTodoInput = {
+  title: Scalars['String'];
+  notes: Array<Scalars['String']>;
+};
+
+export type CreateTodoResponse = {
+  __typename?: 'CreateTodoResponse';
+  errors?: Maybe<Array<BaseError>>;
+  todo?: Maybe<Todo>;
+};
+
+export type DeleteTodoResponse = {
+  __typename?: 'DeleteTodoResponse';
+  errors?: Maybe<Array<BaseError>>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type FetchTodosResponse = {
+  __typename?: 'FetchTodosResponse';
+  errors?: Maybe<Array<BaseError>>;
+  todos?: Maybe<Array<Todo>>;
 };
 
 export type FieldError = {
@@ -57,8 +80,20 @@ export type LoginResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createTodo: CreateTodoResponse;
+  deleteTodo: DeleteTodoResponse;
   login: LoginResponse;
   register: RegisterResponse;
+};
+
+
+export type MutationCreateTodoArgs = {
+  input: CreateTodoInput;
+};
+
+
+export type MutationDeleteTodoArgs = {
+  id: Scalars['Float'];
 };
 
 
@@ -73,6 +108,7 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  fetchTodo: FetchTodosResponse;
   me?: Maybe<User>;
 };
 
@@ -100,6 +136,16 @@ export type SubscriptionConfirmedNotificationArgs = {
   email: Scalars['String'];
 };
 
+export type Todo = {
+  __typename?: 'Todo';
+  id: Scalars['ID'];
+  createdAt: Scalars['String'];
+  updatedAt: Scalars['String'];
+  title: Scalars['String'];
+  notes: Array<Scalars['String']>;
+  user: User;
+};
+
 export type User = {
   __typename?: 'User';
   id: Scalars['ID'];
@@ -111,6 +157,7 @@ export type User = {
   email: Scalars['String'];
   username: Scalars['String'];
   confirmed: Scalars['Boolean'];
+  todos: Array<Todo>;
 };
 
 export type BaseUserFieldsFragment = (
@@ -118,9 +165,31 @@ export type BaseUserFieldsFragment = (
   & Pick<User, 'id' | 'username' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'confirmed'>
 );
 
+export type TodoFieldsFragment = (
+  { __typename?: 'Todo' }
+  & Pick<Todo, 'id' | 'title' | 'notes'>
+);
+
 export type ExtraUserFieldsFragment = (
   { __typename?: 'User' }
   & Pick<User, 'createdAt' | 'updatedAt'>
+);
+
+export type DeleteTodoMutationVariables = Exact<{
+  id: Scalars['Float'];
+}>;
+
+
+export type DeleteTodoMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteTodo: (
+    { __typename?: 'DeleteTodoResponse' }
+    & Pick<DeleteTodoResponse, 'success'>
+    & { errors?: Maybe<Array<(
+      { __typename?: 'BaseError' }
+      & Pick<BaseError, 'message'>
+    )>> }
+  ) }
 );
 
 export type LoginMutationVariables = Exact<{
@@ -138,6 +207,10 @@ export type LoginMutation = (
       & Pick<BaseError, 'message'>
     )>, user?: Maybe<(
       { __typename?: 'User' }
+      & { todos: Array<(
+        { __typename?: 'Todo' }
+        & TodoFieldsFragment
+      )> }
       & BaseUserFieldsFragment
     )> }
   ) }
@@ -171,6 +244,10 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
+    & { todos: Array<(
+      { __typename?: 'Todo' }
+      & TodoFieldsFragment
+    )> }
     & BaseUserFieldsFragment
     & ExtraUserFieldsFragment
   )> }
@@ -200,12 +277,55 @@ export const BaseUserFieldsFragmentDoc = gql`
   confirmed
 }
     `;
+export const TodoFieldsFragmentDoc = gql`
+    fragment todoFields on Todo {
+  id
+  title
+  notes
+}
+    `;
 export const ExtraUserFieldsFragmentDoc = gql`
     fragment extraUserFields on User {
   createdAt
   updatedAt
 }
     `;
+export const DeleteTodoDocument = gql`
+    mutation DeleteTodo($id: Float!) {
+  deleteTodo(id: $id) {
+    errors {
+      message
+    }
+    success
+  }
+}
+    `;
+export type DeleteTodoMutationFn = Apollo.MutationFunction<DeleteTodoMutation, DeleteTodoMutationVariables>;
+
+/**
+ * __useDeleteTodoMutation__
+ *
+ * To run a mutation, you first call `useDeleteTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteTodoMutation, { data, loading, error }] = useDeleteTodoMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteTodoMutation(baseOptions?: Apollo.MutationHookOptions<DeleteTodoMutation, DeleteTodoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteTodoMutation, DeleteTodoMutationVariables>(DeleteTodoDocument, options);
+      }
+export type DeleteTodoMutationHookResult = ReturnType<typeof useDeleteTodoMutation>;
+export type DeleteTodoMutationResult = Apollo.MutationResult<DeleteTodoMutation>;
+export type DeleteTodoMutationOptions = Apollo.BaseMutationOptions<DeleteTodoMutation, DeleteTodoMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
   login(input: $input) {
@@ -214,11 +334,15 @@ export const LoginDocument = gql`
     }
     user {
       ...baseUserFields
+      todos {
+        ...todoFields
+      }
     }
     token
   }
 }
-    ${BaseUserFieldsFragmentDoc}`;
+    ${BaseUserFieldsFragmentDoc}
+${TodoFieldsFragmentDoc}`;
 export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
@@ -290,10 +414,14 @@ export const MeDocument = gql`
     query Me($getAllFields: Boolean = false) {
   me {
     ...baseUserFields
+    todos {
+      ...todoFields
+    }
     ...extraUserFields @include(if: $getAllFields)
   }
 }
     ${BaseUserFieldsFragmentDoc}
+${TodoFieldsFragmentDoc}
 ${ExtraUserFieldsFragmentDoc}`;
 
 /**

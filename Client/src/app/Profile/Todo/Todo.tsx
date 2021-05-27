@@ -3,10 +3,23 @@ import { StyleSheet, View, Dimensions } from "react-native";
 import { Button, Text } from "../../../components";
 import { Feather } from "@expo/vector-icons";
 import theme from "../../../components/theme";
-import { _Todo } from "../types";
+import {
+  BaseError,
+  Todo as _Todo,
+  useDeleteTodoMutation,
+} from "../../../generated/graphql";
 import { NotesList } from "./NotesList";
+import { useApolloClient } from "@apollo/client";
+import { useGetUser } from "../../../contexts";
+import { formatError } from "../../../hooks";
 
 export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
+  const user = useGetUser();
+  const { cache } = useApolloClient();
+  const [deleteTodo] = useDeleteTodoMutation({
+    variables: { id: Number(todo.id) },
+  });
+
   return (
     <View style={styles.container}>
       <View>
@@ -19,7 +32,26 @@ export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
       </View>
       <Button
         style={styles.button}
-        onPress={() => console.log("todo deleted")}
+        onPress={async () => {
+          const { data } = await deleteTodo();
+          if (data) {
+            if (data.deleteTodo.success) {
+              const filteredTodos = user.todos.filter((t) => t.id !== todo.id);
+              cache.modify({
+                id: cache.identify(user),
+                fields: {
+                  todos() {
+                    return filteredTodos;
+                  },
+                },
+              });
+            } else {
+              alert(formatError(data.deleteTodo.errors as BaseError[]));
+            }
+          } else {
+            alert("Oops something went wrong on our end.");
+          }
+        }}
         underlayColor="#00000000"
       >
         <Feather name="trash-2" size={24} color="white" />

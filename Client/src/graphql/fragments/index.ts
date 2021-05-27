@@ -12,6 +12,14 @@ export const baseUserFields = gql`
   }
 `;
 
+export const todoFields = gql`
+  fragment todoFields on Todo {
+    id
+    title
+    notes
+  }
+`;
+
 export const extraUserFields = gql`
   fragment extraUserFields on User {
     createdAt

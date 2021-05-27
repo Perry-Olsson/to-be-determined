@@ -1,6 +1,7 @@
 import logGqlError from "../utils/logGqlError";
 import { useLoading } from "./useLoading";
 import {
+  BaseError,
   FieldError,
   Maybe,
   RegisterMutation,
@@ -37,7 +38,7 @@ export const useRegister = (): [
         } = data;
 
         if (errors) {
-          alert(format(errors));
+          alert(formatFieldError(errors));
         } else return user;
       }
     } catch (e) {
@@ -49,7 +50,13 @@ export const useRegister = (): [
   return [tryRegister, result];
 };
 
-const format = (errors: Pick<FieldError, "field" | "message">[]) => {
+export const formatFieldError = (
+  errors: Pick<FieldError, "field" | "message">[]
+) => {
+  return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
+};
+
+export const formatError = (errors: BaseError[]) => {
   return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };
 
