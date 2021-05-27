@@ -27,6 +27,10 @@ export const isAuthorized = (
             message:
               "No user associated with your session, try logging in again.",
           });
+        else if (!user.confirmed)
+          errors.push({
+            message: "You must confirm your account first",
+          });
         else req.user = user;
       }
 
