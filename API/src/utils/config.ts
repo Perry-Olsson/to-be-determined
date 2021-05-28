@@ -11,6 +11,8 @@ export default {
   databasePassword: process.env.DB_PASSWORD,
   databasePort: Number(process.env.DB_PORT),
   slowInternet: process.env.SLOW_INTERNET,
+  smtpLogin: process.env.SMTP_LOGIN,
+  smtpPassword: process.env.SMTP_PASSWORD,
 } as Config;
 
 interface Config {
@@ -22,4 +24,6 @@ interface Config {
   databasePassword: string;
   databasePort: number;
   slowInternet: boolean | undefined;
+  smtpLogin: string;
+  smtpPassword: string;
 }
