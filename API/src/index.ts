@@ -32,7 +32,7 @@ const main = async () => {
     subscriptions: {
       path: "/subscriptions",
     },
-    playground: !__prod__,
+    playground: true,
   });
 
   const app = express();

@@ -17,7 +17,7 @@ interface Envelope {
 export type Email = ConfirmationEmail;
 
 export interface ConfirmationEmail {
-  from: "'Friday' <friday@gmail.com>";
+  from: string;
   to: string;
   subject: "Account confirmation";
   html: string;

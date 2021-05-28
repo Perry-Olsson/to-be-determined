@@ -32,7 +32,7 @@ export const useProdMailer = async (email: Email): Promise<void> => {
 
 const createTransporter = async () => {
   return nodemailer.createTransport({
-    host: "smtp-relay.sendinblue.com",
+    host: "smtp.mail.com",
     port: 587,
     secure: false,
     auth: {
