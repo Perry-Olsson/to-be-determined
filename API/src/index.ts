@@ -10,12 +10,13 @@ import config from "./utils/config";
 import updateSchemaAndCreateIndexes from "./utils/updateSchema";
 import { ConfirmationRoute } from "./middleware/endpoints";
 import { PubSub } from "apollo-server-express";
+import { __prod__ } from "./constants";
 
 export const pubSub = new PubSub();
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
-  await updateSchemaAndCreateIndexes(orm);
+  if (!__prod__) await updateSchemaAndCreateIndexes(orm);
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],
@@ -31,7 +32,7 @@ const main = async () => {
     subscriptions: {
       path: "/subscriptions",
     },
-    playground: true,
+    playground: !__prod__,
   });
 
   const app = express();
