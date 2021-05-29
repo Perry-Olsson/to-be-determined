@@ -17,12 +17,12 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     ios: {
-      bundleIdentifier: "todo-or-not-todo",
+      bundleIdentifier: "com.perrytodo-or-not-todo",
       buildNumber: "1.0.0",
       supportsTablet: true,
     },
     android: {
-      package: "todo-or-not-todo",
+      package: "com.perry.todo-or-not-todo",
       versionCode: 1,
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
