@@ -28,6 +28,7 @@ const main = async () => {
       em: orm.em.fork(),
     }),
     subscriptions: {
+      keepAlive: 10000,
       onConnect: () => {
         console.log("connected");
       },
