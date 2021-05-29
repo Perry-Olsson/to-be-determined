@@ -28,6 +28,12 @@ const main = async () => {
       em: orm.em.fork(),
     }),
     subscriptions: {
+      onConnect: () => {
+        console.log("connected");
+      },
+      onDisconnect: () => {
+        console.log("disconnected!");
+      },
       path: "/subscriptions",
     },
     playground: !__prod__,
