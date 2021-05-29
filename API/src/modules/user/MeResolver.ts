@@ -9,7 +9,7 @@ import {
   Subscription,
   UseMiddleware,
 } from "type-graphql";
-import { Confirmation } from "./me/confirmedSubscription";
+import { Confirmation } from "./me/ConfirmedSubscription";
 import { isAuthorized } from "../../middleware/isAuthorized";
 
 @Resolver()

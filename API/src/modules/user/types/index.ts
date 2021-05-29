@@ -2,4 +2,4 @@ export * from "../register/RegisterInput";
 export * from "../register/UserResponse";
 export * from "../login/LoginInput";
 export * from "../login/LoginResponse";
-export * from "../me/confirmedSubscription";
+export * from "../me/ConfirmedSubscription";
