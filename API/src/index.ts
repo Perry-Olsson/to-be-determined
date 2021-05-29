@@ -9,6 +9,7 @@ import http from "http";
 import config from "./utils/config";
 import { ConfirmationRoute } from "./middleware/endpoints";
 import { PubSub } from "apollo-server-express";
+import { __prod__ } from "./constants";
 
 export const pubSub = new PubSub();
 
@@ -29,7 +30,7 @@ const main = async () => {
     subscriptions: {
       path: "/subscriptions",
     },
-    playground: true,
+    playground: !__prod__,
   });
 
   const app = express();
