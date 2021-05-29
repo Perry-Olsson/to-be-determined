@@ -10,6 +10,7 @@ export default {
   slowInternet: process.env.SLOW_INTERNET,
   smtpLogin: process.env.SMTP_LOGIN,
   smtpPassword: process.env.SMTP_PASSWORD,
+  confirmationUrl: process.env.CONFIRMATION_URL,
 } as Config;
 
 interface Config {
@@ -20,4 +21,5 @@ interface Config {
   slowInternet: boolean | undefined;
   smtpLogin: string;
   smtpPassword: string;
+  confirmationUrl: string;
 }
