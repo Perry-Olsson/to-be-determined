@@ -19,7 +19,8 @@
     "db:clear": "yarn schema:drop && yarn schema:create",
     "db:addUsers": "ts-node ./src/devServices/addUsers.ts",
     "db:clearUsers": "ts-node ./src/devServices/clearUsers.ts",
-    "db:test": "ts-node ./src/devServices/test.ts"
+    "db:test": "ts-node ./src/devServices/test.ts",
+    "heroku-postbuild": "npx mikro-orm migration:up && npm run tsc"
   },
   "dependencies": {
     "-": "^0.0.1",

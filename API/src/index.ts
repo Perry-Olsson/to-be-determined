@@ -14,7 +14,6 @@ export const pubSub = new PubSub();
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
-  // if (!__prod__) await updateSchemaAndCreateIndexes(orm);
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],

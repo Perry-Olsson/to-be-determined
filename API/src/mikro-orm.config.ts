@@ -11,11 +11,7 @@ export default {
   },
   entities: [path.resolve(__dirname, "./entities/**/*.js")],
   entitiesTs: [path.resolve(__dirname, "./entities/**/*.ts")],
-  dbName: config.database,
+  clientUrl: config.databaseUrl,
   type: "postgresql",
-  host: "localhost",
-  port: config.databasePort,
-  user: config.databaseUser,
-  password: config.databasePassword,
   debug: !__prod__,
 } as Options<IDatabaseDriver<Connection>>;

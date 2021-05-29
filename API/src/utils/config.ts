@@ -6,10 +6,7 @@ export default {
   port: Number(process.env.PORT),
   jwtSecret: process.env.SECRET,
   jwtConfirmationSecret: process.env.CONFIRMATION_SECRET,
-  database: process.env.DATABASE,
-  databaseUser: process.env.DB_USER,
-  databasePassword: process.env.DB_PASSWORD,
-  databasePort: Number(process.env.DB_PORT),
+  databaseUrl: process.env.DATABASE_URL,
   slowInternet: process.env.SLOW_INTERNET,
   smtpLogin: process.env.SMTP_LOGIN,
   smtpPassword: process.env.SMTP_PASSWORD,
@@ -19,10 +16,7 @@ interface Config {
   port: number;
   jwtSecret: string;
   jwtConfirmationSecret: string;
-  database: string;
-  databaseUser: string;
-  databasePassword: string;
-  databasePort: number;
+  databaseUrl: string;
   slowInternet: boolean | undefined;
   smtpLogin: string;
   smtpPassword: string;
