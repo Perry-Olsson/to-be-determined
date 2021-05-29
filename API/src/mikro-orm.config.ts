@@ -16,6 +16,7 @@ export default {
       },
     },
   },
+  entities: [path.resolve(__dirname, "./entities/**/*.js")],
   entitiesTs: [path.resolve(__dirname, "./entities/**/*.ts")],
   clientUrl: config.databaseUrl,
   type: "postgresql",
