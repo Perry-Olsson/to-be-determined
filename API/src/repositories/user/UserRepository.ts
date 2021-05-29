@@ -3,7 +3,7 @@ import { User } from "../../entities";
 import validateRegistration from "./register/validateRegistration";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+import { validate } from "email-validator";
 import config from "../../utils/config";
 import { loginError, updateError, UpdateResponse } from "./types";
 import {
@@ -12,7 +12,6 @@ import {
   RegisterInput,
   RegisterResponse,
 } from "../../modules/user/types";
-import validateEmail from "../../utils/validateEmail";
 import { lowerCaseUsername } from "../../constants";
 import { sendAccountConfirmation } from "../../utils/mail";
 
@@ -69,7 +68,7 @@ export class UserRepository extends EntityRepository<User> {
   }
 
   public async getUser(emailOrUsername: string): Promise<User | null> {
-    return validateEmail(emailOrUsername)
+    return validate(emailOrUsername)
       ? await this.findOne({ email: emailOrUsername }, ["todos"])
       : // eslint-disable-next-line
         await this.findOne({ [lowerCaseUsername]: emailOrUsername } as any, [

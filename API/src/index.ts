@@ -7,16 +7,14 @@ import ormConfig from "./mikro-orm.config";
 import path from "path";
 import http from "http";
 import config from "./utils/config";
-import updateSchemaAndCreateIndexes from "./utils/updateSchema";
 import { ConfirmationRoute } from "./middleware/endpoints";
 import { PubSub } from "apollo-server-express";
-import { __prod__ } from "./constants";
 
 export const pubSub = new PubSub();
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
-  if (!__prod__) await updateSchemaAndCreateIndexes(orm);
+  // if (!__prod__) await updateSchemaAndCreateIndexes(orm);
 
   const schema = await buildSchema({
     resolvers: [path.resolve(__dirname, "modules/**/*Resolver.{ts,js}")],

@@ -1,5 +1,5 @@
 import { User } from "../../../entities";
-import isValidEmail from "../../../utils/validateEmail";
+import { validate } from "email-validator";
 import { FieldError } from "../../../types";
 import {
   duplicateEmailError,
@@ -9,12 +9,11 @@ import {
   usernameLengthError,
   ValidationInput,
 } from "../types";
-import { lowerCaseUsername } from "../../../constants";
 
 const isEmailAndUsernameValid = async (
   input: ValidationInput
 ): Promise<Array<FieldError | false>> => {
-  if (!isValidEmail(input.email)) return [invalidEmailError];
+  if (!validate(input.email)) return [invalidEmailError];
   const errors = validateUsername(input.username);
   return errors.concat(await validateUniqueConstraints(input));
 };
@@ -46,7 +45,7 @@ const getUsers = async ({
   repo,
 }: ValidationInput): Promise<User[]> => {
   return await repo.find({
-    $or: [{ email }, { [lowerCaseUsername]: username.toLowerCase() }],
+    $or: [{ email }, { username }],
   });
 };
 
@@ -57,7 +56,7 @@ const getErrors = (
 ): FieldError[] => {
   const errors: FieldError[] = [];
 
-  users.forEach(user => {
+  users.forEach((user) => {
     if (email === user.email) errors.push(duplicateEmailError);
     if (username.toLowerCase() === user.username.toLowerCase())
       errors.push(duplicateUsernameError);
