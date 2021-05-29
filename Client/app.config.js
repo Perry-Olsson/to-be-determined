@@ -6,7 +6,7 @@ export default {
     slug: "todo-or-not-todo",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/icon.png",
+    icon: "./assets/logo.png",
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
@@ -17,9 +17,13 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     ios: {
+      bundleIdentifier: "todo-or-not-todo",
+      buildNumber: "1.0.0",
       supportsTablet: true,
     },
     android: {
+      package: "todo-or-not-todo",
+      versionCode: 1,
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#FFFFFF",
