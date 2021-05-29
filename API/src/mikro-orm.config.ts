@@ -9,13 +9,6 @@ export default {
     pattern: /^[\w-]+\d+\.[tj]s$/,
     disableForeignKeys: true,
   },
-  driverOptions: {
-    connection: {
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
-  },
   entities: [path.resolve(__dirname, "./entities/**/*.js")],
   entitiesTs: [path.resolve(__dirname, "./entities/**/*.ts")],
   clientUrl: config.databaseUrl,
