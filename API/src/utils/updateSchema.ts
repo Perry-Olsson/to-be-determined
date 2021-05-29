@@ -6,7 +6,7 @@ const updateSchemaAndCreateIndexes = async (
   const generator = orm.getSchemaGenerator();
   await generator.updateSchema();
   await generator.execute(
-    "CREATE INDEX lower_username_index ON users (lower(username))"
+    "ALTER TABLE users ALTER COLUMN username TYPE citext;"
   );
   return;
 };

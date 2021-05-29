@@ -3,6 +3,7 @@ import {
   EntityRepositoryType,
   Property,
   OneToMany,
+  Unique,
 } from "@mikro-orm/core";
 import { Field, ObjectType, Root } from "type-graphql";
 import { UserRepository } from "../repositories/user/UserRepository";
@@ -28,10 +29,12 @@ export class User extends BaseEntity {
   }
 
   @Field()
+  @Unique()
   @Property({ columnType: "varchar(100)", unique: true })
   email!: string;
 
   @Field()
+  @Unique()
   @Property({ columnType: "varchar(60)", unique: true })
   username!: string;
 
