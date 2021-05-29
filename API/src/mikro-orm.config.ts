@@ -10,7 +10,7 @@ export default {
     disableForeignKeys: true,
   },
   driverOptions: {
-    connection: { ssl: true },
+    connection: { ssl: false },
   },
   entities: [path.resolve(__dirname, "./entities/**/*.js")],
   entitiesTs: [path.resolve(__dirname, "./entities/**/*.ts")],
