@@ -2,8 +2,8 @@ import "dotenv/config";
 
 export default {
   expo: {
-    name: "typescript-support",
-    slug: "typescript-support",
+    name: "todo-or-not-todo",
+    slug: "todo-or-not-todo",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",

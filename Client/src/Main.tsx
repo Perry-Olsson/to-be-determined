@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { useAuthorizedUserQuery } from "./hooks";
 import { ProfileScreen, LaunchScreen, LoginScreen } from "./app/Screens";
 import { UserProvider } from "./contexts";
+import { User } from "./generated/graphql";
 
 interface MainProps {
   launching: boolean;
@@ -25,7 +26,7 @@ const Main: FC<MainProps> = ({ launching, setLaunching }) => {
   if (!user) return <LoginScreen />;
 
   return (
-    <UserProvider user={user}>
+    <UserProvider user={user as User}>
       <View style={styles.container}>
         <ProfileScreen />
       </View>
