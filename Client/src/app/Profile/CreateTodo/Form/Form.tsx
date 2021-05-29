@@ -16,6 +16,7 @@ export const Form: FC<Props> = ({ handleSubmit }) => {
         <Button
           style={{ paddingVertical: 20, backgroundColor: theme.colors.logo }}
           onPress={() => handleSubmit()}
+          showLoading={["SAVE_TODO"]}
         >
           <Text fontSize="form">Save!</Text>
         </Button>

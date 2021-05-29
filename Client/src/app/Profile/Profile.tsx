@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   footerTextContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     width: Dimensions.get("screen").width / 2,
   },
 });

@@ -12,17 +12,20 @@ import { NotesList } from "./NotesList";
 import { useApolloClient } from "@apollo/client";
 import { useGetUser } from "../../../contexts";
 import { formatError } from "../../../hooks";
+import { useLoading } from "../../../hooks/useLoading";
 
 export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
   const user = useGetUser();
   const { cache } = useApolloClient();
-  const [deleteTodo] = useDeleteTodoMutation({
+  const [deleteTodo, result] = useDeleteTodoMutation({
     variables: { id: Number(todo.id) },
   });
 
+  useLoading(result.loading, `DELETE_TODO[${todo.id}]`);
+
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{ width: "82%" }}>
         <Text color="secondary" style={{ fontSize: 30 }} fontWeight="bold">
           {todo.title}
         </Text>
@@ -53,6 +56,7 @@ export const Todo: FC<{ todo: _Todo }> = ({ todo }) => {
           }
         }}
         underlayColor="#00000000"
+        showLoading={[`DELETE_TODO[${todo.id}]`]}
       >
         <Feather name="trash-2" size={24} color="white" />
       </Button>

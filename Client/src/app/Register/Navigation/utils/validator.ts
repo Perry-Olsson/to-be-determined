@@ -21,8 +21,6 @@ export const validator = (values: RegisterValues) => {
   if (values.password !== values.passwordConfirmation)
     errors.passwordConfirmation = "passwords do not match";
 
-  console.log(errors);
-
   return errors;
 };
 

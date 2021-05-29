@@ -6,7 +6,9 @@ import {
   GestureResponderEvent,
   TextStyle,
   ColorValue,
+  ActivityIndicator,
 } from "react-native";
+import { useLoadingState } from "../contexts";
 
 export const Button: FC<ButtonProps> = ({
   children,
@@ -14,7 +16,9 @@ export const Button: FC<ButtonProps> = ({
   size,
   onPress,
   underlayColor,
+  showLoading = [],
 }) => {
+  const loading = useLoadingState();
   const buttonStyles = [
     styles.button,
     size === "sm" && styles.sm,
@@ -33,7 +37,11 @@ export const Button: FC<ButtonProps> = ({
       style={buttonStyles}
       onPress={onPress}
     >
-      {children}
+      {showLoading.filter((action) => loading.includes(action)).length ? (
+        <ActivityIndicator animating={true} />
+      ) : (
+        children
+      )}
     </TouchableHighlight>
   );
 };
@@ -64,6 +72,9 @@ interface ButtonProps {
   size?: ButtonSize;
   onPress: (event: GestureResponderEvent) => void;
   underlayColor?: ColorValue;
+  showLoading?: LoadingAction[];
 }
+
+export type LoadingAction = "LOGIN" | "REGISTER" | "SAVE_TODO" | string;
 
 type ButtonSize = "sm" | "md" | "lg";

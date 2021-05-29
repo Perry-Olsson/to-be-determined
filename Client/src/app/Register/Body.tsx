@@ -15,7 +15,6 @@ const Body = () => {
 
   const onSubmit = async (input: RegisterValues) => {
     try {
-      console.log(input);
       const user = await tryRegister(input);
       if (user)
         tryLogin({ emailOrUsername: user.email, password: input.password });

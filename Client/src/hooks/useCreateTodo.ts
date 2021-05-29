@@ -3,13 +3,16 @@ import { FormikHelpers } from "formik";
 import { TodoValues } from "../app/Profile/CreateTodo/TodoModal";
 import { useCreateTodoMutation } from "../generated/graphql";
 import { ME } from "../graphql/queries";
+import { useLoading } from "./useLoading";
 import { formatError } from "./useRegister";
 
 export const useSaveTodo = (
   setVisible: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const client = useApolloClient();
-  const [createTodo] = useCreateTodoMutation();
+  const [createTodo, result] = useCreateTodoMutation();
+
+  useLoading(result.loading, "SAVE_TODO");
 
   const onSubmit = async (
     input: TodoValues,
