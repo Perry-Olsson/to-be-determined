@@ -66,7 +66,7 @@ const main = async () => {
   apolloServer.installSubscriptionHandlers(httpServer);
 
   httpServer.listen(config.port, () => {
-    console.log(`Server is running on http://localhost:${config.port}/graphql`);
+    console.log(`Server is running on port ${config.port}`);
   });
 };
 
