@@ -17,12 +17,12 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     ios: {
-      bundleIdentifier: "com.perrytodo-or-not-todo",
+      bundleIdentifier: "com.perry.todo_or_not_todo",
       buildNumber: "1.0.0",
       supportsTablet: true,
     },
     android: {
-      package: "com.perry.todo-or-not-todo",
+      package: "com.perry.todo_or_not_todo",
       versionCode: 1,
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
@@ -34,6 +34,7 @@ export default {
     },
     extra: {
       apolloURI: process.env.APOLLO_URI,
+      wsURI: process.env.WEB_SOCKET_URI
     },
   },
 };

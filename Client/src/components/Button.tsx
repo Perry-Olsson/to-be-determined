@@ -7,6 +7,7 @@ import {
   TextStyle,
   ColorValue,
   ActivityIndicator,
+  TouchableHighlightProps,
 } from "react-native";
 import { useLoadingState } from "../contexts";
 
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface ButtonProps {
+interface ButtonProps extends TouchableHighlightProps {
   style?: ViewStyle | TextStyle;
   size?: ButtonSize;
   onPress: (event: GestureResponderEvent) => void;

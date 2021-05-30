@@ -1,6 +1,6 @@
 import { useApolloClient } from "@apollo/client";
 import React, { FC, useState } from "react";
-import { ViewStyle, TextStyle } from "react-native";
+import { ViewStyle, TextStyle, TouchableWithoutFeedback } from "react-native";
 import { useAuthStorage } from "../../contexts";
 import { Text } from "../Text";
 import { ME } from "../../graphql/queries";
@@ -15,7 +15,7 @@ export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
   return (
     <>
       <Button
-        size="sm"
+        underlayColor="black"
         style={style}
         onPress={async () => {
           setLoggingOut(true);
@@ -27,7 +27,9 @@ export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
           });
         }}
       >
-        <Text>logout</Text>
+        <Text color="secondary" style={{ fontSize: 25 }}>
+          Logout
+        </Text>
       </Button>
       {loggingOut ? <Modal /> : null}
     </>

@@ -12,6 +12,7 @@ import { ME } from "../../graphql/queries";
 import Constants from "expo-constants";
 import Footer from "../../components/Footer";
 import Emoji from "react-native-emoji";
+import { useApolloClient } from "@apollo/client";
 
 interface UnconfirmedProps {
   user: User;
@@ -19,9 +20,9 @@ interface UnconfirmedProps {
 
 export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
   const [resend] = useResendConfirmationMutation();
+  const client = useApolloClient();
   useConfirmedNotificationSubscription({
     variables: { email: user.email },
-    shouldResubscribe: true,
     onSubscriptionData: ({ client, subscriptionData }) => {
       if (subscriptionData.data?.confirmedNotification.confirmed) {
         client.writeQuery({
