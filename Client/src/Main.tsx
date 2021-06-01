@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { useAuthorizedUserQuery } from "./hooks";
@@ -12,6 +12,7 @@ interface MainProps {
 }
 
 const Main: FC<MainProps> = ({ launching, setLaunching }) => {
+  let firstLoad = useRef(true);
   const { user, loading, error } = useAuthorizedUserQuery();
 
   useEffect(() => {
@@ -20,8 +21,10 @@ const Main: FC<MainProps> = ({ launching, setLaunching }) => {
     }, twoSeconds);
   }, []);
 
-  if ((!error && loading) || launching)
+  if ((!error && loading && firstLoad.current) || launching)
     return <LaunchScreen launching={launching} />;
+
+  firstLoad.current = false;
 
   if (!user) return <LoginScreen />;
 

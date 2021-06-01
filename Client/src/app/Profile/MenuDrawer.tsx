@@ -1,6 +1,7 @@
 import React, { FC, SetStateAction } from "react";
 import { Logout } from "../../components";
 import { Drawer, DrawerItem } from "../../components/Drawer";
+import { useDeleteAccountMutation } from "../../generated/graphql";
 
 interface Props {
   visible: boolean;
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export const MenuDrawer: FC<Props> = ({ visible, setVisible }) => {
+  const [deleteAccount, result] = useDeleteAccountMutation();
+
   return (
     <Drawer visible={visible} setVisible={setVisible}>
       <DrawerItem onPress={() => console.log("hello")}>
@@ -21,7 +24,14 @@ export const MenuDrawer: FC<Props> = ({ visible, setVisible }) => {
           }}
         />
       </DrawerItem>
-      <DrawerItem onPress={() => console.log("hello")} text="Delete Account" />
+      <DrawerItem
+        onPress={async () => {
+          //alert user for delete confirmation before firing
+          const response = await deleteAccount();
+          console.log(response);
+        }}
+        text="Delete Account"
+      />
     </Drawer>
   );
 };

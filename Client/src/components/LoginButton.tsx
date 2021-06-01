@@ -29,7 +29,7 @@ const LoginButton: FC<ButtonProps> = ({
 
   return (
     <TouchableHighlight style={buttonStyles} onPress={onPress}>
-      {loading.length ? (
+      {loading.filter((a) => a === "LOGIN" || a === "REGISTER").length ? (
         <ActivityIndicator animating={true} />
       ) : (
         <Text fontSize="form" style={textStyle}>

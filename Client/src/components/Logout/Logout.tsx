@@ -20,11 +20,11 @@ export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
         onPress={async () => {
           setLoggingOut(true);
           await authStorage.removeAccessToken();
-          await client.resetStore();
           client.writeQuery({
             query: ME,
             data: { me: null },
           });
+          client.resetStore();
         }}
       >
         <Text color="secondary" style={{ fontSize: 25 }}>

@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+const __prod__ = process.env.NODE_ENV === "production";
 export default {
   expo: {
     name: "todo-or-not-todo",
@@ -33,8 +34,8 @@ export default {
       favicon: "./assets/favicon.png",
     },
     extra: {
-      apolloURI: process.env.APOLLO_URI,
-      wsURI: process.env.WEB_SOCKET_URI
+      apolloURI: __prod__ ?  process.env.PROD_APOLLO_URI : process.env.DEV_APOLLO_URI,
+      wsURI: __prod__ ? process.env.PROD_WEB_SOCKET_URI : process.env.DEV_WEB_SOCKET_URI
     },
   },
 };

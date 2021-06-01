@@ -284,9 +284,21 @@
       },
       {
         "kind": "OBJECT",
-        "name": "DeleteTodoResponse",
+        "name": "DeleteResponse",
         "description": null,
         "fields": [
+          {
+            "name": "success",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "errors",
             "description": null,
@@ -303,18 +315,6 @@
                   "ofType": null
                 }
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "success",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -589,7 +589,23 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DeleteTodoResponse",
+                "name": "DeleteResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleteAccount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DeleteResponse",
                 "ofType": null
               }
             },
