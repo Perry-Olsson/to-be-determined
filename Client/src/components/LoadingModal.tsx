@@ -5,10 +5,15 @@ import {
   ActivityIndicator,
   Modal as NativeModal,
 } from "react-native";
-import { Text } from "../Text";
+import { Text } from "./Text";
 
-export const Modal: FC = () => {
-  return (
+interface Props {
+  visible: boolean;
+  setVisible?: React.Dispatch<boolean>;
+}
+
+export const LoadingModal: FC<Props> = ({ children, visible }) => {
+  return visible ? (
     <View style={styles.centeredView}>
       <NativeModal
         animationType="none"
@@ -18,7 +23,7 @@ export const Modal: FC = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text>Logging you out</Text>
+            {children}
             <ActivityIndicator
               style={{ marginTop: 20 }}
               animating={true}
@@ -28,8 +33,9 @@ export const Modal: FC = () => {
         </View>
       </NativeModal>
     </View>
-  );
+  ) : null;
 };
+
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,

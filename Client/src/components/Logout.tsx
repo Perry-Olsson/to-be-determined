@@ -1,11 +1,11 @@
 import { useApolloClient } from "@apollo/client";
 import React, { FC, useState } from "react";
 import { ViewStyle, TextStyle, TouchableWithoutFeedback } from "react-native";
-import { useAuthStorage } from "../../contexts";
-import { Text } from "../Text";
-import { ME } from "../../graphql/queries";
-import { Button } from "../Button";
-import { Modal } from "./Modal";
+import { useAuthStorage } from "../contexts";
+import { Text } from "./Text";
+import { ME } from "../graphql/queries";
+import { Button } from "./Button";
+import { LoadingModal } from "./LoadingModal";
 
 export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
   const [loggingOut, setLoggingOut] = useState(false);
@@ -31,7 +31,9 @@ export const Logout: FC<{ style?: ViewStyle | TextStyle }> = ({ style }) => {
           Logout
         </Text>
       </Button>
-      {loggingOut ? <Modal /> : null}
+      <LoadingModal visible={loggingOut}>
+        <Text>Logging you out</Text>
+      </LoadingModal>
     </>
   );
 };

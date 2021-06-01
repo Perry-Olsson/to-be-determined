@@ -10,6 +10,7 @@ import {
 } from "../generated/graphql";
 import { RegisterValues } from "../app/Register/Body";
 import { MutationResult } from "@apollo/client";
+import { GraphQLError } from "graphql";
 
 export const useRegister = (): [
   TryRegister,
@@ -56,8 +57,9 @@ export const formatFieldError = (
   return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };
 
-export const formatError = (errors: BaseError[]) => {
-  return errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
+export const formatError = (errors: BaseError[] | readonly GraphQLError[]) => {
+  const _errors = errors as BaseError[];
+  return _errors.reduce((acc, { message }) => `${acc}\n${message}`, "");
 };
 
 type TryRegister = ({
