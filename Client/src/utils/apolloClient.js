@@ -6,7 +6,7 @@ import Constants from "expo-constants";
 import { WebSocketLink } from '@apollo/client/link/ws';
 
 const createApolloClient = (authStorage) => {
-  const timeoutLink = new ApolloLinkTimeout(6000);
+  const timeoutLink = new ApolloLinkTimeout(12000);
 
    const wsLink = new WebSocketLink({
     uri: Constants.manifest.extra.wsURI,
