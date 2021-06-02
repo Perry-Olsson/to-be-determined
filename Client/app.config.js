@@ -5,9 +5,9 @@ export default {
   expo: {
     name: "todo-or-not-todo",
     slug: "todo-or-not-todo",
-    version: "1.0.0",
+    version: "1.0.1",
     orientation: "portrait",
-    icon: "./assets/logo.png",
+    icon: "./assets/MainLogo.png",
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
@@ -18,12 +18,12 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     ios: {
-      bundleIdentifier: "com.perry.todo_or_not_todo",
+      bundleIdentifier: "com.perry.todoornottodo",
       buildNumber: "1.0.0",
       supportsTablet: true,
     },
     android: {
-      package: "com.perry.todo_or_not_todo",
+      package: "com.perry.todoornottodo",
       versionCode: 1,
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
