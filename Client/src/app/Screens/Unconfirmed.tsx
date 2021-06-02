@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text } from "../../components/Text";
 import theme from "../../components/theme";
-import { Button, Logout } from "../../components";
+import { Button, Logout, MenuButton } from "../../components";
 import {
   useConfirmedNotificationSubscription,
   User,
@@ -13,12 +13,15 @@ import Constants from "expo-constants";
 import Footer from "../../components/Footer";
 import Emoji from "react-native-emoji";
 import { useApolloClient } from "@apollo/client";
+import { MenuDrawer } from "../Profile/MenuDrawer";
 
 interface UnconfirmedProps {
   user: User;
 }
 
 export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
+  const [visible, setVisible] = useState(false);
+  const openMenu = () => setVisible(true);
   const [resend] = useResendConfirmationMutation();
   const client = useApolloClient();
   useConfirmedNotificationSubscription({
@@ -54,8 +57,9 @@ export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
         <Text>Resend!</Text>
       </Button>
       <Footer>
-        <Logout style={styles.logout} />
+        <MenuButton openMenu={openMenu} />
       </Footer>
+      <MenuDrawer visible={visible} setVisible={setVisible} />
     </View>
   );
 };
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight + 20,
+    paddingTop: Constants.statusBarHeight + 20,
     alignItems: "center",
   },
   success: {
