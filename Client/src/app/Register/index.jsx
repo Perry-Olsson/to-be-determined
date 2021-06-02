@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 
 import DismissKeyboard from "../../components/DismissKeyboard";
@@ -13,7 +13,9 @@ const Register = () => (
   <DismissKeyboard>
     <Body />
     <Footer color="secondary">
-      <Text color="light">Have an Account?</Text>
+      <Text style={styles.text} color="light">
+        Have an Account?
+      </Text>
       <Link
         title="Log In"
         to="/"
@@ -23,5 +25,11 @@ const Register = () => (
     </Footer>
   </DismissKeyboard>
 );
+
+const styles = StyleSheet.create({
+  text: {
+    paddingRight: Platform.OS === "ios" ? 0 : 10,
+  },
+});
 
 export default Register;

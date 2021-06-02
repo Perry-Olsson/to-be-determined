@@ -5,10 +5,7 @@ const Logo = ({ style }) => {
   const logoStyles = [styles.logo, style];
 
   return (
-    <Image
-      style={logoStyles}
-      source={require("../../assets/MainLogo.png")}
-    />
+    <Image style={logoStyles} source={require("../../assets/MainLogo.png")} />
   );
 };
 

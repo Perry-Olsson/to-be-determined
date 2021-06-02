@@ -25,6 +25,7 @@ export default {
     android: {
       package: "com.perry.todoornottodo",
       versionCode: 1,
+      softwareKeyboardLayoutMode: "pan",
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#FFFFFF",
@@ -34,8 +35,12 @@ export default {
       favicon: "./assets/favicon.png",
     },
     extra: {
-      apolloURI: __dev__ ?  process.env.DEV_APOLLO_URI : process.env.PROD_APOLLO_URI,
-      wsURI: __dev__ ? process.env.DEV_WEB_SOCKET_URI : process.env.PROD_WEB_SOCKET_URI
+      apolloURI: __dev__
+        ? process.env.DEV_APOLLO_URI
+        : process.env.PROD_APOLLO_URI,
+      wsURI: __dev__
+        ? process.env.DEV_WEB_SOCKET_URI
+        : process.env.PROD_WEB_SOCKET_URI,
     },
   },
 };

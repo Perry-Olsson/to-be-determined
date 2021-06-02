@@ -6,7 +6,7 @@ import FormikTextInput from "../../components/FormikTextInput";
 import Logo from "../../components/Logo";
 import SubmitButton from "../../components/LoginButton";
 import { useLoadingState } from "../../contexts/LoadingIcon";
-import { Seperator } from "../../components/FormikTextInput"
+import { Seperator } from "../../components/FormikTextInput";
 
 const LoginForm = ({ onSubmit }) => {
   const { values } = useFormikContext();
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignSelf: "center",
-    bottom: 40,
+    bottom: 20,
   },
 });
 

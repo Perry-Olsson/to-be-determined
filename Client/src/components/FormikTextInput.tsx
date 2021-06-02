@@ -62,7 +62,7 @@ export const Seperator: FC = () => {
 const styles = StyleSheet.create({
   seperator: {
     justifyContent: "center",
-    height: 30,
+    height: 20,
   },
   field: {
     borderWidth: 1,
