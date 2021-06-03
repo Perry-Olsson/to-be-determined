@@ -135,8 +135,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    borderWidth: 3,
-    borderColor: "white",
   },
   centeredViewAndroid: {
     height: Dimensions.get("window").height - Constants.statusBarHeight - 22,
