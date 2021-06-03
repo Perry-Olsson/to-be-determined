@@ -28,6 +28,7 @@ export const LoadingModal: FC<Props> = ({ children, visible }) => {
               style={{ marginTop: 20 }}
               animating={true}
               size="large"
+              color="blue"
             />
           </View>
         </View>

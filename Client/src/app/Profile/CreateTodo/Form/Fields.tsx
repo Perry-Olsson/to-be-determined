@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { FC, MutableRefObject, useRef } from "react";
+import { FlatList, FlatListProps, StyleSheet, View } from "react-native";
 
 import FormikTextInput from "../../../../components/FormikTextInput";
 import { useFormikContext } from "formik";
@@ -9,22 +9,31 @@ import { TodoValues } from "../TodoModal";
 
 export const Fields: FC = () => {
   const { values, setValues } = useFormikContext<TodoValues>();
+  const noteRef = useRef<FlatList<string> | null>(null);
+  const myRef = useRef(null);
 
   return (
     <View style={styles.formContainer}>
       <FormikTextInput
+        ref={myRef}
         type="secondary"
         name="title"
         placeholder="Title"
         autoCapitalize="sentences"
         autoFocus={true}
       />
-      <AddNoteField values={values} setValues={setValues} />
+      <AddNoteField
+        values={values}
+        setValues={setValues}
+        noteRef={noteRef}
+        myRef={myRef}
+      />
       <FlatList
+        ref={noteRef}
         data={values.notes}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ index }) => <NoteField index={index} />}
-        keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps="always"
         style={{ flex: 1 }}
       />
     </View>

@@ -18,42 +18,38 @@ interface Props extends TextInputProps {
   style?: ViewStyle;
 }
 
-const FormikTextInput: FC<Props> = ({
-  name,
-  type,
-  style,
-  autoCapitalize,
-  placeholder,
-  ...props
-}) => {
-  const [field, meta, helpers] = useField(name);
+const FormikTextInput: FC<Props> = React.forwardRef(
+  ({ name, type, style, autoCapitalize, placeholder, ...props }, ref) => {
+    const [field, meta, helpers] = useField(name);
 
-  const fieldStyles = [
-    styles.field,
-    type === "secondary" && styles.secondary,
-    style,
-  ];
+    const fieldStyles = [
+      styles.field,
+      type === "secondary" && styles.secondary,
+      style,
+    ];
 
-  return (
-    <>
-      <TextInput
-        onChangeText={(value: any) => helpers.setValue(value)}
-        onBlur={() => helpers.setTouched(true)}
-        value={field.value}
-        placeholder={placeholder}
-        placeholderTextColor="#aaaaaa"
-        autoCapitalize={autoCapitalize}
-        style={fieldStyles}
-        {...props}
-      />
-      <View style={styles.seperator}>
-        {meta.error && meta.touched ? (
-          <Text color="error">{meta.error}</Text>
-        ) : null}
-      </View>
-    </>
-  );
-};
+    return (
+      <>
+        <TextInput
+          ref={ref}
+          onChangeText={(value: any) => helpers.setValue(value)}
+          onBlur={() => helpers.setTouched(true)}
+          value={field.value}
+          placeholder={placeholder}
+          placeholderTextColor="#aaaaaa"
+          autoCapitalize={autoCapitalize}
+          style={fieldStyles}
+          {...props}
+        />
+        <View style={styles.seperator}>
+          {meta.error && meta.touched ? (
+            <Text color="error">{meta.error}</Text>
+          ) : null}
+        </View>
+      </>
+    );
+  }
+);
 
 export const Seperator: FC = () => {
   return <View style={styles.seperator} />;

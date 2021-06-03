@@ -1,15 +1,29 @@
 import React, { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import { FlatList, Keyboard, StyleSheet, View } from "react-native";
 import { TodoValues } from "../TodoModal";
 import { Button } from "../../../../components";
 import { AntDesign } from "@expo/vector-icons";
 import { Text } from "../../../../components";
 import theme from "../../../../components/theme";
 
-export const AddNoteField: FC<AddNoteFieldProps> = ({ values, setValues }) => {
+export const AddNoteField: FC<AddNoteFieldProps> = ({
+  values,
+  setValues,
+  noteRef,
+  myRef,
+}) => {
   return (
     <View style={styles.container}>
-      <Button style={styles.addDelete} onPress={() => add(values, setValues)}>
+      <Button
+        style={styles.addDelete}
+        onPress={async () => {
+          add(values, setValues);
+          myRef.current.focus();
+          setTimeout(() => {
+            noteRef.current?.scrollToEnd();
+          }, 250);
+        }}
+      >
         <AntDesign name="plus" size={24} color="black" />
       </Button>
       <Button
@@ -73,6 +87,7 @@ interface AddNoteFieldProps {
     values: React.SetStateAction<TodoValues>,
     shouldValidate?: boolean | undefined
   ) => void;
+  noteRef: React.MutableRefObject<FlatList<string> | null>;
 }
 
 type NoteAction = (

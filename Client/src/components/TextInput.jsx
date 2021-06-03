@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderWidth: 2,
     borderRadius: 4,
-  }
+  },
 });
 
-const TextInput = ({ style,...props }) => {
+const TextInput = React.forwardRef(({ style, ...props }, ref) => {
   const textInputStyle = [styles.input, style];
 
-  return <NativeTextInput style={textInputStyle} {...props} />;
-};
+  return <NativeTextInput ref={ref} style={textInputStyle} {...props} />;
+});
 
 export default TextInput;

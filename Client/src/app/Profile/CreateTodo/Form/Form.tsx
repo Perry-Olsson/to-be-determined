@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { View } from "react-native";
-import { Formik } from "formik";
 import { Fields } from "./Fields";
 import { Button, Text } from "../../../../components";
 import theme from "../../../../components/theme";
@@ -14,7 +13,12 @@ export const Form: FC<Props> = ({ handleSubmit }) => {
       <View style={{ flex: 1, width: "100%" }}>
         <Fields />
         <Button
-          style={{ paddingVertical: 20, backgroundColor: theme.colors.logo }}
+          style={{
+            paddingVertical: 20,
+            backgroundColor: theme.colors.logo,
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+          }}
           onPress={() => handleSubmit()}
           showLoading={["SAVE_TODO"]}
         >
