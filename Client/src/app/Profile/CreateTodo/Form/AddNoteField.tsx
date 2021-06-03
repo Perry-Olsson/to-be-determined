@@ -4,6 +4,7 @@ import { TodoValues } from "../TodoModal";
 import { Button } from "../../../../components";
 import { AntDesign } from "@expo/vector-icons";
 import { Text } from "../../../../components";
+import { constants } from "../../../../components";
 import theme from "../../../../components/theme";
 
 export const AddNoteField: FC<AddNoteFieldProps> = ({
@@ -35,7 +36,7 @@ export const AddNoteField: FC<AddNoteFieldProps> = ({
         style={styles.addDelete}
         onPress={async () => {
           add(values, setValues);
-          if (keyboardUp.current) titleRef.current!.focus();
+          if (!constants.ios && keyboardUp.current) titleRef.current!.focus();
           setTimeout(() => {
             noteRef.current?.scrollToEnd();
           }, 250);
