@@ -8,5 +8,6 @@ services:
       POSTGRES_DB: dev
     volumes:
       - ../pgdata:/var/lib/postgresql/data
+      - ../init:/init
     ports:
       - 5432:5432
