@@ -18,9 +18,9 @@ const App = () => {
     <ApolloProvider client={client}>
       <AuthStorageProvider value={authStorage}>
         <LoadingProvider>
+          <StatusBar translucent barStyle="light-content" />
           <GalaxyBackground />
           <View style={styles.main}>
-            <StatusBar translucent barStyle="dark-content" />
             <Main launching={launching} setLaunching={setLaunching} />
           </View>
         </LoadingProvider>
