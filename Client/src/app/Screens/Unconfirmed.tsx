@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Text } from "../../components/Text";
 import theme from "../../components/theme";
-import { Button, Logout, MenuButton } from "../../components";
+import { Button, constants, Logout, MenuButton } from "../../components";
 import {
   useConfirmedNotificationSubscription,
   User,
@@ -22,8 +22,8 @@ interface UnconfirmedProps {
 export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
   const [visible, setVisible] = useState(false);
   const openMenu = () => setVisible(true);
-  const [resend] = useResendConfirmationMutation();
   const client = useApolloClient();
+  const [resend] = useResendConfirmationMutation();
   useConfirmedNotificationSubscription({
     variables: { email: user.email },
     onSubscriptionData: ({ client, subscriptionData }) => {
@@ -49,13 +49,33 @@ export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
       <Text style={styles.text}>
         Just waiting for email confirmation {user.firstName}
       </Text>
-      <ActivityIndicator animating={true} />
+      <ActivityIndicator animating={true} color="white" />
       <Text style={{ fontSize: 30, marginVertical: 30 }} color="logo">
         Can't find the email?
       </Text>
       <Button size="md" onPress={() => resend()}>
         <Text>Resend!</Text>
       </Button>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          position: "absolute",
+          bottom: 5 + constants.footer.height,
+        }}
+      >
+        <Text style={{ fontSize: 20, marginRight: 10 }} color="logo">
+          Confirmed, but still stuck?
+        </Text>
+        <Button
+          size="sm"
+          onPress={async () => {
+            await client.resetStore();
+          }}
+        >
+          <Text>Reload</Text>
+        </Button>
+      </View>
       <Footer>
         <MenuButton openMenu={openMenu} />
       </Footer>

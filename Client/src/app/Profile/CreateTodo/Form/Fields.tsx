@@ -1,5 +1,11 @@
 import React, { FC, MutableRefObject, useRef } from "react";
-import { FlatList, FlatListProps, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  FlatListProps,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 
 import FormikTextInput from "../../../../components/FormikTextInput";
 import { useFormikContext } from "formik";
@@ -10,12 +16,12 @@ import { TodoValues } from "../TodoModal";
 export const Fields: FC = () => {
   const { values, setValues } = useFormikContext<TodoValues>();
   const noteRef = useRef<FlatList<string> | null>(null);
-  const myRef = useRef(null);
+  const titleRef = useRef<TextInput | null>(null);
 
   return (
     <View style={styles.formContainer}>
       <FormikTextInput
-        ref={myRef}
+        ref={titleRef}
         type="secondary"
         name="title"
         placeholder="Title"
@@ -26,7 +32,7 @@ export const Fields: FC = () => {
         values={values}
         setValues={setValues}
         noteRef={noteRef}
-        myRef={myRef}
+        titleRef={titleRef}
       />
       <FlatList
         ref={noteRef}

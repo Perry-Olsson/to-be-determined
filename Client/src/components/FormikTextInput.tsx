@@ -18,7 +18,7 @@ interface Props extends TextInputProps {
   style?: ViewStyle;
 }
 
-const FormikTextInput: FC<Props> = React.forwardRef(
+const FormikTextInput = React.forwardRef<_TextInput, Props>(
   ({ name, type, style, autoCapitalize, placeholder, ...props }, ref) => {
     const [field, meta, helpers] = useField(name);
 

@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { FlatList, Keyboard, StyleSheet, View } from "react-native";
+import React, { FC, useEffect, useRef } from "react";
+import { FlatList, Keyboard, StyleSheet, TextInput, View } from "react-native";
 import { TodoValues } from "../TodoModal";
 import { Button } from "../../../../components";
 import { AntDesign } from "@expo/vector-icons";
@@ -10,15 +10,32 @@ export const AddNoteField: FC<AddNoteFieldProps> = ({
   values,
   setValues,
   noteRef,
-  myRef,
+  titleRef,
 }) => {
+  let keyboardUp = useRef(false);
+  const onKeyboardShow = () => {
+    keyboardUp.current = true;
+  };
+
+  const onKeyboardHide = () => {
+    keyboardUp.current = false;
+  };
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", onKeyboardShow);
+    Keyboard.addListener("keyboardDidHide", onKeyboardHide);
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", onKeyboardShow);
+      Keyboard.removeListener("keyboardDidHide", onKeyboardHide);
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Button
         style={styles.addDelete}
         onPress={async () => {
           add(values, setValues);
-          myRef.current.focus();
+          if (keyboardUp.current) titleRef.current!.focus();
           setTimeout(() => {
             noteRef.current?.scrollToEnd();
           }, 250);
@@ -88,6 +105,7 @@ interface AddNoteFieldProps {
     shouldValidate?: boolean | undefined
   ) => void;
   noteRef: React.MutableRefObject<FlatList<string> | null>;
+  titleRef: React.MutableRefObject<TextInput | null>;
 }
 
 type NoteAction = (
