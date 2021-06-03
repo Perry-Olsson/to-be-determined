@@ -20,7 +20,7 @@ const App = () => {
         <LoadingProvider>
           <GalaxyBackground />
           <View style={styles.main}>
-            <StatusBar translucent backgroundColor="#00000000" />
+            <StatusBar translucent barStyle="dark-content" />
             <Main launching={launching} setLaunching={setLaunching} />
           </View>
         </LoadingProvider>
