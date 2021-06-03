@@ -1,7 +1,7 @@
 PORT
 SECRET
-DATABASE_URL
+DATABASE_URL -- postgres://postgres:secret@localhost:5432/dev for docker container 
 CONFIRMATION_SECRET
-SMTP_LOGIN
-SMTP_PASSWORD
-CONFIRMATION_URL
+SMTP_LOGIN -- only in prod
+SMTP_PASSWORD -- only in prod
+CONFIRMATION_URL -- http://localhost:$PORT/user/confirm for development

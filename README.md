@@ -21,3 +21,24 @@ In the future I plan on scrapping the todo portion and creating a subscription m
 - Create and delete persistant todo items with bulleted notes
 - Account deletion
 - Loading display module that targets individual components
+
+## Run Locally
+
+1. clone the repo
+2. install <a href="https://docs.expo.io/get-started/installation/">Expo</a> if needed.
+
+#### Api setup
+
+- With Docker (recommended)
+
+1. run `npm install` in the API directory
+2. Create a .env file following the template
+3. Run `docker-compose up -d`
+4. `npm run db:init`
+5. `npx mikro-orm migration:up`
+6. `npm run dev` OR `npm run watch` and `npm run dev:js` in a new terminal
+
+#### Client set up
+
+1. run `npm install` in the Client directory
+2.
