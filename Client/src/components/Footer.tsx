@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import theme from "./theme";
 
 interface FooterProps {
   style?: ViewStyle;
 }
+
+const ios = Platform.OS === "ios";
 
 const Footer: FC<FooterProps> = ({ children, style }) => {
   const footerStyles = [styles.container, style];
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    height: 85,
+    height: ios ? 85 : 65,
     borderTopWidth: 1,
     borderColor: theme.colors.opaqueGray,
   },
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: 65,
-    bottom: 20,
+    bottom: ios ? 20 : 0,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

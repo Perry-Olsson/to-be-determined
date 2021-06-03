@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from "react-native";
 import { Todo } from "./Todo";
 import { constants, Text } from "../../components";
 import { User } from "../../generated/graphql";
@@ -40,6 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    marginVertical: 15,
+    marginVertical: Platform.OS === "ios" ? 15 : 20,
   },
 });

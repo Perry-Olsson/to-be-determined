@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ApolloProvider } from "@apollo/client";
-
 import createApolloClient from "./src/utils/apolloClient";
 import Main from "./src/Main";
 import GalaxyBackground from "./src/components/GalaxyBackground";
 import AuthStorage from "./src/utils/AuthStorage";
 import AuthStorageProvider from "./src/contexts/AuthStorageContext";
 import { LoadingProvider } from "./src/contexts/LoadingIcon";
+import { StyleSheet, StatusBar, View } from "react-native";
 
 export const authStorage = new AuthStorage();
 
@@ -19,11 +19,19 @@ const App = () => {
       <AuthStorageProvider value={authStorage}>
         <LoadingProvider>
           <GalaxyBackground />
-          <Main launching={launching} setLaunching={setLaunching} />
+          <View style={styles.main}>
+            <StatusBar translucent backgroundColor="#00000000" />
+            <Main launching={launching} setLaunching={setLaunching} />
+          </View>
         </LoadingProvider>
       </AuthStorageProvider>
     </ApolloProvider>
   );
 };
 
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+  },
+});
 export default App;
