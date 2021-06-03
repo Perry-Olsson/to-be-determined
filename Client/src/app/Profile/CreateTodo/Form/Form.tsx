@@ -14,7 +14,7 @@ export const Form: FC<Props> = ({ handleSubmit }) => {
         <Fields />
         <Button
           style={{
-            paddingVertical: 20,
+            paddingVertical: 11,
             backgroundColor: theme.colors.logo,
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,

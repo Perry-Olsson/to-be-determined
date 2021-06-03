@@ -12,7 +12,7 @@ export const ExitButton: FC<{
         style={{ backgroundColor: "#00000000" }}
         onPress={() => setVisible(false)}
       >
-        <AntDesign name="close" size={32} color="black" />
+        <AntDesign name="close" size={22} color="black" />
       </Button>
     </View>
   );

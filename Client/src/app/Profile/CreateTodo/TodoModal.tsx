@@ -137,13 +137,12 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   centeredViewAndroid: {
-    height: Dimensions.get("window").height - Constants.statusBarHeight - 22,
+    height: Dimensions.get("window").height - Constants.statusBarHeight,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   modalView: {
-    margin: 20,
+    margin: constants.ios ? 20 : 0,
     position: "absolute",
     left: 20,
     right: 20,
@@ -159,7 +158,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   modalText: {
-    fontSize: 24,
+    fontSize: 20,
     paddingLeft: 20,
   },
 });
