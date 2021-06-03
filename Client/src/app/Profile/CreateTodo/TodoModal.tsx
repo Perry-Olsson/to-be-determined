@@ -8,13 +8,16 @@ import {
   KeyboardEventListener,
   Animated,
   Dimensions,
+  KeyboardEventName,
 } from "react-native";
-import { Text } from "../../../components";
+import { constants, Text } from "../../../components";
 import DismissKeyboard from "../../../components/DismissKeyboard";
 import { useSaveTodo } from "../../../hooks/useCreateTodo";
 import { _Todo } from "../types";
 import { ExitButton } from "./ExitButton";
 import { Form as TodoForm } from "./Form";
+import Constants from "expo-constants";
+import { isNonEmptyArray } from "@apollo/client/utilities";
 
 export const TodoModal: FC<{
   visible: boolean;
@@ -51,11 +54,15 @@ export const TodoModal: FC<{
     }).start();
   };
   useEffect(() => {
-    Keyboard.addListener("keyboardWillShow", onKeyBoardShow);
-    Keyboard.addListener("keyboardWillHide", onKeyBoardHide);
+    const event: { show: KeyboardEventName; hide: KeyboardEventName } = {
+      show: constants.ios ? "keyboardWillShow" : "keyboardDidShow",
+      hide: constants.ios ? "keyboardWillHide" : "keyboardDidHide",
+    };
+    Keyboard.addListener(event.show, onKeyBoardShow);
+    Keyboard.addListener(event.hide, onKeyBoardHide);
     return () => {
-      Keyboard.removeListener("keyboardWillShow", onKeyBoardShow);
-      Keyboard.removeListener("keyboardWillHide", onKeyBoardHide);
+      Keyboard.removeListener(event.show, onKeyBoardShow);
+      Keyboard.removeListener(event.hide, onKeyBoardHide);
     };
   });
 
@@ -77,7 +84,11 @@ export const TodoModal: FC<{
           }}
         >
           <DismissKeyboard>
-            <View style={styles.centeredView}>
+            <View
+              style={
+                constants.ios ? styles.centeredView : styles.centeredViewAndroid
+              }
+            >
               <Animated.View
                 style={{
                   ...styles.modalView,
@@ -121,6 +132,14 @@ export interface TodoValues {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+    borderWidth: 3,
+    borderColor: "white",
+  },
+  centeredViewAndroid: {
+    height: Dimensions.get("window").height - Constants.statusBarHeight - 22,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,

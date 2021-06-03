@@ -10,6 +10,7 @@ import {
   TouchableHighlightProps,
 } from "react-native";
 import { useLoadingState } from "../contexts";
+import theme from "./theme";
 
 export const Button: FC<ButtonProps> = ({
   children,
@@ -39,7 +40,7 @@ export const Button: FC<ButtonProps> = ({
       onPress={onPress}
     >
       {showLoading.filter((action) => loading.includes(action)).length ? (
-        <ActivityIndicator animating={true} />
+        <ActivityIndicator animating={true} color="white" />
       ) : (
         children
       )}

@@ -1,6 +1,8 @@
+import { Platform } from "react-native";
+
 export const constants = {
   footer: {
-    height: 85,
+    height: Platform.OS === "ios" ? 85 : 65,
   },
   flatListOffset: {
     height: 160,
@@ -8,4 +10,5 @@ export const constants = {
   todoModal: {
     bottomOffset: 180,
   },
+  ios: Platform.OS === "ios",
 };

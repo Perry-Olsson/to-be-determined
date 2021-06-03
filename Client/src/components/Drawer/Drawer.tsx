@@ -6,7 +6,9 @@ import {
   TouchableWithoutFeedback,
   SafeAreaView,
   Animated,
+  Platform,
 } from "react-native";
+import Constants from "expo-constants";
 
 export const Drawer: FC<{
   visible: boolean;
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     backgroundColor: "#333333cc",
     position: "absolute",
+    paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
     top: 0,
     bottom: 0,
     left: 0,
