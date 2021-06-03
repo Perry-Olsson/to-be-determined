@@ -27,7 +27,7 @@ export default {
       versionCode: 1,
       softwareKeyboardLayoutMode: "pan",
       adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
+        foregroundImage: "./assets/MainLogo.png",
         backgroundColor: "#FFFFFF",
       },
     },
