@@ -5,12 +5,14 @@ import { useLoadingState } from "../../contexts/LoadingIcon";
 
 export const LaunchScreen = ({ launching }) => {
   const loading = useLoadingState();
+
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
       <ActivityIndicator
         size="large"
-        animating={!launching && loading.length}
+        animating={!launching && loading.length ? true : false}
+        color="white"
       />
     </View>
   );
@@ -21,6 +23,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 3,
+    borderColor: "white",
   },
   logo: {
     margin: 30,
