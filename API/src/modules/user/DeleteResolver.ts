@@ -7,7 +7,7 @@ import { DeleteResponse } from "../types";
 @Resolver()
 export class DeleteResolver {
   @Mutation(() => DeleteResponse)
-  @UseMiddleware(isAuthorized())
+  @UseMiddleware(isAuthorized({ checkConfirmation: false }))
   async deleteAccount(@Ctx() { req, em }: MyContext): Promise<DeleteResponse> {
     try {
       await em.begin();
