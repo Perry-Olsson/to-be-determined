@@ -20,7 +20,7 @@
 
 <h5 align="center">iOS preview: <a href="https://appetize.io/embed/ynp0qcfphh663b67hhgzk28yfm">https://appetize.io/embed/ynp0qcfphh663b67hhgzk28yfm</a></h5>
 
-<h5 align="center">Android preview: <a href="https://appetize.io/embed/p0bf0m7d7m15twcgabtenuj9nw">https://appetize.io/embed/p0bf0m7d7m15twcgabtenuj9nw</a></h5>
+<h5 align="center">Android preview: <a href="https://appetize.io/embed/m0n8avntfr8n3pj61tch27fjr0">https://appetize.io/embed/m0n8avntfr8n3pj61tch27fjr0</a></h5>
 
 ## Project Status -- ON HOLD
 
