@@ -6,12 +6,13 @@ import NextButton from "../NextButton";
 import { useNextRoute } from "../../../../hooks";
 import theme from "../../../../components/theme";
 import { useFormikContext } from "formik";
+import { Dimensions } from "react-native";
 
-export const Name = ({ invalidFields: {firstName, lastName} }) => {
-  const { setFieldTouched } = useFormikContext()
+export const Name = ({ invalidFields: { firstName, lastName } }) => {
+  const { setFieldTouched } = useFormikContext();
   const next = useNextRoute("/email");
-  const invalid = firstName || lastName
-  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
+  const invalid = firstName || lastName;
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo };
 
   return (
     <>
@@ -19,30 +20,37 @@ export const Name = ({ invalidFields: {firstName, lastName} }) => {
         type="secondary"
         name="firstName"
         placeholder="First Name"
-        autoFocus
+        autoFocus={Dimensions.get("window").height > 590 ? true : false}
       />
       <FormikTextInput
         type="secondary"
         name="lastName"
         placeholder="Last Name"
       />
-      <NextButton onPress={ invalid ? () => {
-        setFieldTouched("firstName")
-        setFieldTouched("lastName")
-      } : next} style={buttonStyle} />
+      <NextButton
+        onPress={
+          invalid
+            ? () => {
+                setFieldTouched("firstName");
+                setFieldTouched("lastName");
+              }
+            : next
+        }
+        style={buttonStyle}
+      />
     </>
   );
 };
 
 export const Email = ({ scrollViewRef, invalidFields: { email } }) => {
-  const { setFieldTouched } = useFormikContext()
+  const { setFieldTouched } = useFormikContext();
   const nextRoute = useNextRoute("/username");
   const handleNextRoute = () => {
     nextRoute();
     scrollViewRef.current.toEnd();
   };
-  const invalid =  email 
-  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
+  const invalid = email;
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo };
 
   return (
     <>
@@ -54,16 +62,19 @@ export const Email = ({ scrollViewRef, invalidFields: { email } }) => {
         autoCapitalize="none"
         autoFocus
       />
-      <NextButton onPress={invalid ? () => setFieldTouched("email"): handleNextRoute} style={buttonStyle} />
+      <NextButton
+        onPress={invalid ? () => setFieldTouched("email") : handleNextRoute}
+        style={buttonStyle}
+      />
     </>
   );
 };
 
-export const Username = ({ invalidFields: {username}}) => {
-  const { setFieldTouched } = useFormikContext()
+export const Username = ({ invalidFields: { username } }) => {
+  const { setFieldTouched } = useFormikContext();
   const next = useNextRoute("/password");
-  const invalid =  username
-  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo}
+  const invalid = username;
+  const buttonStyle = invalid && { backgroundColor: theme.colors.inActiveLogo };
 
   return (
     <>
@@ -74,7 +85,10 @@ export const Username = ({ invalidFields: {username}}) => {
         autoCapitalize="none"
         autoFocus
       />
-      <NextButton onPress={invalid ? () => setFieldTouched("username") : next} style={buttonStyle}/>
+      <NextButton
+        onPress={invalid ? () => setFieldTouched("username") : next}
+        style={buttonStyle}
+      />
     </>
   );
 };
@@ -85,8 +99,8 @@ export const Password = () => (
       type="secondary"
       name="password"
       placeholder="Password"
-      autoFocus
       secureTextEntry
+      autoFocus={Dimensions.get("window").height > 590 ? true : false}
     />
     <FormikTextInput
       type="secondary"

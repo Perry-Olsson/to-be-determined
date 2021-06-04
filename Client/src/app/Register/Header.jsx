@@ -27,8 +27,7 @@ const Header = () => {
       style={{
         alignSelf: "center",
         marginTop: Constants.statusBarHeight,
-        marginBottom: 10,
-        fontSize: 30
+        fontSize: 28,
       }}
     >
       {getHeader(location)}
