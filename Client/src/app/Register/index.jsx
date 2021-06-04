@@ -13,7 +13,7 @@ const Register = () => (
   <DismissKeyboard>
     <Body />
     <Footer color="secondary">
-      <Text style={styles.text} color="light">
+      <Text style={styles.text} color="secondary">
         Have an Account?
       </Text>
       <Link

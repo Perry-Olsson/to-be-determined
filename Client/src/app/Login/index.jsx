@@ -20,8 +20,8 @@ export const Login = ({ fadeIn, setFadeIn }) => (
     <DismissKeyboard>
       <Body />
       <Footer color="secondary">
-        <Text style={styles.text} color="light">
-          New to Friday?
+        <Text style={styles.text} color="secondary">
+          Don't have an account?
         </Text>
         <Link
           to="/register"
