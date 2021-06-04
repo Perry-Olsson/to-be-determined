@@ -11,7 +11,7 @@ export const getConfirmationHTML = (user: User, url: string): string => {
         <meta name="author" content="Friday">
       </head>
       <body>
-        <h1>Hello ${user.firstName} ${user.lastName}, Welcome to Friday!</h1>
+        <h1>Hello ${user.firstName} ${user.lastName}, Welcome to Todo or not Todo!</h1>
         <h3>Click the link to confirm your account</h3>
         <p>
           <a href="${url}">${url}</a>

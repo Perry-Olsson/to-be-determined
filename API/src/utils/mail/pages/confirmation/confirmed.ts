@@ -7,7 +7,7 @@ export const getConfirmedHTML = ({ firstName }: User): string => {
         <meta charset="utf-8">
         <title>Conrimation Success</title>
         <meta name="description" content="Successful email confirmation">
-        <meta name="author" content="Friday">
+        <meta name="author" content="todo-or-not-todo">
         <style>
         div {
           text-align: center;
