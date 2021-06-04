@@ -50,10 +50,10 @@ export const Unconfirmed: FC<UnconfirmedProps> = ({ user }) => {
         Just waiting for email confirmation {user.firstName}
       </Text>
       <ActivityIndicator animating={true} color="white" />
-      <Text style={{ fontSize: 30, marginVertical: 30 }} color="logo">
+      <Text style={{ fontSize: 25, marginVertical: 15 }} color="logo">
         Can't find the email?
       </Text>
-      <Button size="md" onPress={() => resend()}>
+      <Button size="sm" onPress={() => resend()}>
         <Text>Resend!</Text>
       </Button>
       <View
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  emoji: { fontSize: 30 },
+  emoji: { fontSize: 25 },
   text: {
     color: theme.colors.logo,
-    fontSize: 30,
-    padding: 30,
+    fontSize: 25,
+    padding: 15,
     textAlign: "center",
   },
 });
