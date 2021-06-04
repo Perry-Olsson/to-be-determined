@@ -5,15 +5,16 @@
 ---
 
 <p float="left">
-<img align="center" src="./Client/assets/PS-2.png" width="80"/>
-<img align="center" src="./Client/assets/PS-3.png" width="80"/>
-<img align="center" src="./Client/assets/PS-4.png" width="80"/>
-<img align="center" src="./Client/assets/PS-5.png" width="80"/>
-<img align="center" src="./Client/assets/PS-6.png" width="80"/>
-<img align="center" src="./Client/assets/PS-7.png" width="80"/>
-<img align="center" src="./Client/assets/PS-8.png" width="80"/>
-<img align="center" src="./Client/assets/PS-9.png" width="80"/>
-<img align="center" src="./Client/assets/PS-10.png" width="80"/>
+<img align="center" src="./Client/assets/PS-2.png" width="160"/>
+<img align="center" src="./Client/assets/PS-3.png" width="160"/>
+<img align="center" src="./Client/assets/PS-4.png" width="160"/>
+<img align="center" src="./Client/assets/PS-5.png" width="160"/>
+<img align="center" src="./Client/assets/PS-6.png" width="160"/>
+<img align="center" src="./Client/assets/PS-7.png" width="160"/>
+<img align="center" src="./Client/assets/PS-8.png" width="160"/>
+<img align="center" src="./Client/assets/PS-9.png" width="160"/>
+<img align="center" src="./Client/assets/PS-10.png" width="160"/>
+<img align="center" src="./Client/assets/PS-11.png" width="160"/>
 </p>
 
 ---
