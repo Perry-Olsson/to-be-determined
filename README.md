@@ -4,17 +4,17 @@
 
 ---
 
-<span>
-<img align="center" src="./Client/assets/PS-2.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-3.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-4.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-5.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-6.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-7.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-8.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-9.png" height="50%"/>
-<img align="center" src="./Client/assets/PS-10.png" height="50%"/>
-</span>
+<p float="left">
+<img align="center" src="./Client/assets/PS-2.png" width="80"/>
+<img align="center" src="./Client/assets/PS-3.png" width="80"/>
+<img align="center" src="./Client/assets/PS-4.png" width="80"/>
+<img align="center" src="./Client/assets/PS-5.png" width="80"/>
+<img align="center" src="./Client/assets/PS-6.png" width="80"/>
+<img align="center" src="./Client/assets/PS-7.png" width="80"/>
+<img align="center" src="./Client/assets/PS-8.png" width="80"/>
+<img align="center" src="./Client/assets/PS-9.png" width="80"/>
+<img align="center" src="./Client/assets/PS-10.png" width="80"/>
+</p>
 
 ---
 
