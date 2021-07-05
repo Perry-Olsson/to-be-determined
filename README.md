@@ -17,7 +17,7 @@
 
 ---
 
-<h5 align="center">iOS preview: <a href="https://appetize.io/embed/ynp0qcfphh663b67hhgzk28yfm">https://appetize.io/embed/ynp0qcfphh663b67hhgzk28yfm</a></h5>
+<h5 align="center">iOS preview: <a href="https://appetize.io/embed/tva4n5vv04cjvq1c9g7582jbjr">https://appetize.io/embed/ynp0qcfphh663b67hhgzk28yfm</a></h5>
 
 <h5 align="center">Android preview: <a href="https://appetize.io/embed/m0n8avntfr8n3pj61tch27fjr0">https://appetize.io/embed/m0n8avntfr8n3pj61tch27fjr0</a></h5>
 
