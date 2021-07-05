@@ -1,7 +1,5 @@
 <a href="https://expo.io/@perry-olsson/todo-or-not-todo"><h1 align="center">Todo or Not Todo</h1></a>
 
-<h4 align="center">A failed collaboration turned todo app</h4>
-
 ---
 
 <p float="left">
