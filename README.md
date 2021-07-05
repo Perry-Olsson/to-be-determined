@@ -23,9 +23,9 @@
 
 ## Project Status -- ON HOLD
 
-This was originally an impromtu collaboration with a friend whose education was put on hold via the pandemic in the attempt to build a social/event planning application. I built the account creation and authentication and ended up with an application you could register and log into just to find a blank page. I wanted at least something to show for, so I spent a few days building my first todo app.
+This was originally an impromtu collaboration with a friend whose education was put on hold via the pandemic in the attempt to build a social/event planning application. I built the account creation and authentication and ended up with an application you could register and log into just to find a blank page. I wanted at least something to show for, so I spent a few days building a todo app.
 
-In the future I plan on scrapping the todo portion and creating a subscription management application in its place. As I've been known to continue paying for subscriptions I don't use any longer.
+In the future I plan on scrapping the todo portion and creating a subscription management application in its place.
 
 ## Feature Overview
 
@@ -61,11 +61,11 @@ In the future I plan on scrapping the todo portion and creating a subscription m
 
 ## Reflection
 
-**TLDR**<br/>As mentioned above the project was originally a collaboration. I went into it with the mindset of creating an UX/UI focused application from start to finish. The collaboration fizzled out so it ended up turning into a simple todo app with production ready account creation and authentication.
+**TLDR**<br/>As mentioned above the project was originally a collaboration. I went into it with the mindset of creating an UX/UI focused application from start to finish. The collaboration did not end up working so I built a simple todo application with robust account creation, authentication, and email confirmation.
 
 #### Inspiration
 
-I had just finished the React Native section of an online course I was taking and was feeling fairly confident using it. Around that time I met someone at a party who was in their senior year at MIT. He had a very interesting idea for a social media application that was focused on facilitating actual meet ups and/or events. The application was certainly going to require users to create accounts and have authentication so having had experience with that, I got started on it. The friend I had met ended up getting busy with school and the application at the point, just had users logging into a blank page, so I decided to create a light weight todo app.
+I had just finished the React Native section of an online course I was taking and was feeling fairly confident using it. Around that time I met someone at a party who was in their senior year at MIT. He had a very interesting idea for a social media application that was focused on facilitating actual meet ups and planning events. The application was going to require users to create accounts and authenticate so having had experience with that, I got started on it. The friend I had met ended up getting busy with school and the application at the point, just had users logging into a blank page, so I decided to create a light weight todo app.
 
 #### Notable Technologies
 
@@ -80,8 +80,8 @@ I had just finished the React Native section of an online course I was taking an
 
 #### Challenges and Takeaways
 
-Using React Native can definitely prove difficult at times. My biggest gripe was error messages and debugging. 80% of the errors point you to code that isn't yours (presumably react native code) and you are left to try and find the bug on intuition alone. Once you actually get it working though, being able to spit out two working applications for different operating systems is quite nice. Now I haven't had any experience using a different cross-platform framework, or building an application with their native tools, but if you're well versed in react, react native is still a good choice despite it's sore spots.
+Using React Native can definitely prove difficult at times. My biggest gripe was error messages and debugging. 80% of the errors point you to code that isn't yours and you are left to try and find the bug on intuition alone. Once you actually get it working though, being able to spit out two working applications for different operating systems is quite nice. Now I haven't had any experience using a different cross-platform framework, or building mobile application with their native tools, but if you're well versed in react, react native is still a good choice despite it's sore spots.
 
-On the server side, the api was built with GraphQL and uses postgres to persist data. At first, it seemed like there was going to end up being duplicated types all over the place so I did some research and came across the type-graphql library. It ended up meshing incredibly well with Mikro-orm and saved me from any and all duplication of types. Both type-graphql and Mikro-orm allow the use of decorators within a typescript class to declare GraphQL types and schema respectively. The end result is a single file for each database entity that declares a typescript type, GraphQL type, and database table. Pure joy.
+On the server side, the api was built with GraphQL and uses postgres to persist data. At first, it seemed like there was going to end up being duplicated types all over the place so I did some research and came across the type-graphql library. It ended up meshing incredibly well with Mikro-orm and saved me from any and all duplication of types. Both type-graphql and Mikro-orm allow the use of decorators within a typescript class to declare GraphQL types and schema respectively. The end result is a single class for each database entity that declares a typescript type, GraphQL type, and the schema for that table. Pure joy.
 
 The backend was written in typescript right from the beginning as I had just recently began to use typescript and felt it was absolutely worth the extra overhead of creating and dealing with types. So much so that when I came back to the project after a couple of months away, I immediately integrated typescript with the react native application. The ease of migrating an application from javascript to typescript is incredible. It enables you to go at whatever pace you would like. You can write your new code with typescript and slowly migrate old files over as you see fit, all without breaking the application. In situations where the choice is mine, I don't think I could ever choose javascript again. The silly (and not silly) errors that static type checking catches for you end up saving you time in the long run, especially as an application grows. And who doesn't love autocomplete anyways.
